@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+      <script type="text/javascript" src="js/jquery.js"></script>
+      <script type="text/javascript">
+          $(document).ready(function() {
+            var staffMember=$('#theDriversName').val();
+            var dutyNumber=$('#driversDuty').val();
+            var firstPdaTaken=$('#firstPdaTaken').val();
+            var secondPadTaken=$('#secondPdaTaken').val();
+            var vanNumber=$('#signOutVanNumber').val();
+            var pegs=$('#pegs').val();
+            var hivis=$('#hivis').val();
+            var footwear=$('#footwear').val();
+
+            $.ajax ({
+              type: "POST",
+              url: "signOutCordovaTest.php",
+              success: function(data){
+                if (data=="success") {
+                  alert("inserted");
+                } else if (data=="error") {
+                  alert("error inserting");
+                }
+              }
+            });
+          });
+      </script>
+              <title>Form test</title>
+    </head>
+    <body>
+
+
+
+      <div class="container-fluid">
+        <div id="user-input">
+                  <h1>Sign van out</h1>
+                  <form action="signOutCordovaTest.php" method="POST">
+                  <fieldset>
+                    <legend>Sign a van out 3 of 3</legend>
+                    <!-- Summary of information filled out by the staff member, before confirming their action -->
+                    Name: <input type="text" name="theDriversName"><br>
+                    Duty number: <input type="text" name="driversDuty"><br>
+                    Number of keys taken: <input type="text" name="keysCollected"><br>
+                    Vehicle number: <input type="text" name="signOutVanNumber"><br>
+                    Registration: <input type="text" name="regNumTaken"><br>
+                    Serial number: <input type="text" name="serialNumTaken"><br>
+                    Log book: <input type="checkbox" name="logBookCollected" value="1"><br>
+                    PDA 1: <input type="text" name="firstPdaTaken"><br>
+                    PDA 2: <input type="text" name="secondPdaTaken"><br>
+
+                    <input type="hidden" name="pegs" value="0">
+                    Posting pegs: <input type="checkbox" name="pegs" value="1"><br>
+
+                    <input type="hidden" name="hivis" value="0">
+                    Hi-vis jacket: <input type="checkbox" name="hivis" value="1"><br>
+
+                    <input type="hidden" name="footwear" value="0">
+                    Footwear: <input type="checkbox" name="footwear" value="1"><br>
+
+                    <input type="hidden" name="collectionKeys" value="0">
+                    Collection keys: <input type="checkbox" name="collectionKeys" value="1"><br>
+
+                    <i>I acknowledge the above information is correct</i><br>
+                    <input type="submit" id="submit" value="submit" class="btn btn-primary">
+
+                  </fieldset>
+                  </form>
+                </div>
+              </body>
+            </head>
