@@ -34,7 +34,7 @@ var app = {
       function getDriversNotOnDuty() {
         //alert("Get drivers called");
         var drivers;
-        $.getJSON("http://192.168.0.11/project/test1/getDriverNamesCordova.php", function (data) {
+        $.getJSON("http://86.0.13.186:8080/project/test1/getDriverNamesCordova.php", function (data) {
           $.each(data,function(index,item) {
                 drivers+="<option value='"+item.payeNumber+"'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
                 console.log("Worked");
@@ -48,7 +48,7 @@ var app = {
     function getDutiesNotOut() {
       //alert("Get duties called");
       var duties;
-      $.getJSON("http://192.168.0.11/project/test1/dutyNumbers.php", function (data) {
+      $.getJSON("http://86.0.13.186:8080/project/test1/dutyNumbers.php", function (data) {
         $.each(data,function(index,item) {
               duties+="<option value='"+item.dutyNumber+"'>" + item.dutyNumber+"</option>";
               console.log("Worked");
@@ -62,7 +62,7 @@ var app = {
     function getVansNotOut() {
       //alert("Get vans called");
       var vans;
-      $.getJSON("http://192.168.0.11/project/test1/getVanNumbersSignOut.php", function (data) {
+      $.getJSON("http://86.0.13.186:8080/project/test1/getVanNumbersSignOut.php", function (data) {
         $.each(data,function(index,item) {
               vans+="<option value='"+item.vehicleNumber+"'>" + item.vehicleNumber+"</option>";
               console.log("Worked");
