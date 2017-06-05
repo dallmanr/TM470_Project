@@ -34,10 +34,10 @@ var app = {
       function getDriversNotOnDuty() {
         //alert("Get drivers called");
         var drivers;
-        $.getJSON("http://86.0.13.186:8080/project/test1/getDriverNamesCordova.php", function (data) {
+        $.getJSON("http://localhost:8080/project/test1/getDriverNamesCordova.php", function (data) {
           $.each(data,function(index,item) {
                 drivers+="<option value='"+item.payeNumber+"'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
-                console.log("Worked");
+                console.log("Get driver names worked");
         });
           $('#driverNames').html(drivers);
       });
@@ -48,10 +48,10 @@ var app = {
     function getDutiesNotOut() {
       //alert("Get duties called");
       var duties;
-      $.getJSON("http://86.0.13.186:8080/project/test1/dutyNumbers.php", function (data) {
+      $.getJSON("http://localhost:8080/project/test1/dutyNumbers.php", function (data) {
         $.each(data,function(index,item) {
               duties+="<option value='"+item.dutyNumber+"'>" + item.dutyNumber+"</option>";
-              console.log("Worked");
+              console.log("Get duty numbers worked");
       });
         $('#dutyNumber').html(duties);
     });
@@ -62,19 +62,21 @@ var app = {
     function getVansNotOut() {
       //alert("Get vans called");
       var vans;
-      $.getJSON("http://86.0.13.186:8080/project/test1/getVanNumbersSignOut.php", function (data) {
+      $.getJSON("http://localhost:8080/project/test1/getVanNumbersSignOut.php", function (data) {
         $.each(data,function(index,item) {
               vans+="<option value='"+item.vehicleNumber+"'>" + item.vehicleNumber+"</option>";
-              console.log("Worked");
+              console.log("Get van numbers worked");
       });
         $('#vanNumber').html(vans);
     });
   }; //end of getVansNotOut
 
+      //Calling these functions here causes them to be called when index.html is loaded.
+      //Instead I want these functions to be called only when required.
 
-      getDriversNotOnDuty();
-      getDutiesNotOut();
-      getVansNotOut();
+      //getDriversNotOnDuty();
+      //getDutiesNotOut();
+      //getVansNotOut();
     }; //end of project function
     this.project = new project();
 } //end of bindEvents
