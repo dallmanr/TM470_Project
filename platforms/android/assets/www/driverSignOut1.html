@@ -3,24 +3,29 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="msapplication-tap-highlight" content="no"/>
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta http-equiv="Content-Security-Policy"> -->
   <script type="text/javascript" src="cordova.js"></script>
   <!-- jQuery -->
-  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css">
+  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css"/>
+
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+
   <script type="text/javascript" id="jqm-trans-disable">
     /* For having a faster transition */
     $(document).on("mobileinit", function() {
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
+
   </script>
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/driverSignOut.js"></script>
 
   <title>Driver sign out 1 of 3</title>
 </head>
@@ -29,10 +34,10 @@
 
 
   <div class="container-fluid">
-    <h1>Sign van out</h1>
+    <h1 class="text-center">Sign van out</h1>
     <!-- User Information -->
     <fieldset>
-      <legend>Sign a van out 1 of 3</legend>
+      <legend class="text-center">Sign a van out (1 of 3)</legend>
       <div id="test"></div>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
 
