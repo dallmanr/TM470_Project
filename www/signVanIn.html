@@ -23,10 +23,26 @@
     });
 
   </script>
+
+  <script>
+    function getVans(val) {
+      alert(val);
+      $.ajax({
+        type:"POST",
+        url:"getSignedOutVans.php",
+        data:'staffMember='+val,
+        success: function(data) {
+          $("#vanList").html(data);
+        }
+      });
+    };
+  </script>
+
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/getSignedOutVansCordova.js"></script>
 
-  <title>Driver sign out 1 of 3</title>
+  <title>Driver sign in</title>
 </head>
 
 <body>
@@ -34,7 +50,12 @@
     <h1 class="text-center">Sign van in</h1>
         <form action="index.html" id="vanInForm">
 
-          Driver name: <select name="driverNames" id="driverNames"><option>Please select..</option></select>
+          Driver name: <select name="driverNamesIn" id="driverNamesIn" onChange="getVans(this.value)" ><option>Please select..</option></select>
+
+          Van number:
+          <select name="vanList" id="vanList">
+            <option value=""></option>
+          </select><br>
 
           Log book returned?
             <!-- The health and safety standards a driver has to adhere to -->
