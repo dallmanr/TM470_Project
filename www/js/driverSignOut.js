@@ -1,10 +1,12 @@
+//Returns a list of all those drivers which do not have a record in the dutyDetails table
+//for the current date, that is, they have not been signed out already today
 function getDriversNotOnDuty() {
   //alert("Get drivers called");
   var drivers;
   $.getJSON("http://localhost:8080/project/test1/getDriverNamesCordova.php", function (data) {
     $.each(data,function(index,item) {
           drivers+="<option value='"+item.payeNumber+"'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
-          console.log("Get driver names worked");
+          console.log("Get driver names called");
   });
     $('#driverNames').html(drivers);
 });
@@ -18,22 +20,37 @@ var duties;
 $.getJSON("http://localhost:8080/project/test1/dutyNumbers.php", function (data) {
   $.each(data,function(index,item) {
         duties+="<option value='"+item.dutyNumber+"'>" + item.dutyNumber+"</option>";
-        console.log("Get duty numbers worked");
+        console.log("Get duty numbers called");
 });
   $('#dutyNumber').html(duties);
 });
 }; //end of getDutiesNotOut
 
 //Returns a list of all those vans which do not have a record in the dutyDetails table
-//for the current date, that is, they have not been
+//for the current date, that is, they have not been signed out
 function getVansNotOut() {
 //alert("Get vans called");
 var vans;
 $.getJSON("http://localhost:8080/project/test1/getVanNumbersSignOut.php", function (data) {
   $.each(data,function(index,item) {
         vans+="<option value='"+item.vehicleNumber+"'>" + item.vehicleNumber+"</option>";
-        console.log("Get van numbers worked");
+        console.log("Get van numbers called");
 });
   $('#vanNumber').html(vans);
+});
+}; //end of getVansNotOut
+
+//Returns a list of all those PDAs which do not have a record in the dutyDetails table
+//for the current date, that is, they have not been signed out
+function getPdasNotOut() {
+//alert("Get PDAs called");
+var pdas;
+$.getJSON("http://localhost:8080/project/test1/pdaNumbers.php", function (data) {
+  $.each(data,function(index,item) {
+        pdas+="<option value='"+item.pdaNumber+"'>" + item.pdaNumber+"</option>";
+        console.log("Get pda numbers called");
+});
+  $('#firstPdaTaken').html(pdas);
+  $('#secondPadTaken').html(pdas);
 });
 }; //end of getVansNotOut

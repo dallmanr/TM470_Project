@@ -28,7 +28,7 @@ var app = {
     };
 
     function project() {
-      
+
     }; //end of project function
     this.project = new project();
 } //end of bindEvents

@@ -26,33 +26,48 @@
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/driverSignOut.js"></script>
-  <script>
-    $(document).ready(function() {
-    var staffMember=$('#theDriversName').val();
-    var dutyNumber=$('#driversDuty').val();
-    var firstPdaTaken=$('#firstPdaTaken').val();
-    var secondPadTaken=$('#secondPdaTaken').val();
-    var vanNumber=$('#signOutVanNumber').val();
-    var pegs=$('#pegs').val();
-    var hivis=$('#hivis').val();
-    var footwear=$('#footwear').val();
-    $.ajax ({
-      type: "POST",
-      url: "signOutCordovaTest.php",
-      success: function(data){
-      if (data=="success") {
-        alert("inserted");
-        } else if (data=="error") {
-          alert("error inserting");
-          }
-        }
-      });
-    });
-    </script>
+
 
       <title>Driver sign out</title>
     </head>
     <body>
+      <script>
+        //Variables set from sign out 1 of 3
+        $('#theDriversName').val(localStorage.getItem("driverName"));
+        $('#driversDuty').val(localStorage.getItem("dutyNumber"));
+        $('#signOutVanNumber').val(localStorage.getItem("vanNumber"));
+        $('#firstPdaTaken').val(localStorage.getItem("pdaOneNum"));
+        $('#secondPdaTaken').val(localStorage.getItem("pdaTwoNum"));
+        $('#keysCollected').val(localStorage.getItem("keysTaken"));
+        $('#logBookCollected').val(localStorage.getItem("keysTaken"));
+
+        //Variables set from sign out 2 of 3
+        if (localStorage.getItem("pegs") == 1) {
+          //alert(localStorage.getItem("pegs"));
+          $('#pegs').prop('checked', true);
+        }
+
+        if (localStorage.getItem("jacket") == 1) {
+          $('#hivis').prop('checked', true);
+        }
+
+        if (localStorage.getItem("footwear") == 1) {
+          $('#footwear').prop('checked', true);
+        }
+
+        if (localStorage.getItem("logBook") == 1) {
+          $('#logBookCollected').prop('checked', true);
+        }
+
+        if (localStorage.getItem("collectionKeys") == 1) {
+          $('#collectionKeys').prop('checked', true);
+        }
+
+        //$('#pegs').val(localStorage.getItem("pegs"));
+        //$('#hivis').val(localStorage.getItem("jacket"));
+        //$('#footwear').val(localStorage.getItem("footwear"));
+        //alert(localStorage.getItem("driverName"));
+      </script>
 
       <div class="container-fluid">
         <div id="user-input">
@@ -62,31 +77,33 @@
           <fieldset>
             <legend class="text-center">Sign a van out (3 of 3)</legend>
             <!-- Summary of information filled out by the staff member, before confirming their action -->
-            Name: <input type="text" name="theDriversName"><br>
-            Duty number: <input type="text" name="driversDuty"><br>
-            Number of keys taken: <input type="text" name="keysCollected"><br>
-            Vehicle number: <input type="text" name="signOutVanNumber"><br>
-            Registration: <input type="text" name="regNumTaken"><br>
-            Serial number: <input type="text" name="serialNumTaken"><br>
-            Log book: <input type="checkbox" name="logBookCollected" value="1"><br>
-            PDA 1: <input type="text" name="firstPdaTaken"><br>
-            PDA 2: <input type="text" name="secondPdaTaken"><br>
+            <label>Name: </label><input type="text" name="theDriversName" id="theDriversName" readonly />
+            Duty number: <input type="text" name="driversDuty" id="driversDuty" readonly />
+            Number of keys taken: <input type="text" name="keysCollected" id="keysCollected" readonly />
+            Vehicle number: <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
+            Registration: <input type="text" name="regNumTaken" id="regNumTaken" readonly />
+            Serial number: <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
+            Log book: <input type="checkbox" name="logBookCollected" id="logBookCollected" value="" />
+            PDA 1: <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
+            PDA 2: <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
 
-            <input type="hidden" name="pegs" value="0">
-            Posting pegs: <input type="checkbox" name="pegs" value="1"><br>
+            <input type="hidden" name="pegs" value="0"/>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="pegs" id="pegs" value=""/>Posting pegs
+            </label>
 
-            <input type="hidden" name="hivis" value="0">
-            Hi-vis jacket: <input type="checkbox" name="hivis" value="1"><br>
 
-            <input type="hidden" name="footwear" value="0">
-            Footwear: <input type="checkbox" name="footwear" value="1"><br>
+            <input type="hidden" name="hivis" value="0"/>
+            Hi-vis jacket: <input type="checkbox" name="hivis" id="hivis" value="" />
 
-            <input type="hidden" name="collectionKeys" value="0">
-            Collection keys: <input type="checkbox" name="collectionKeys" value="1"><br>
+            <input type="hidden" name="footwear" value="0"/>
+            Footwear: <input type="checkbox" name="footwear" id="footwear" value="" />
 
-            <i>I acknowledge the above information is correct</i><br>
-            <input type="submit" id="submit" value="submit" class="btn btn-primary">
+            <input type="hidden" name="collectionKeys" value="0"/>
+            Collection keys: <input type="checkbox" name="collectionKeys" id="collectionKeys" value="" />
 
+            <i>I acknowledge the above information is correct</i>
+            <input type="submit" id="submit" value="submit" class="btn btn-primary" />
           </fieldset>
           </form>
         </div>
