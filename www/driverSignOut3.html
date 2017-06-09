@@ -77,32 +77,45 @@
           <fieldset>
             <legend class="text-center">Sign a van out (3 of 3)</legend>
             <!-- Summary of information filled out by the staff member, before confirming their action -->
-            <label>Name: </label><input type="text" name="theDriversName" id="theDriversName" readonly />
+          <p>
+            Name:<input type="text" name="theDriversName" id="theDriversName" readonly />
             Duty number: <input type="text" name="driversDuty" id="driversDuty" readonly />
             Number of keys taken: <input type="text" name="keysCollected" id="keysCollected" readonly />
             Vehicle number: <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
             Registration: <input type="text" name="regNumTaken" id="regNumTaken" readonly />
             Serial number: <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
-            Log book: <input type="checkbox" name="logBookCollected" id="logBookCollected" value="" />
+            <label class="checkbox-inline">
+              <input type="checkbox" name="logBookCollected" id="logBookCollected" value="1" />Log book
+            </label>
             PDA 1: <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
             PDA 2: <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
 
             <input type="hidden" name="pegs" value="0"/>
             <label class="checkbox-inline">
-              <input type="checkbox" name="pegs" id="pegs" value=""/>Posting pegs
+              <input type="checkbox" name="pegs" id="pegs" value="1"/>Posting pegs
             </label>
 
+            <label class="checkbox-inline">
+              <input type="hidden" name="hivis" value="0"/>
+            <input type="checkbox" name="hivis" id="hivis" value="1" />Hi-vis jacket
+            </label>
 
-            <input type="hidden" name="hivis" value="0"/>
-            Hi-vis jacket: <input type="checkbox" name="hivis" id="hivis" value="" />
+            <label class="checkbox-inline">
+              <input type="hidden" name="footwear" value="0"/>
+              <input type="checkbox" name="footwear" id="footwear" value="1" />Footwear
+            </label>
 
-            <input type="hidden" name="footwear" value="0"/>
-            Footwear: <input type="checkbox" name="footwear" id="footwear" value="" />
+            <label class="checkbox-inline">
+              <input type="hidden" name="collectionKeys" value="0"/>
+              <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" />Collection keys
+            </label>
+            </p>
 
-            <input type="hidden" name="collectionKeys" value="0"/>
-            Collection keys: <input type="checkbox" name="collectionKeys" id="collectionKeys" value="" />
-
-            <i>I acknowledge the above information is correct</i>
+            <label class="checkbox-inline required">
+            <input type="hidden" name="acknowledge" value="0"/>
+            <input type="checkbox" name="acknowledge" id="acknowledge" value="1"/>
+            <i>I acknowledge the above information is correct</i></label>
+          </p>
             <input type="submit" id="submit" value="submit" class="btn btn-primary" />
           </fieldset>
           </form>

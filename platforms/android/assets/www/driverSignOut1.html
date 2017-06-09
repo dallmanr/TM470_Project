@@ -25,46 +25,120 @@
   </script>
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript" src="js/driverSignOut.js"></script>
 
   <title>Driver sign out 1 of 3</title>
 </head>
 
 <body>
+  <script>
+    function getName(val) {
+      //var name = document.getElementById("driverNames");
+      localStorage.setItem('driverName', val);
+      //alert(val);
+    }
+  </script>
 
+  <script>
+    function getDuty(val) {
+      //var duty = document.getElementById("dutyNumber");
+      localStorage.setItem('dutyNumber', val);
+      //alert(val);
+    }
+  </script>
 
-  <div class="container-fluid">
+  <script>
+    function getVan(val) {
+      //var van = document.getElementById("vanNumber");
+      localStorage.setItem('vanNumber', val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function getPdaOne(val) {
+      //var pdaOne = document.getElementById("firstPdaTaken");
+      localStorage.setItem('pdaOneNum', val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function getPdaTwo(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('pdaTwoNum', val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function getVanKeys(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('keysTaken', val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function getCollKeys(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('collectionKeys', val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function getLogBook(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('logBook', val);
+      //alert(val);
+    }
+  </script>
+
+  <div class="container">
     <h1 class="text-center">Sign van out</h1>
     <!-- User Information -->
     <fieldset>
       <legend class="text-center">Sign a van out (1 of 3)</legend>
-      <div id="test"></div>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
 
-      Name: <select name="driverNames" id="driverNames"><option>Please select..</option></select><br>
+      Name: <select name="driverNames" id="driverNames" onChange="getName(this.value)"><option>Please select..</option></select>
       <!-- A list of duties for the staff member to select which oen they are -->
-      Duty: <select name="dutyNumber" id="dutyNumber"><option>Please select..</option></select><br>
+      Duty: <select name="dutyNumber" id="dutyNumber" onChange="getDuty(this.value)"><option>Please select..</option></select>
 
       <!-- List of vehicle numbers for a driver to select which one they are signing out -->
-      Van number: <select name="vanNumber" id="vanNumber"><option>Please select..</option></select><br>
+      Van number: <select name="vanNumber" id="vanNumber" onChange="getVan(this.value)"><option>Please select..</option></select>
 
       <!-- Number of keys for the van the staff member has taken -->
       Keys taken:
-      <select name="keysTaken">
-									<option value="one">One</option>
-									<option value="two">Two</option>
-								</select><br>
+      <select name="keysTaken" id="keysTaken" onChange="getVanKeys(this.value)">
+			   <option value="1">One</option>
+			   <option value="2">Two</option>
+			</select>
 
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-      PDA: <select name="firstPdaTaken"><option>Please select..</option></select> PDA: <select name="secondPadTaken"><option>Please select..</option></select>
-      <p><span>Collection keys: <input type="radio" name="collectionKeys" value="1">Yes <input type="radio" name="collectionKeys" value="0">No</span></p>
-      Log book: <input type="radio" name="logBook" value="1">Yes <input type="radio" name="logBook" value="0">No
+      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="getPdaOne(this.value)"><option>Please select..</option></select> PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="getPdaTwo(this.value)"><option>Please select..</option></select>
+      Collection keys:
+      <label class="radio-inline">
+        <input type="radio" name="collectionKeys" value="1" onchange="getCollKeys(this.value)" />Yes
+      </label>
+
+      <label class="radio-inline">
+        <input type="radio" name="collectionKeys"  value="0" onchange="getCollKeys(this.value)" />No
+      </label>
+
+      Log book:
+      <label class="radio-inline">
+       <input type="radio" name="logBook"  value="1" onchange="getLogBook(this.value)" />Yes
+      </label>
+
+      <label class="radio-inline">
+        <input type="radio" name="logBook" value="0" onchange="getLogBook(this.value)" />No
+      </label>
 
       <form action="driverSignOut2.html">
-        <label><input type="submit" class="btn btn-default" value="Next"></label>
+        <input type="submit" class="btn btn-default" value="Next"/>
       </form>
     </fieldset>
   </div>
 </body>
-
 </html>

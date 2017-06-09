@@ -7,25 +7,28 @@
   <meta name="msapplication-tap-highlight" content="no"/>
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta http-equiv="Content-Security-Policy"> -->
-  <script type="text/javascript" src="cordova.js"></script>
+
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css"/>
 
+  <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
-
   <script type="text/javascript" id="jqm-trans-disable">
     /* For having a faster transition */
     $(document).on("mobileinit", function() {
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
-
   </script>
+
+  <!-- my scripts -->
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/driverSignOut.js"></script>
+  <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
+  <!-- end of my scripts -->
 
   <title>HOME</title>
 </head>
@@ -46,11 +49,11 @@
         </div>
 
         <form action="driverSignOut1.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a van out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut(); getVansNotOut()"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a van out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut(); getVansNotOut(); getPdasNotOut();"></label>
         </form>
 
         <form action="signVanIn.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a van in"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a van in" onclick="javascript:getDriversOnDuty()"></label>
         </form>
 
         <form action="signPdaOut.html">

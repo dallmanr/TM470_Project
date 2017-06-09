@@ -31,17 +31,64 @@
   <title class="text-center">Driver sign out</title>
 </head>
     <body>
+      <script>
+        function getPegs(val) {
+          //var pdaTwo = document.getElementById("secondPadTaken");
+          localStorage.setItem('pegs', val);
+          //alert(val);
+        }
+      </script>
+
+      <script>
+        function getJacket(val) {
+          //var pdaTwo = document.getElementById("secondPadTaken");
+          localStorage.setItem('jacket', val);
+          //alert(val);
+        }
+      </script>
+
+      <script>
+        function getFootwear(val) {
+          //var pdaTwo = document.getElementById("secondPadTaken");
+          localStorage.setItem('footwear', val);
+          //alert(val);
+        }
+      </script>
       <div class="container-fluid">
         <h1 class="text-center">Sign van out</h1>
           <fieldset>
             <legend class="text-center">Sign a van out (2 of 3</legend>
               <!-- The health and safety standards a driver has to adhere to -->
-              Posting pegs issued: <input type="radio" name="postingPegs" value="1">Yes <input type="radio" name="postingPegs" value="0">No<br>
-              His-vis jacket: <input type="radio" name="hiVis" value="1">Yes <input type="radio" name="hiVis" value="0">No<br>
-              Correct footwear: <input type="radio" name="footwear" value="1">Yes <input type="radio" name="footwear" value="0">No<br>
+              Posting pegs issued:
+              <label class="radio-inline">
+                <input type="radio" name="postingPegs" value="1" onchange="getPegs(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+               <input type="radio" name="postingPegs" value="0" onchange="getPegs(this.value)"/>No
+              </label>
+
+              His-vis jacket:
+              <label class="radio-inline">
+                <input type="radio" name="hiVis" value="1" onchange="getJacket(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+                <input type="radio" name="hiVis" value="0"  onchange="getJacket(this.value)"/>No
+              </label>
+
+              Correct footwear:
+              <label class="radio-inline">
+               <input type="radio" name="footwear" value="1" onchange="getFootwear(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+                <input type="radio" name="footwear" value="0" onchange="getFootwear(this.value)"/>No
+              </label>
+
           </fieldset>
           <form action="driverSignOut3.html">
-            <label><input type="submit" class="btn btn-default" value="Next"></label>
+            <label><input type="submit" class="btn btn-default" value="Next"/></label>
           </form>
       </div>
     </body>

@@ -6,6 +6,7 @@
     AND DATE(timeIn) IS NULL)
     AND currentEmp = 1
     ORDER BY payeNumber ASC";
+
   $result = $conn->query($sql);
 
       if($result -> num_rows > 0) {

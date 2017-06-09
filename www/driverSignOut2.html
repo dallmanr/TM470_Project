@@ -59,9 +59,33 @@
           <fieldset>
             <legend class="text-center">Sign a van out (2 of 3</legend>
               <!-- The health and safety standards a driver has to adhere to -->
-              Posting pegs issued: <input type="radio" name="postingPegs" id="postingPegs" value="1" onchange="getPegs(this.value)"/>Yes <input type="radio" name="postingPegs" value="0" onchange="getPegs(this.value)"/>No
-              His-vis jacket: <input type="radio" name="hiVis" id="hiVis" value="1" onchange="getJacket(this.value)"/>Yes <input type="radio" name="hiVis" value="0" onchange="getJacket(this.value)"/>No
-              Correct footwear: <input type="radio" name="footwear" id="footwear" value="1" onchange="getFootwear(this.value)"/>Yes <input type="radio" name="footwear" value="0" onchange="getFootwear(this.value)"/>No
+              Posting pegs issued:
+              <label class="radio-inline">
+                <input type="radio" name="postingPegs" value="1" onchange="getPegs(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+               <input type="radio" name="postingPegs" value="0" onchange="getPegs(this.value)"/>No
+              </label>
+
+              His-vis jacket:
+              <label class="radio-inline">
+                <input type="radio" name="hiVis" value="1" onchange="getJacket(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+                <input type="radio" name="hiVis" value="0"  onchange="getJacket(this.value)"/>No
+              </label>
+
+              Correct footwear:
+              <label class="radio-inline">
+               <input type="radio" name="footwear" value="1" onchange="getFootwear(this.value)"/>Yes
+              </label>
+
+              <label class="radio-inline">
+                <input type="radio" name="footwear" value="0" onchange="getFootwear(this.value)"/>No
+              </label>
+
           </fieldset>
           <form action="driverSignOut3.html">
             <label><input type="submit" class="btn btn-default" value="Next"/></label>
