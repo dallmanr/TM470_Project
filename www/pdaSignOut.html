@@ -21,15 +21,12 @@
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
+
   </script>
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
 
-  <script type="text/javascript">
-    document.getElementById("backButton").onclick = function () {
-      location.href ="index.html";
-    }
-  </script>
   <title>Driver sign out 1 of 3</title>
 </head>
 
@@ -39,6 +36,22 @@
     //alert(localStorage.getItem("driverName"));
   </script>
 
+  <script>
+    function cancel() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.back()
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
+  </script>
+
+  <script>
+    function goBack() {
+      window.history.back()
+    }
+  </script>
   <!-- Scripts for setting values for name of drivers, duty numbers,
   van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
   <script>
@@ -58,14 +71,6 @@
   </script>
 
   <script>
-    function setVan(val) {
-      //var van = document.getElementById("vanNumber");
-      localStorage.setItem('vanNumber', val);
-      //alert(val);
-    }
-  </script>
-
-  <script>
     function setPdaOne(val) {
       //var pdaOne = document.getElementById("firstPdaTaken");
       localStorage.setItem('pdaOneNum', val);
@@ -74,114 +79,94 @@
   </script>
 
   <script>
-    function setPdaTwo(val) {
+    function setPegs(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('pdaTwoNum', val);
+      localStorage.setItem('pegs', val);
       //alert(val);
     }
   </script>
 
   <script>
-    function setVanKeys(val) {
+    function setJacket(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('keysTaken', val);
+      localStorage.setItem('jacket', val);
       //alert(val);
     }
   </script>
 
   <script>
-    function setCollKeys(val) {
+    function setFootwear(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('collectionKeys', val);
+      localStorage.setItem('footwear', val);
       //alert(val);
     }
-  </script>
-
-  <script>
-    function setLogBook(val) {
-      //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('logBook', val);
-      //alert(val);
-    }
-  </script>
-
-  <!-- Scripts for ticking the collection keys and log book check boxes.
-  If the user is returning to this screen from screen 2 or 3 to make changes, these values
-  will have been set previously -->
-  <script>
-  if (localStorage.getItem("collectionKeys") == 1) {
-    //alert(localStorage.getItem("pegs"));
-    $('#collectionKeysTrue').prop('checked', true);
-  } else if (localStorage.getItem("collectionKeys") == 0) {
-    $('#collectionKeysFalse').prop('checked', true);
-  }
-
-  if (localStorage.getItem("logBook") == 1) {
-    //alert(localStorage.getItem("pegs"));
-    $('#logBookTrue').prop('checked', true);
-  } else if (localStorage.getItem("collectionKeys") == 0) {
-    $('#logBookFalse').prop('checked', true);
-  }
   </script>
 
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
-          <button type="button" class="btn btn-default" aria-label="Home">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          </button>
+          <input type="submit" class="btn btn-default" aria-label="Home" />
         </form>
       </div>
       <div class="col-sm-4">
-        <h1 class="text-center">Sign van out</h1>
+        <h1 class="text-center">Sign PDA out</h1>
     </div>
     <div class="col-sm-4"></div>
   </div>
 
     <!-- User Information -->
     <fieldset>
-      <legend class="text-center">Sign a van out (1 of 3)</legend>
+      <legend class="text-center">Sign a PDA out</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
 
       Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>
       <!-- A list of duties for the staff member to select which oen they are -->
       Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select>
 
-      <!-- List of vehicle numbers for a driver to select which one they are signing out -->
-      Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select>
-
-      <!-- Number of keys for the van the staff member has taken -->
-      Keys taken:
-      <select name="keysTaken" id="keysTaken" onChange="setVanKeys(this.value)">
-			   <option value="1">One</option>
-			   <option value="2">Two</option>
-			</select>
-
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select> PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="getPdaTwo(this.value)"><option>Please select..</option></select>
-      Collection keys:
+      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
+
+      Posting pegs issued:
       <label class="radio-inline">
-        <input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes
+        <input type="radio" name="postingPegs" id="postingPegsTrue" value="1" onchange="setPegs(this.value)"/>Yes
       </label>
 
       <label class="radio-inline">
-        <input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="0" onchange="setCollKeys(this.value)" />No
+       <input type="radio" name="postingPegs" id="postingPegsFalse" value="0" onchange="setPegs(this.value)"/>No
       </label>
 
-      Log book:
+      His-vis jacket:
       <label class="radio-inline">
-       <input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogBook(this.value)" />Yes
+        <input type="radio" name="hiVis" id="hiVisTrue" value="1" onchange="setJacket(this.value)"/>Yes
       </label>
 
       <label class="radio-inline">
-        <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogBook(this.value)" />No
+        <input type="radio" name="hiVis"  id="hiVisFalse" value="0"  onchange="setJacket(this.value)"/>No
       </label>
 
-      <button id="backButton">Back</button>
+      Correct footwear:
+      <label class="radio-inline">
+       <input type="radio" name="footwear"  id="footwearTrue" value="1" onchange="setFootwear(this.value)"/>Yes
+      </label>
 
-      <form action="driverSignOut2.html">
-        <input type="submit" class="btn btn-default" value="Next"/>
+      <label class="radio-inline">
+        <input type="radio" name="footwear" id="footwearFalse" value="0" onchange="setFootwear(this.value)"/>No
+      </label>
+
+      <p>
+        <label class="checkbox-inline required">
+        <input type="hidden" name="acknowledge" value="0"/>
+        <input type="checkbox" name="acknowledge" id="acknowledge" value="1"/>
+        <i>I acknowledge the above information is correct</i></label>
+    </p>
+
+        <button onClick="cancel()">Cancel</button>
+
+      <!-- Need to create the page for signing the PDA out -->
+      <form action="">
+        <input type="submit" class="btn btn-default" value="Sign out"/>
       </form>
     </fieldset>
   </div>

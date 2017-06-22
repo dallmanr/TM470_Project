@@ -32,7 +32,28 @@
 </head>
     <body>
       <script>
-        function getPegs(val) {
+      if (localStorage.getItem("pegs") == 1) {
+        //alert(localStorage.getItem("pegs"));
+        $('#postingPegsTrue').prop('checked', true);
+      } else {
+        $('#postingPegsFalse').prop('checked', true);
+      }
+
+      if (localStorage.getItem("jacket") == 1) {
+        $('#hiVisTrue').prop('checked', true);
+      } else {
+        $('#hiVisFalse').prop('checked', true);
+      }
+
+      if (localStorage.getItem("footwear") == 1) {
+        $('#footwearTrue').prop('checked', true);
+      } else {
+        $('#footwearFalse').prop('checked', true);
+      }
+      </script>
+
+      <script>
+        function setPegs(val) {
           //var pdaTwo = document.getElementById("secondPadTaken");
           localStorage.setItem('pegs', val);
           //alert(val);
@@ -40,7 +61,7 @@
       </script>
 
       <script>
-        function getJacket(val) {
+        function setJacket(val) {
           //var pdaTwo = document.getElementById("secondPadTaken");
           localStorage.setItem('jacket', val);
           //alert(val);
@@ -48,45 +69,62 @@
       </script>
 
       <script>
-        function getFootwear(val) {
+        function setFootwear(val) {
           //var pdaTwo = document.getElementById("secondPadTaken");
           localStorage.setItem('footwear', val);
           //alert(val);
         }
       </script>
-      <div class="container-fluid">
-        <h1 class="text-center">Sign van out</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <form action="index.html">
+              <button type="button" class="btn btn-default" aria-label="Home">
+              <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              </button>
+            </form>
+          </div>
+          <div class="col-sm-4">
+            <h1 class="text-center">Sign van out</h1>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
           <fieldset>
-            <legend class="text-center">Sign a van out (2 of 3</legend>
+            <legend class="text-center">Sign a van out (2 of 3)</legend>
               <!-- The health and safety standards a driver has to adhere to -->
               Posting pegs issued:
               <label class="radio-inline">
-                <input type="radio" name="postingPegs" value="1" onchange="getPegs(this.value)"/>Yes
+                <input type="radio" name="postingPegs" id="postingPegsTrue" value="1" onchange="setPegs(this.value)"/>Yes
               </label>
 
               <label class="radio-inline">
-               <input type="radio" name="postingPegs" value="0" onchange="getPegs(this.value)"/>No
+               <input type="radio" name="postingPegs" id="postingPegsFalse" value="0" onchange="setPegs(this.value)"/>No
               </label>
 
               His-vis jacket:
               <label class="radio-inline">
-                <input type="radio" name="hiVis" value="1" onchange="getJacket(this.value)"/>Yes
+                <input type="radio" name="hiVis" id="hiVisTrue" value="1" onchange="setJacket(this.value)"/>Yes
               </label>
 
               <label class="radio-inline">
-                <input type="radio" name="hiVis" value="0"  onchange="getJacket(this.value)"/>No
+                <input type="radio" name="hiVis"  id="hiVisFalse" value="0"  onchange="setJacket(this.value)"/>No
               </label>
 
               Correct footwear:
               <label class="radio-inline">
-               <input type="radio" name="footwear" value="1" onchange="getFootwear(this.value)"/>Yes
+               <input type="radio" name="footwear"  id="footwearTrue" value="1" onchange="setFootwear(this.value)"/>Yes
               </label>
 
               <label class="radio-inline">
-                <input type="radio" name="footwear" value="0" onchange="getFootwear(this.value)"/>No
+                <input type="radio" name="footwear" id="footwearFalse" value="0" onchange="setFootwear(this.value)"/>No
               </label>
 
           </fieldset>
+
+          <form action="driverSignOut1.html">
+            <input type="submit" class="btn btn-default" value="Back"/>
+          </form>
+
           <form action="driverSignOut3.html">
             <label><input type="submit" class="btn btn-default" value="Next"/></label>
           </form>

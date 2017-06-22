@@ -46,6 +46,18 @@
 </head>
 
 <body>
+
+  <script>
+    function cancel() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.back()
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
+  </script>
+
   <div class="container">
     <h1 class="text-center">Sign van in</h1>
         <form action="index.html" id="vanInForm">
@@ -82,6 +94,7 @@
             <label class="radio-inline"><input type="radio" name="collDutiesComp" value="0"/> No
             </label>
 
+            <button onclick="cancel()">Cancel</button>
             <input type="submit" class="btn btn-default" value="Submit"/>
           </form>
     </div>

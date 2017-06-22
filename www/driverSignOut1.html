@@ -21,7 +21,6 @@
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
-
   </script>
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
@@ -35,6 +34,16 @@
     //alert(localStorage.getItem("driverName"));
   </script>
 
+  <script>
+    function cancel() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.back()
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
+  </script>
 
   <!-- Scripts for setting values for name of drivers, duty numbers,
   van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
@@ -125,8 +134,8 @@
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
+          <button type="button" class="btn btn-default" aria-label="Home">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          <input type="submit" class="btn btn-default" aria-label="Home" />
           </button>
         </form>
       </div>
@@ -175,9 +184,7 @@
         <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogBook(this.value)" />No
       </label>
 
-      <form>
-        <input Type="button" VALUE="Back" onClick="history.go(-1);return true;"/>
-      </form>
+      <button id="backButton" onclick="cancel()">Back</button>
 
       <form action="driverSignOut2.html">
         <input type="submit" class="btn btn-default" value="Next"/>
