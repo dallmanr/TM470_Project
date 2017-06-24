@@ -24,20 +24,6 @@
 
   </script>
 
-  <script>
-    function getVans(val) {
-      alert(val);
-      $.ajax({
-        type:"POST",
-        url:"getSignedOutVans.php",
-        data:'staffMember='+val,
-        success: function(data) {
-          $("#vanList").html(data);
-        }
-      });
-    };
-  </script>
-
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/getSignedOutVansCordova.js"></script>
@@ -55,19 +41,46 @@
       } else {
         //do nothing
       }
+    };
+  </script>
+
+  <script>
+    function getVans(val) {
+  //alert("getName called" + " " + val);
+  $.ajax({
+    type:"POST",
+    url:"http://localhost:8080/project/test1/getVanNumberSignVanIn.php",
+    data: "staffMember="+val,
+    //dataType: "jsonp",
+    success: function(data) {
+      var obj = $.parseJSON(data);
+      vanNumber = obj[0].vanNumber;
+      alert(obj[0].vanNumber);
+      $('#vanNumber').val(vanNumber);
     }
+  });
+};
   </script>
 
   <div class="container">
-    <h1 class="text-center">Sign van in</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <form action="index.html">
+          <button type="button" class="btn btn-default" aria-label="Home">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+      <div class="col-sm-4">
+        <h1 class="text-center">Sign van in</h1>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
         <form action="index.html" id="vanInForm">
 
-          Driver name: <select name="driverNamesIn" id="driverNamesIn" onChange="getVans(this.value)" ><option>Please select..</option></select>
+          Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);" ><option>Please select..</option></select>
 
-          Van number:
-          <select name="vanList" id="vanList">
-            <option value=""></option>
-          </select><br>
+          Van number: <input type="text" name="vanNumber" id="vanNumber" />
 
           Log book returned?
             <!-- The health and safety standards a driver has to adhere to -->
