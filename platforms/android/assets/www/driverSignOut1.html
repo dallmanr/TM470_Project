@@ -25,11 +25,6 @@
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 
-  <script type="text/javascript">
-    document.getElementById("backButton").onclick = function () {
-      location.href ="index.html";
-    }
-  </script>
   <title>Driver sign out 1 of 3</title>
 </head>
 
@@ -37,6 +32,17 @@
   <!-- Testing the driver value -->
   <script>
     //alert(localStorage.getItem("driverName"));
+  </script>
+
+  <script>
+    function cancel() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.go(-1);
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
   </script>
 
   <!-- Scripts for setting values for name of drivers, duty numbers,
@@ -128,7 +134,7 @@
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
-          <button type="button" class="btn btn-default" aria-label="Home">
+          <button type="button" class="btn btn-default" aria-label="Home" onclick="cancel()">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
           </button>
         </form>
@@ -178,7 +184,7 @@
         <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogBook(this.value)" />No
       </label>
 
-      <button id="backButton">Back</button>
+      <button id="cancelButton" onclick="cancel()">Cancel</button>
 
       <form action="driverSignOut2.html">
         <input type="submit" class="btn btn-default" value="Next"/>

@@ -37,6 +37,17 @@
   </script>
 
   <script>
+    function cancel() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.back()
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
+  </script>
+
+  <script>
     function goBack() {
       window.history.back()
     }
@@ -95,8 +106,9 @@
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
+          <button type="button" class="btn btn-default" aria-label="Home">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          <input type="submit" class="btn btn-default" aria-label="Home" />
+          </button>
         </form>
       </div>
       <div class="col-sm-4">
@@ -151,7 +163,7 @@
         <i>I acknowledge the above information is correct</i></label>
     </p>
 
-        <button onClick="goBack()">Back</button>
+        <button onClick="cancel()">Cancel</button>
 
       <!-- Need to create the page for signing the PDA out -->
       <form action="">
