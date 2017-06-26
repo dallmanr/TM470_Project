@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no"/>
-  <meta name="msapplication-tap-highlight" content="no"/>
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta http-equiv="Content-Security-Policy"> -->
 
   <!-- jQuery -->
-  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"/>
+  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="styles.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
@@ -29,7 +29,9 @@
   <script type="text/javascript" src="js/driverSignOut.js"></script>
   <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
   <script type="text/javascript" src="js/pdaSignIn.js"></script>
-  <script>localStorage.clear();</script>
+  <script>
+    localStorage.clear();
+  </script>
 
   <!-- end of my scripts -->
 
@@ -38,14 +40,14 @@
 
 <body>
 
-<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-2"></div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-2"></div>
       <div class="col-12 col-md-auto">
         <div class="row">
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
-            <form>
+            <form action="admin/index.html">
               <label><input type="submit" id="adminButton" class="btn btn-default" value="Admin" /></label>
             </form>
           </div>
@@ -68,9 +70,10 @@
         </form>
 
       </div>
-        <div class="col col-lg-2"></div>
+      <div class="col col-lg-2"></div>
+    </div>
   </div>
-</div>
 
 </body>
+
 </html>

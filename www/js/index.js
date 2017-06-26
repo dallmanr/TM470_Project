@@ -17,20 +17,31 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
+  // Application Constructor
+  initialize: function() {
+    this.bindEvents();
+  },
 
-    bindEvents: function() {
-      document.addEventListener('deviceready', onDeviceReady, false);
-      function onDeviceReady() {
-    };
+  bindEvents: function() {
+    document.addEventListener('deviceready', onDeviceReady, false);
+
+    function onDeviceReady() {
+      document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    function onBackKeyDown() {
+      if (confirm("Are you sure you want to cancel?")) {
+        window.history.go(-1);
+        localStorage.clear();
+      } else {
+        //do nothing
+      }
+    }
 
     function project() {
 
     }; //end of project function
     this.project = new project();
-} //end of bindEvents
+  } //end of bindEvents
 }; //end of app
 app.initialize();

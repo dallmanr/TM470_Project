@@ -37,16 +37,6 @@
     //alert(localStorage.getItem("driverName"));
   </script>
 
-  <script>
-    function cancel() {
-      if (confirm("Are you sure you want to cancel?")) {
-        window.history.back()
-        localStorage.clear();
-      } else {
-        //do nothing
-      }
-    }
-  </script>
   <!-- Scripts for setting values for name of drivers, duty numbers,
   van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
   <script>
@@ -107,7 +97,7 @@
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       <!--PDA: <input type="text" name="pdaIn" id="pdaIn" readonly /> -->
 
-      <button onClick="cancel()">Cancel</button>
+      <button onClick="onBackKeyDown();">Cancel</button>
       <button>Submit</button>
 
       <!-- Need to create the page for signing the PDA out

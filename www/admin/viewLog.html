@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta http-equiv="Content-Security-Policy"> -->
+
+  <!-- jQuery -->
+  <link rel="stylesheet" type="text/css" href="../js/jquery-1.5.0.mobile.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="../js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
+  <script type="text/javascript" id="jqm-trans-disable">
+    /* For having a faster transition */
+    $(document).on("mobileinit", function() {
+      $.mobile.defaultPageTransition = "none";
+      $.mobile.defaultDialogTransition = "none";
+    });
+  </script>
+
+  <!-- my scripts -->
+  <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
+  <script type="text/javascript" src="../js/index.js"></script>
+  <script>
+    localStorage.clear();
+  </script>
+  <!-- end of my scripts -->
+
+  <title>Admin control panel</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-2"></div>
+      <div class="col-12 col-md-auto">
+        <div class="row">
+          <div class="col-sm-9"></div>
+          <div class="col-sm-3">
+            <form action="../index.html">
+              <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" onclick="cancel()" /></label>
+            </form>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend class="text-center">View log</legend>
+          <!--
+              User can search the names of staff who have signed vehicles out.
+              Can search either by driver name/van number/reg number or serial number .
+              Can search between a date range.
+              The results are displayed in a table showing:
+              date/name/van number/time out/time in/hi vis/footwear/posting peg/collection duties completed
+            -->
+
+          <p>Date from: <input type="date" name="dateFrom" id="dateFrom" /> Date to: <input type="date" name="dateTo" id="dateTo" /></p>
+          <p>Select item to search: </p>
+          <p>Driver name: <input type="text" name="driverName" id="driverName" placeholder="John doe" /></p>
+          <p>Van number: <select name="vanNumber" id="vanNumber"><option>Please select..</option></select></p>
+          <p>Registration number: <select name="regNumber" id="regNumber"><option>Please select..</option></select> </p>
+          <p>Serial number: <select name="serialNumber" id="serialNumber"><option>Please select..</option></select></p>
+
+          <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
+
+          <form action="#">
+            <input type="submit" class="btn btn-default" value="Search" />
+          </form>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

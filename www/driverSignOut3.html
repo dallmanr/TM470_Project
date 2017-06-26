@@ -31,16 +31,7 @@
 </head>
 
 <body>
-  <script>
-    function cancel() {
-      if (confirm("Are you sure you want to cancel?")) {
-        window.history.go(-3);
-        localStorage.clear();
-      } else {
-        //do nothing
-      }
-    }
-  </script>
+
 
   <script>
     //Variables set from sign out 1 of 3
@@ -136,7 +127,7 @@
           </p>
       </fieldset>
 
-      <button id="cancelButton" onclick="cancel()">Cancel</button>
+      <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
 
       <form action="signOutCordovaTest.php" method="POST">
         <input type="submit" id="submit" value="Submit" class="btn btn-primary" />

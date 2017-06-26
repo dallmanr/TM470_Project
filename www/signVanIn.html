@@ -31,18 +31,6 @@
 </head>
 
 <body>
-
-  <script>
-    function cancel() {
-      if (confirm("Are you sure you want to cancel?")) {
-        window.history.back()
-        localStorage.clear();
-      } else {
-        //do nothing
-      }
-    };
-  </script>
-
   <script>
     function getVans(val) {
       //alert("getName called" + " " + val);
@@ -96,7 +84,7 @@
       <label class="radio-inline"><input type="radio" name="collDutiesComp" value="0"/> No
             </label>
 
-      <button onclick="cancel()">Cancel</button>
+      <button onclick="onBackKeyDown();">Cancel</button>
       <input type="submit" class="btn btn-default" value="Submit" />
     </form>
   </div>
