@@ -55,7 +55,7 @@
       //alert("getName called" + " " + val);
       $.ajax({
         type:"POST",
-        url:"http://localhost:8080/project/test1/pdaSignInNameFromDuty.php",
+        url:"http://localhost:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
         data: "dutyNumber="+val,
         //dataType: "jsonp",
         success: function(data) {
@@ -89,7 +89,7 @@
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
-          <button type="button" class="btn btn-default" aria-label="Home">
+          <button type="button" class="btn btn-default" aria-label="Home" onclick="cancel()">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
           </button>
         </form>

@@ -3,7 +3,7 @@
 function getDriversNotOnDuty() {
   //alert("Get drivers called");
   var drivers;
-  $.getJSON("http://localhost:8080/project/test1/getDriverNamesCordova.php", function (data) {
+  $.getJSON("http://86.0.13.186:8080/tm470/queries/getDriverNamesDriverSignOut.php", function (data) {
     $.each(data,function(index,item) {
           drivers+="<option value='"+item.payeNumber+"'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
           console.log("Get driver names called");
@@ -17,7 +17,7 @@ function getDriversNotOnDuty() {
 function getDutiesNotOut() {
 //alert("Get duties called");
 var duties;
-$.getJSON("http://localhost:8080/project/test1/dutyNumbers.php", function (data) {
+$.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutDuties.php", function (data) {
   $.each(data,function(index,item) {
         duties+="<option value='"+item.dutyNumber+"'>" + item.dutyNumber+"</option>";
         console.log("Get duty numbers called");
@@ -31,7 +31,7 @@ $.getJSON("http://localhost:8080/project/test1/dutyNumbers.php", function (data)
 function getVansNotOut() {
 //alert("Get vans called");
 var vans;
-$.getJSON("http://localhost:8080/project/test1/getVanNumbersSignOut.php", function (data) {
+$.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutVehicles.php", function (data) {
   $.each(data,function(index,item) {
         vans+="<option value='"+item.vehicleNumber+"'>" + item.vehicleNumber+"</option>";
         console.log("Get van numbers called");
@@ -45,7 +45,7 @@ $.getJSON("http://localhost:8080/project/test1/getVanNumbersSignOut.php", functi
 function getPdasNotOut() {
 //alert("Get PDAs called");
 var pdas;
-$.getJSON("http://localhost:8080/project/test1/pdaNumbers.php", function (data) {
+$.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutPDAs.php", function (data) {
   $.each(data,function(index,item) {
         pdas+="<option value='"+item.pdaNumber+"'>" + item.pdaNumber+"</option>";
         console.log("Get pda numbers called");

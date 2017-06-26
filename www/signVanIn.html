@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no"/>
-  <meta name="msapplication-tap-highlight" content="no"/>
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta http-equiv="Content-Security-Policy"> -->
   <script type="text/javascript" src="cordova.js"></script>
   <!-- jQuery -->
-  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css"/>
+  <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="styles.css"/>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
 
@@ -21,12 +21,11 @@
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
-
   </script>
 
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
-  <script type="text/javascript" src="js/getSignedOutVansCordova.js"></script>
+  <script type="text/javascript" src="js/getSignedOutVans.js"></script>
 
   <title>Driver sign in</title>
 </head>
@@ -46,20 +45,20 @@
 
   <script>
     function getVans(val) {
-  //alert("getName called" + " " + val);
-  $.ajax({
-    type:"POST",
-    url:"http://localhost:8080/tm470/queries/getVanNumberSignVanIn.php",
-    data: "staffMember="+val,
-    //dataType: "jsonp",
-    success: function(data) {
-      var obj = $.parseJSON(data);
-      vanNumber = obj[0].vanNumber;
-      alert(obj[0].vanNumber);
-      $('#vanNumber').val(vanNumber);
-    }
-  });
-};
+      //alert("getName called" + " " + val);
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/tm470/queries/getVanNumberFromDriverSignVanIn.php",
+        data: "staffMember=" + val,
+        //dataType: "jsonp",
+        success: function(data) {
+          var obj = $.parseJSON(data);
+          vanNumber = obj[0].vanNumber;
+          alert(obj[0].vanNumber);
+          $('#vanNumber').val(vanNumber);
+        }
+      });
+    };
   </script>
 
   <div class="container">
@@ -73,43 +72,34 @@
       </div>
       <div class="col-sm-4">
         <h1 class="text-center">Sign van in</h1>
+      </div>
+      <div class="col-sm-4"></div>
     </div>
-    <div class="col-sm-4"></div>
+    <form action="index.html" id="vanInForm">
+
+      Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned?
+      <!-- The health and safety standards a driver has to adhere to -->
+      <label class="radio-inline"><input type="radio" name="logBookReturned" value="1"/> Yes
+            </label>
+      <label class="radio-inline"><input type="radio" name="logBookReturned" value="0"/> No
+            </label> Returned all PDAs?
+      <label class="radio-inline"><input type="radio" name="pdasReturned" value="1"/> Yes
+            </label>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" value="0"/> No
+            </label> Collection pouch returned?
+      <label class="radio-inline"><input type="radio" name="collPouchReturned" value="1"/> Yes
+            </label>
+      <label class="radio-inline"><input type="radio" name="collPouchReturned" value="0"/> No
+            </label> Collection duties completed?
+      <label class="radio-inline"><input type="radio" name="collDutiesComp" value="1"/> Yes
+            </label>
+      <label class="radio-inline"><input type="radio" name="collDutiesComp" value="0"/> No
+            </label>
+
+      <button onclick="cancel()">Cancel</button>
+      <input type="submit" class="btn btn-default" value="Submit" />
+    </form>
   </div>
-        <form action="index.html" id="vanInForm">
-
-          Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);" ><option>Please select..</option></select>
-
-          Van number: <input type="text" name="vanNumber" id="vanNumber" />
-
-          Log book returned?
-            <!-- The health and safety standards a driver has to adhere to -->
-            <label class="radio-inline"><input type="radio" name="logBookReturned" value="1"/> Yes
-            </label>
-            <label class="radio-inline"><input type="radio" name="logBookReturned" value="0"/> No
-            </label>
-
-          Returned all PDAs?
-            <label class="radio-inline"><input type="radio" name="pdasReturned" value="1"/> Yes
-            </label>
-            <label class="radio-inline"><input type="radio" name="pdasReturned" value="0"/> No
-            </label>
-
-          Collection pouch returned?
-            <label class="radio-inline"><input type="radio" name="collPouchReturned" value="1"/> Yes
-            </label>
-            <label class="radio-inline"><input type="radio" name="collPouchReturned" value="0"/> No
-            </label>
-
-            Collection duties completed?
-            <label class="radio-inline"><input type="radio" name="collDutiesComp" value="1"/> Yes
-            </label>
-            <label class="radio-inline"><input type="radio" name="collDutiesComp" value="0"/> No
-            </label>
-
-            <button onclick="cancel()">Cancel</button>
-            <input type="submit" class="btn btn-default" value="Submit"/>
-          </form>
-    </div>
 </body>
+
 </html>

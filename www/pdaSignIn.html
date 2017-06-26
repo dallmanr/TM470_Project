@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no"/>
-  <meta name="msapplication-tap-highlight" content="no"/>
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <meta http-equiv="Content-Security-Policy"> -->
   <script type="text/javascript" src="cordova.js"></script>
@@ -21,7 +21,6 @@
       $.mobile.defaultPageTransition = "none";
       $.mobile.defaultDialogTransition = "none";
     });
-
   </script>
 
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
@@ -54,9 +53,9 @@
     function getName(val) {
       //alert("getName called" + " " + val);
       $.ajax({
-        type:"POST",
-        url:"http://localhost:8080/project/test1/pdaSignInNameFromDuty.php",
-        data: "dutyNumber="+val,
+        type: "POST",
+        url: "http://localhost:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
+        data: "dutyNumber=" + val,
         //dataType: "jsonp",
         success: function(data) {
           var obj = $.parseJSON(data);
@@ -96,22 +95,20 @@
       </div>
       <div class="col-sm-4">
         <h1 class="text-center">Sign PDA in</h1>
+      </div>
+      <div class="col-sm-4"></div>
     </div>
-    <div class="col-sm-4"></div>
-  </div>
 
     <!-- User Information -->
     <fieldset>
       <legend class="text-center">Sign a PDA in</legend>
       <!-- A list of duties for the staff member to select which oen they are -->
-      Duty: <select name="dutyNumber" id="dutyNumber" onChange="getName(this.value);"><option>Please select..</option></select>
-
-      Name: <input type="text" name="driverNames" id="driverNames" />
+      Duty: <select name="dutyNumber" id="dutyNumber" onChange="getName(this.value);"><option>Please select..</option></select> Name: <input type="text" name="driverNames" id="driverNames" />
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       <!--PDA: <input type="text" name="pdaIn" id="pdaIn" readonly /> -->
 
       <button onClick="cancel()">Cancel</button>
-      <button >Submit</button>
+      <button>Submit</button>
 
       <!-- Need to create the page for signing the PDA out
       <form action="">
@@ -120,4 +117,5 @@
     </fieldset>
   </div>
 </body>
+
 </html>
