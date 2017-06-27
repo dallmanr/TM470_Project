@@ -29,6 +29,7 @@
   <script type="text/javascript" src="js/driverSignOut.js"></script>
   <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
   <script type="text/javascript" src="js/pdaSignIn.js"></script>
+  <script type="text/javascript" src="js/auth.js"></script>
   <script>
     localStorage.clear();
   </script>
@@ -39,7 +40,6 @@
 </head>
 
 <body>
-
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col col-lg-2"></div>
@@ -47,26 +47,26 @@
         <div class="row">
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
-            <form action="admin/index.html">
-              <label><input type="submit" id="adminButton" class="btn btn-default" value="Admin" /></label>
+            <form>
+              <label><input type="submit" id="adminButton" class="btn btn-default" value="Admin" onclick="authUser();"/></label>
             </form>
           </div>
         </div>
 
         <form action="driverSignOut1.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a van out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut(); getVansNotOut(); getPdasNotOut(); localStorage.clear();"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a van out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut(); getVansNotOut(); getPdasNotOut(); localStorage.clear();"/></label>
         </form>
 
         <form action="signVanIn.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a van in" onclick="javascript:getDriversOnDuty(); localStorage.clear();"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a van in" onclick="javascript:getDriversOnDuty(); localStorage.clear();"/></label>
         </form>
 
         <form action="pdaSignOut.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a PDA out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut();getPdasNotOut(); localStorage.clear();"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a PDA out" onclick="javascript:getDriversNotOnDuty(); getDutiesNotOut();getPdasNotOut(); localStorage.clear();"/></label>
         </form>
 
         <form action="pdaSignIn.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a PDA in"  onclick="javascript:getSignedOutDuties(); localStorage.clear();"></label>
+          <label><input type="submit" class="btn btn-default" value="Sign a PDA in"  onclick="javascript:getSignedOutDuties(); localStorage.clear();"/></label>
         </form>
 
       </div>
