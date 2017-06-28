@@ -36,6 +36,13 @@
 </head>
 
 <body>
+  <script>
+  function returnHome() {
+    document.location.href = "../index.html";
+    localStorage.removeItem("adminName");
+    console.log(localStorage.getItem("adminName"));
+  }
+  </script>
 
   <div class="container">
     <div class="row justify-content-md-center">
@@ -45,7 +52,7 @@
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
             <form action="www/index.html">
-              <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" /></label>
+              <label><input type="submit" id="backButton" class="btn btn-default" value="Back" onclick="returnHome();" /></label>
             </form>
           </div>
         </div>

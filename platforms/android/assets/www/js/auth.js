@@ -4,7 +4,7 @@
 function authUser() {
   //Test the call to function works
   console.log("authUser in auth.js called");
-  var pw = prompt("Please enter your passcode");
+  var pw = prompt("Please enter your password");
   console.log("Entered value " + pw);
   var firstName;
   var lastName;
@@ -23,9 +23,9 @@ function authUser() {
       payeNumber = obj[0].payeNumber;
 
       full = firstName + " " + lastName + " (" + payeNumber + ")";
-      localStorage.setItem("adminName", full);
-      document.location.href = "admin/index.html";
+      localStorage.setItem('adminName', full);
       console.log(localStorage.getItem("adminName"));
+      document.location.href = "admin/index.html";
     }
   });
 };
