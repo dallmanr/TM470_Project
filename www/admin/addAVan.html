@@ -26,6 +26,8 @@
   <!-- my scripts -->
   <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
+  <script type="text/javascript" src="../js/auth.js"></script>
+  <script type="text/javascript" src="../js/addAVan.js"></script>
   <!-- end of my scripts -->
 
   <title>Admin control panel</title>
@@ -34,8 +36,14 @@
 <body onload="load()">
   <script>
     function load() {
-      alert("Load called");
+      alert("Added by method called");
       document.getElementById("addedBy").value = localStorage.getItem("adminName");
+    }
+  </script>
+
+  <script>
+    function clearForm() {
+      document.getElementById("addVanForm").reset();
     }
   </script>
   <div class="container">
@@ -50,29 +58,30 @@
             </form>
           </div>
         </div>
+        <form id="addVanForm" action="javascript:addNewVan()" METHOD="POST">
+          <fieldset>
+            <legend class="text-center">Add a van</legend>
+            <!-- The serial number for the new van, that will be added to the system -->
+            Serial number: <input type="text" name="serialNumber" id="serialNumber" placeholder="3040222" required/>
 
-        <fieldset>
-          <legend class="text-center">Add a van</legend>
-          <!-- The serial number for the new van, that will be added to the system -->
-          Serial number: <input type="text" name="serialNumber" id="serialNumber" placeholder="3040222" />
+            <!-- The vehicle number for the new van, that will be added to the system -->
+            Vehicle number: <input type="text" name="vehicleNumber" id="vehicleNumber" placeholder="SW1 #" required />
 
-          <!-- The vehicle number for the new van, that will be added to the system -->
-          Vehicle number: <input type="text" name="vehicleNumber" id="vehicleNumber" placeholder="SW1 #" />
+            <!-- The registration number for the new van, that will be added to the system -->
+            Registration number: <input type="text" name="regNumber" id="regNumber" placeholder="AB12 C34 #" required/>
 
-          <!-- The registration number for the new van, that will be added to the system -->
-          Registration number: <input type="text" name="regNumber" id="regNumber" placeholder="AB12 C34 #" />
+            <!-- The number of keys available -->
+            Number of keys: <input type="text" name="keysAvail" id="keysAvail" placeholder="1 or 2" required/>
 
-          <!-- A reason the new van has been added to the sytem -->
-          Reason for adding: <textarea rows="4" cols="10" name="reason" id="reason" placeholder="Replacement"></textarea>
+            <!-- A reason the new van has been added to the sytem -->
+            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement" required> </textarea>
 
-          <!-- The name of the staff member who added the van -->
-          Added by: <input type="text" name="addedBy" id="addedBy" readonly="true" />
+            <!-- The name of the staff member who added the van -->
+            Added by: <input type="text" name="addedBy" id="addedBy" readonly="true" />
 
-          <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
-
-          <form action="#">
-            <input type="submit" class="btn btn-default" value="Submit" />
-          </form>
+            <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
+        </form>
+        <input type="submit" class="btn btn-default" value="Submit" />
         </fieldset>
       </div>
     </div>

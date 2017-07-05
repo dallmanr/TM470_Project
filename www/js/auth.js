@@ -18,9 +18,10 @@ function authUser() {
     //dataType: "jsonp",
     success: function(data) {
       var obj = $.parseJSON(data);
-      firstName = obj[0].firstName;
-      lastName = obj[0].lastName;
-      payeNumber = obj[0].payeNumber;
+      //alert(obj["data"].firstName);
+      firstName = obj["data"].firstName;
+      lastName = obj["data"].lastName;
+      payeNumber = obj["data"].payeNumber;
 
       full = firstName + " " + lastName + " (" + payeNumber + ")";
       localStorage.setItem("adminName", full);
