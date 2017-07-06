@@ -4,7 +4,7 @@
 function authUser() {
   //Test the call to function works
   console.log("authUser in auth.js called");
-  var pw = prompt("Please enter your password");
+  var pw = prompt("Please enter your passcode");
   console.log("Entered value " + pw);
   var firstName;
   var lastName;
@@ -18,14 +18,21 @@ function authUser() {
     //dataType: "jsonp",
     success: function(data) {
       var obj = $.parseJSON(data);
-      firstName = obj[0].firstName;
-      lastName = obj[0].lastName;
-      payeNumber = obj[0].payeNumber;
+      //alert(obj["data"].firstName);
+      firstName = obj["data"].firstName;
+      lastName = obj["data"].lastName;
+      payeNumber = obj["data"].payeNumber;
 
-      full = firstName + " " + lastName + " (" + payeNumber + ")";
-      localStorage.setItem('adminName', full);
-      console.log(localStorage.getItem("adminName"));
+      fullName = firstName + " " + lastName + " (" + payeNumber + ")";
+      localStorage.setItem("adminName", fullName);
+      localStorage.setItem("adminPayeNum", payeNumber);
       document.location.href = "admin/index.html";
+      console.log(localStorage.getItem("fullName"));
     }
   });
 };
+
+//function getUser() {
+  //var adminPayeNum = localStorage.getItem("adminName");
+  //console.log("Get user called " + localStorage.getItem("adminName"));
+//}

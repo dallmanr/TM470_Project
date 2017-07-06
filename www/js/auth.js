@@ -23,10 +23,16 @@ function authUser() {
       lastName = obj["data"].lastName;
       payeNumber = obj["data"].payeNumber;
 
-      full = firstName + " " + lastName + " (" + payeNumber + ")";
-      localStorage.setItem("adminName", full);
+      fullName = firstName + " " + lastName + " (" + payeNumber + ")";
+      localStorage.setItem("adminName", fullName);
+      localStorage.setItem("adminPayeNum", payeNumber);
       document.location.href = "admin/index.html";
-      console.log(localStorage.getItem("adminName"));
+      console.log(localStorage.getItem("fullName"));
     }
   });
 };
+
+//function getUser() {
+  //var adminPayeNum = localStorage.getItem("adminName");
+  //console.log("Get user called " + localStorage.getItem("adminName"));
+//}
