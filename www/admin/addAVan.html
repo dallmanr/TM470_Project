@@ -43,7 +43,7 @@
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
             <form action="../index.html">
-              <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" onclick="cancel()" /></label>
+              <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" onclick="app.project.adminReturn()" /></label>
             </form>
           </div>
         </div>
@@ -72,6 +72,7 @@
           </fieldset>
           <!--<button id="cancelButton" class="btn btn-danger" onclick="onBackKeyDown();">Cancel</button> -->
           <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.addNewVan()">Submit</button>
+          <button type="button" class="btn btn-primary" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
         </form>
       </div>
     </div>
@@ -89,7 +90,7 @@
   <script>
     function submitForm() {
     alert("Submit form called")
-    addNewVan();
+    addAVan();
   }
   </script>
 </body>

@@ -31,16 +31,6 @@
 
 <body>
   <script>
-    function cancel() {
-      if (confirm("Are you sure you want to cancel?")) {
-        window.history.go(-2);
-        localStorage.clear();
-      } else {
-        //do nothing
-      }
-    }
-  </script>
-  <script>
     if (localStorage.getItem("pegs") == 1) {
       //alert(localStorage.getItem("pegs"));
       $('#postingPegsTrue').prop('checked', true);
@@ -88,7 +78,7 @@
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
-          <button type="button" class="btn btn-default" aria-label="Home" onclick="cancel()">
+          <button type="button" class="btn btn-default" aria-label="Home" onclick="app.project.returnHome();">
               <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
               </button>
         </form>
@@ -126,7 +116,7 @@
 
     </fieldset>
 
-    <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
+    <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
 
     <form action="driverSignOut3.html">
       <label><input type="submit" class="btn btn-default" value="Next"/></label>

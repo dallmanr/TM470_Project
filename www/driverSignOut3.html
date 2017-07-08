@@ -76,7 +76,7 @@
       <div class="row">
         <div class="col-sm-4">
           <form action="index.html">
-            <button type="button" class="btn btn-default" aria-label="Home" onclick="cancel()">
+            <button type="button" class="btn btn-default" aria-label="Home" onclick="app.project.returnHome();">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                 </button>
           </form>
@@ -88,6 +88,7 @@
       </div>
 
       <input type="hidden" name="redirect" value="index.html" />
+      <form>
       <fieldset>
         <legend class="text-center">Sign a van out (3 of 3)</legend>
         <!-- Summary of information filled out by the staff member, before confirming their action -->
@@ -126,11 +127,8 @@
             <i>I acknowledge the above information is correct</i></label>
           </p>
       </fieldset>
-
-      <button id="cancelButton" onclick="onBackKeyDown();">Cancel</button>
-
-      <form action="signOutCordovaTest.php" method="POST">
-        <input type="submit" id="submit" value="Submit" class="btn btn-primary" />
+        <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
+        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.toDo()">Submit</button>
       </form>
     </div>
   </div>

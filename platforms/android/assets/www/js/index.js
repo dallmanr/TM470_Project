@@ -29,9 +29,9 @@ var app = {
       document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
-    function onBackKeyDown() {
+    function onBackKeyDown(val) {
       if (confirm("Are you sure you want to cancel?")) {
-        window.history.go(-1);
+        window.history.go(-val);
         localStorage.clear();
       } else {
         //do nothing
@@ -39,8 +39,9 @@ var app = {
     }
 
     function project() {
+      //This function is called when "submit" is pressed in addAVan.html
       this.addNewVan = function() {
-        alert("addNewVan in index.js called");
+        //alert("addNewVan in index.js called");
         var val1 = $('#serialNumber').val();
         var val2 = $('#vehicleNumber').val();
         var val3 = $('#regNumber').val();
@@ -61,7 +62,7 @@ var app = {
             addedBy: val6
           },
           //dataType: "jsonp",
-           success: function(data) {
+          success: function(data) {
             var obj = $.parseJSON(data);
             alert(obj["status"]);
             console.log(obj["status"]);
@@ -69,7 +70,124 @@ var app = {
             plugins.toast.showShortCenter("Success: Van added");
           }
         });
+      } // end of function addNewVan
+
+      //TO DO
+      //Function for removing a van from the system
+      this.removeVan = function() {
+        console.log("Remove van called");
+      } //end of removeVan function
+
+      //TO DO
+      //Function for searching through the log
+      this.searchLog = function() {
+        console.log("Search log called");
+      } //End of searchLog function
+
+      //FUNCTIONS FOR RETURNING TO HOME SCREENS
+      //THESE FUNCTIONS ARE USED BY THE CANCEL AND HOME BUTTONS
+
+      //Function for returning to home screen from the admin screen
+      //where you need to go back a directory.
+      //Called by the back button on admin/index.html
+      this.adminReturnHome = function() {
+        document.location.href = "../index.html";
+        localStorage.removeItem("adminName");
+        console.log(localStorage.getItem("adminName"));
+      } // end of adminReturnHome function
+
+      //Function for returning to the admin/index.html page. Called by the Home and Cancel buttons
+      this.adminReturn = function() {
+        console.log("Return home called");
+        if (confirm("Are you sure you want to cancel?")) {
+          document.location.href = "index.html";
+        } //end if
+      } //end of adminReturn
+
+      //Function for returning to home screen from the default index page
+      this.returnHome = function() {
+        console.log("Return home called");
+        if (confirm("Are you sure you want to cancel?")) {
+          document.location.href = "index.html";
+          this.clearDriverStorage();
+        } //end if
+      } // end of returnHome function
+
+      //END OF HOME/CANCEL BUTTON FUNCTIONS
+
+      //FUNCTIONS FOR CLEARING LOCAL STORAGE
+      //Clears all the local storage during the driver signout process
+      this.clearDriverStorage = function() {
+        //driverSignOut1.html
+        console.log("clearDriverStorage called");
+        localStorage.removeItem('driverName');
+        localStorage.removeItem('dutyNumber');
+        localStorage.removeItem('vanNumber');
+        localStorage.removeItem('pdaOneNum');
+        localStorage.removeItem('pdaTwoNum');
+        localStorage.removeItem('keysTaken');
+        localStorage.removeItem('collectionKeys');
+        localStorage.removeItem('logBook');
+
+        //driverSignOut2.html
+        localStorage.removeItem('pegs');
+        localStorage.removeItem('jacket');
+        localStorage.removeItem('footwear');
+      } //end clearStaffStorage
+
+      //Clears all the local storage set during the pda signing out/in process
+      this.clearPdaStorage = function() {
+        console.log("clearPdaStorage called");
+        localStorage.removeItem('driverName');
+        localStorage.removeItem('dutyNumber');
+        localStorage.removeItem('pdaOneNum');
+        localStorage.removeItem('pegs');
+        localStorage.removeItem('jacket');
+        localStorage.removeItem('footwear');
       }
+
+      this.clearAdminStorage = function() {
+
+      }
+      //END OF FUNCTIONS FOR CLEARING LOCAL STORAGE
+
+      //FUNCTIONS FOR RETRIEVING ALL VAN INFORMATION
+      //Get the serial numbers of all vans
+      this.getAllVanSerialNumbers = function() {
+        console.log("getAllVansSerialNumbers called in index.js");
+        var vans;
+        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
+          $.each(data, function(index, item) {
+            vans += "<option value='" + item.serialNumber + "'>" + item.serialNumber + "</option>";
+          });
+          $('#serialNumber').html(vans);
+        });
+      } //end of getAllVansSerialNumbers
+
+      //Function for getting all van vehicle numbers
+      this.getAllVehicleNumbers = function() {
+        console.log("getAllVehicleNumbers called in index.js");
+        var vans;
+        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
+          $.each(data, function(index, item) {
+            vans += "<option value='" + item.vehicleNumber + "'>" + item.vehicleNumber + "</option>";
+          });
+          $('#vehicleNumber').html(vans);
+        });
+      } // End of getAllVehicleNumbers functions
+
+      //Function for getting all van reg numbers
+      this.getAllVanRegNumbers = function() {
+        console.log("getAllVanRegNumbers called in index.js");
+        var vans;
+        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
+          $.each(data, function(index, item) {
+            vans += "<option value='" + item.regNumber + "'>" + item.regNumber + "</option>";
+          });
+          $('#regNumber').html(vans);
+        });
+      } //End of getAllVanRegNumbers
+      //END OF VAN INFO FUNCTIONS
 
     }; //end of project function
     this.project = new project();

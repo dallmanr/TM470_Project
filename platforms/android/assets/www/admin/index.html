@@ -33,13 +33,13 @@
 </head>
 
 <body>
-  <script>
+  <!--<script>
     function returnHome() {
       document.location.href = "../index.html";
       localStorage.removeItem("adminName");
       console.log(localStorage.getItem("adminName"));
     }
-  </script>
+  </script> -->
 
   <div class="container">
     <div class="row justify-content-md-center">
@@ -49,17 +49,17 @@
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
             <form action="www/index.html">
-              <label><input type="submit" id="backButton" class="btn btn-default" value="Back" onclick="returnHome();" /></label>
+              <label><input type="submit" id="backButton" class="btn btn-default" value="Back" onclick="app.project.adminReturnHome()" /></label>
             </form>
           </div>
         </div>
 
         <form action="addAVan.html">
-          <label><input type="submit" class="btn btn-default" value="Add a van" /></label>
+          <label><input type="submit" class="btn btn-default" value="Add a van"  /></label>
         </form>
 
         <form action="removeAVan.html">
-          <label><input type="submit" class="btn btn-default" value="Remove a van" /></label>
+          <label><input type="submit" class="btn btn-default" value="Remove a van" onclick="app.project.getAllVanSerialNumbers();app.project.getAllVehicleNumbers();app.project.getAllVanRegNumbers();"/></label>
         </form>
 
         <form action="viewLog.html">

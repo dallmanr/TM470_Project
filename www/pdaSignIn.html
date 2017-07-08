@@ -62,23 +62,11 @@
     };
   </script>
 
-  <script>
-    function setDuty(val) {
-
-    }
-  </script>
-
-  <script>
-    function getPdaOne(val) {
-
-    }
-  </script>
-
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
         <form action="index.html">
-          <button type="button" class="btn btn-default" aria-label="Home" onclick="cancel()">
+          <button type="button" class="btn btn-default" aria-label="Home" onclick="app.project.returnHome()">
           <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
           </button>
         </form>
@@ -97,7 +85,7 @@
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       <!--PDA: <input type="text" name="pdaIn" id="pdaIn" readonly /> -->
 
-      <button onClick="onBackKeyDown();">Cancel</button>
+      <button id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
       <button>Submit</button>
 
       <!-- Need to create the page for signing the PDA out
