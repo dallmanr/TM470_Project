@@ -36,32 +36,6 @@
   <script>
     //alert(localStorage.getItem("driverName"));
   </script>
-
-  <!-- Scripts for setting values for name of drivers, duty numbers,
-  van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
-  <script>
-    function getName(val) {
-      //alert("getName called" + " " + val);
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
-        data: "dutyNumber=" + val,
-        //dataType: "jsonp",
-        success: function(data) {
-          var obj = $.parseJSON(data);
-          //alert(obj[0].firstName);
-          firstName = obj[0].firstName;
-          lastName = obj[0].lastName;
-          payeNumber = obj[0].payeNumber;
-
-          full = firstName + " " + lastName + " (" + payeNumber + ")";
-
-          $("#driverNames").val(full);
-        }
-      });
-    };
-  </script>
-
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -81,12 +55,12 @@
     <fieldset>
       <legend class="text-center">Sign a PDA in</legend>
       <!-- A list of duties for the staff member to select which oen they are -->
-      Duty: <select name="dutyNumber" id="dutyNumber" onChange="getName(this.value);"><option>Please select..</option></select> Name: <input type="text" name="driverNames" id="driverNames" />
+      Duty: <select name="dutyNumber" id="dutyNumber" onChange="app.project.getNameFromDutyPdaSignIn(this.value);"><option>Please select..</option></select> Name: <input type="text" name="driverNames" id="driverNames" />
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       <!--PDA: <input type="text" name="pdaIn" id="pdaIn" readonly /> -->
 
-      <button id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
-      <button>Submit</button>
+      <button type="button" id="cancelButton" class="btn btn-default" onclick="app.project.returnHome(1);">Cancel</button>
+      <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaIn()">Submit</button>
 
       <!-- Need to create the page for signing the PDA out
       <form action="">

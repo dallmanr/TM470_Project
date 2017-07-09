@@ -31,24 +31,6 @@
 </head>
 
 <body>
-  <script>
-    function getVans(val) {
-      //alert("getName called" + " " + val);
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/tm470/queries/getVanNumberFromDriverSignVanIn.php",
-        data: "staffMember=" + val,
-        //dataType: "jsonp",
-        success: function(data) {
-          var obj = $.parseJSON(data);
-          vanNumber = obj[0].vanNumber;
-          alert(obj[0].vanNumber);
-          $('#vanNumber').val(vanNumber);
-        }
-      });
-    };
-  </script>
-
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -65,7 +47,8 @@
     </div>
     <form action="index.html" id="vanInForm">
 
-      Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned?
+      <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
+      Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value)"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned?
       <!-- The health and safety standards a driver has to adhere to -->
       <label class="radio-inline"><input type="radio" name="logBookReturned" value="1"/> Yes
             </label>

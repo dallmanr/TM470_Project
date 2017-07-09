@@ -72,6 +72,75 @@ var app = {
         });
       } // end of function addNewVan
 
+      //Function for returning the vans that have been signed out.
+      //Used in the sign a van in process.
+      this.getSignedOutVans = function(val) {
+        alert("getSignedOutVans in index.js called");
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/getVanNumberFromDriverSignVanIn.php",
+          data: "staffMember=" + val,
+          //dataType: "jsonp",
+          success: function(data) {
+            var obj = $.parseJSON(data);
+            vanNumber = obj[0].vanNumber;
+            //alert(obj[0].vanNumber);
+            $('#vanNumber').val(vanNumber);
+          }
+        });
+      }//end of getSignedOutVans function
+
+      this.signAVanIn = function () {
+        alert("signAVanIn in index.js called");
+        var val1 = localStorage.getItem('driver');
+        //var val2 = localStorage.getItem('driver');
+
+        var val3 = localStorage.getItem('completed');
+        var val4 = localStorage.getItem('pouch');
+        var val5 = localStorage.getItem('pdas');
+        var val6 = localStorage.getItem('logbook');
+        var val7 = localStorage.getItem('keys');
+
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/signAVanIn.php",
+          data: {
+            staffMember: val1,
+            collDutiesComp: val3,
+            collPouch: val4,
+            pdasReturned: val5,
+            logbook: val6,
+            keysReturned: val7
+          },
+           success: function(data) {
+             plugins.toast.showShortCenter("Success: Van added");
+          }
+        });
+      }//end of signAVanIn function
+
+      //Function for returning the name of the person based on the duty number
+      //Used in the sign a PDA in process
+      this.getNameFromDutyPdaSignIn = function (val) {
+        //alert("getName called" + " " + val);
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
+          data: "dutyNumber=" + val,
+          //dataType: "jsonp",
+          success: function(data) {
+            var obj = $.parseJSON(data);
+            //alert(obj[0].firstName);
+            firstName = obj[0].firstName;
+            lastName = obj[0].lastName;
+            payeNumber = obj[0].payeNumber;
+
+            full = firstName + " " + lastName + " (" + payeNumber + ")";
+
+            $("#driverNames").val(full);
+          }
+        });
+      }//end of getNameFromDutyPdaSignIn function
+
       //TO DO
       //Function for removing a van from the system
       this.removeVan = function() {

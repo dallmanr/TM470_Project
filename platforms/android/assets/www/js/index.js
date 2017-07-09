@@ -72,6 +72,47 @@ var app = {
         });
       } // end of function addNewVan
 
+      //Function for returning the vans that have been signed out.
+      //Used in the sign a van in process.
+      this.getSignedOutVans = function(val) {
+        alert("getSignedOutVans in index.js called");
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/getVanNumberFromDriverSignVanIn.php",
+          data: "staffMember=" + val,
+          //dataType: "jsonp",
+          success: function(data) {
+            var obj = $.parseJSON(data);
+            vanNumber = obj[0].vanNumber;
+            alert(obj[0].vanNumber);
+            $('#vanNumber').val(vanNumber);
+          }
+        });
+      }//end of getSignedOutVans
+
+      //Function for returning the name of the person based on the duty number
+      //Used in the sign a PDA in process
+      this.getNameFromDutyPdaSignIn = function (val) {
+        //alert("getName called" + " " + val);
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
+          data: "dutyNumber=" + val,
+          //dataType: "jsonp",
+          success: function(data) {
+            var obj = $.parseJSON(data);
+            //alert(obj[0].firstName);
+            firstName = obj[0].firstName;
+            lastName = obj[0].lastName;
+            payeNumber = obj[0].payeNumber;
+
+            full = firstName + " " + lastName + " (" + payeNumber + ")";
+
+            $("#driverNames").val(full);
+          }
+        });
+      }
+
       //TO DO
       //Function for removing a van from the system
       this.removeVan = function() {
