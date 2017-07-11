@@ -84,11 +84,39 @@ var app = {
           success: function(data) {
             var obj = $.parseJSON(data);
             vanNumber = obj[0].vanNumber;
-            alert(obj[0].vanNumber);
+            //alert(obj[0].vanNumber);
             $('#vanNumber').val(vanNumber);
           }
         });
-      }//end of getSignedOutVans
+      }//end of getSignedOutVans function
+
+      this.signAVanIn = function () {
+        alert("signAVanIn in index.js called");
+        var val1 = localStorage.getItem('driver');
+        //var val2 = localStorage.getItem('driver');
+
+        var val3 = localStorage.getItem('completed');
+        var val4 = localStorage.getItem('pouch');
+        var val5 = localStorage.getItem('pdas');
+        var val6 = localStorage.getItem('logbook');
+        var val7 = localStorage.getItem('keys');
+
+        $.ajax({
+          type: "POST",
+          url: "http://86.0.13.186:8080/tm470/queries/signAVanIn.php",
+          data: {
+            staffMember: val1,
+            collDutiesComp: val3,
+            collPouch: val4,
+            pdasReturned: val5,
+            logbook: val6,
+            keysReturned: val7
+          },
+           success: function(data) {
+             plugins.toast.showShortCenter("Success: Van added");
+          }
+        });
+      }//end of signAVanIn function
 
       //Function for returning the name of the person based on the duty number
       //Used in the sign a PDA in process
@@ -111,7 +139,7 @@ var app = {
             $("#driverNames").val(full);
           }
         });
-      }
+      }//end of getNameFromDutyPdaSignIn function
 
       //TO DO
       //Function for removing a van from the system

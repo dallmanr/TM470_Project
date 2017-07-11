@@ -104,10 +104,18 @@
     <fieldset>
       <legend class="text-center">Sign a PDA out</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
+      <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
 
-      Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>
-      <!-- A list of duties for the staff member to select which oen they are -->
-      Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select>
+      <input list="driverNames" name="driverNames" onChange="setName(this.value)"/>
+      <datalist id="driverNames">
+      </datalist>
+
+      <!-- A list of duties for the staff member to select which one they are on -->
+      <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
+      Duty:
+      <input list="dutyNumber" name="dutyNumber" onChange="setName(this.value)"/>
+      <datalist id="dutyNumber">
+      </datalist>
 
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select> Posting pegs issued:
@@ -140,7 +148,8 @@
         <i>I acknowledge the above information is correct</i></label>
       </p>
 
-      <button id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
+      <button type="button" class="btn btn-primary" id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
+      <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaOut()">Submit</button>
 
       <!-- Need to create the page for signing the PDA out -->
       <form action="">

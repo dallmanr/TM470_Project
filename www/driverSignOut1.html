@@ -137,13 +137,25 @@
     <fieldset>
       <legend class="text-center">Sign a van out (1 of 3)</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
+      <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select> -->
+      Name:
+      <input list="driverNames" name="driverNames" onChange="setName(this.value)"/>
+      <datalist id="driverNames">
+      </datalist>
 
-      Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>
       <!-- A list of duties for the staff member to select which oen they are -->
-      Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select>
+      <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
+      Duty:
+      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value)"/>
+      <datalist id="dutyNumber">
+      </datalist>
 
       <!-- List of vehicle numbers for a driver to select which one they are signing out -->
-      Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select>
+      <!-- Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select> -->
+      Van number:
+      <input list="vanNumber" name="vanNumber" onChange="setVan(this.value)"/>
+      <datalist id="vanNumber">
+      </datalist>
 
       <!-- Number of keys for the van the staff member has taken -->
       Keys taken:
@@ -153,7 +165,9 @@
 			</select>
 
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select> PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select..</option></select>      Collection keys:
+      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
+      PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select..</option></select>      Collection keys:
+
       <label class="radio-inline">
         <input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes
       </label>

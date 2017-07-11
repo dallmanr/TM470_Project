@@ -33,7 +33,7 @@
 <body>
 
   <script>
-    function setDriver(val) {
+    function setName(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
       localStorage.setItem('driver', val);
       console.log(localStorage.getItem('driver'));
@@ -102,7 +102,12 @@
     <form action="index.html" id="vanInForm">
 
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
-      Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select>
+      <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
+      Name:
+      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"/>
+      <datalist id="driverNames">
+      </datalist>
+
       Van number: <input type="text" name="vanNumber" id="vanNumber" />
       Duty number: <input type="text" name="dutyNumber" id="dutyNumber" />
       PDA number: <input type="text" name="pdaOne" id="pdaOne" />

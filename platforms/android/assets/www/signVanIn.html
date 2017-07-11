@@ -31,6 +31,60 @@
 </head>
 
 <body>
+
+  <script>
+    function setName(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('driver', val);
+      console.log(localStorage.getItem('driver'));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setKeys(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('keys', val);
+      console.log(localStorage.getItem('keys'));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setLogbook(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('logbook', val);
+      console.log(localStorage.getItem('logbook'));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setPDAs(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('pdas', val);
+      console.log(localStorage.getItem('pdas'));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setPouchReturned(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('pouch', val);
+      console.log(localStorage.getItem('pouch'));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setDutiesCompleted(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem('completed', val);
+      console.log(localStorage.getItem('completed'));
+      //alert(val);
+    }
+  </script>
   <div class="container">
     <div class="row">
       <div class="col-sm-4">
@@ -48,29 +102,49 @@
     <form action="index.html" id="vanInForm">
 
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
-      Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value)"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned?
-      <!-- The health and safety standards a driver has to adhere to -->
-      <label class="radio-inline"><input type="radio" name="logBookReturned" value="1"/> Yes
-            </label>
-      <label class="radio-inline"><input type="radio" name="logBookReturned" value="0"/> No
-            </label> Returned all PDAs?
-      <label class="radio-inline"><input type="radio" name="pdasReturned" value="1"/> Yes
-            </label>
-      <label class="radio-inline"><input type="radio" name="pdasReturned" value="0"/> No
-            </label> Collection pouch returned?
-      <label class="radio-inline"><input type="radio" name="collPouchReturned" value="1"/> Yes
-            </label>
-      <label class="radio-inline"><input type="radio" name="collPouchReturned" value="0"/> No
-            </label> Collection duties completed?
-      <label class="radio-inline"><input type="radio" name="collDutiesComp" value="1"/> Yes
-            </label>
-      <label class="radio-inline"><input type="radio" name="collDutiesComp" value="0"/> No
-            </label>
+      <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
+      Name:
+      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"/>
+      <datalist id="driverNames">
+      </datalist>
 
-      <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
-      <button type="submit" class="btn btn-default" value="Submit">Submit</button>
+      Van number: <input type="text" name="vanNumber" id="vanNumber" />
+      Duty number: <input type="text" name="dutyNumber" id="dutyNumber" />
+      PDA number: <input type="text" name="pdaOne" id="pdaOne" />
+      PDA number: <input type="text" name="pdaTwo" id="pdaTwo" />
+
+      Keys returned?
+      <!-- The health and safety standards a driver has to adhere to -->
+      <label class="radio-inline"><input type="radio" name="keysReturned" id="keysReturnedTrue" value="1" onchange="setKeys(this.value)"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="keysReturned" id="keysReturnedFalse" value="0" onchange="setKeys(this.value)"/> No </label>
+
+      Log book returned?
+      <!-- The health and safety standards a driver has to adhere to -->
+      <label class="radio-inline"><input type="radio" name="logbookReturned" id="logbookReturnedTrue" value="1" onchange="setLogbook(this.value)"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="logbookReturned" id="logbookReturnedFalse" value="0" onchange="setLogbook(this.value)"/> No </label>
+
+      Returned all PDAs?
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value)"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value)"/> No </label>
+
+      Collection pouch returned?
+      <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedTrue" value="1" onchange="setPouchReturned(this.value)"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedFalse" value="0" onchange="setPouchReturned(this.value)"/> No </label>
+
+      Collection duties completed?
+      <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompTrue" value="1" onchange="setDutiesCompleted(this.value)"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompFalse" value="0" onchange="setDutiesCompleted(this.value)"/> No </label>
+
+      <button type="button" class="btn btn-default" id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
+      <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signAVanIn()">Submit</button>
     </form>
   </div>
+  <script>
+    function submitForm() {
+    alert("Submit form called")
+    signAVanIn();
+  }
+  </script>
 </body>
 
 </html>
