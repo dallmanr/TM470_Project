@@ -37,8 +37,8 @@
   van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
   <script>
     function setName(val) {
-      //var name = document.getElementById("driverNames");
       localStorage.setItem('driverName', val);
+      console.log(localStorage.getItem('driverName'));
       //alert(val);
     }
   </script>
@@ -92,9 +92,9 @@
   </script>
 
   <script>
-    function setLogBook(val) {
+    function setLogbook(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('logBook', val);
+      localStorage.setItem('logbook', val);
       //alert(val);
     }
   </script>
@@ -110,7 +110,7 @@
       $('#collectionKeysFalse').prop('checked', true);
     }
 
-    if (localStorage.getItem("logBook") == 1) {
+    if (localStorage.getItem("logbook") == 1) {
       //alert(localStorage.getItem("pegs"));
       $('#logBookTrue').prop('checked', true);
     } else if (localStorage.getItem("collectionKeys") == 0) {
@@ -137,7 +137,7 @@
     <fieldset>
       <legend class="text-center">Sign a van out (1 of 3)</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
-      <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select> -->
+      <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
       Name:
       <input list="driverNames" name="driverNames" onChange="setName(this.value)"/>
       <datalist id="driverNames">
@@ -173,7 +173,6 @@
       <label class="radio-inline">
         <input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes
       </label>
-
       <label class="radio-inline">
         <input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="0" onchange="setCollKeys(this.value)" />No
       </label>
@@ -181,11 +180,10 @@
 
       Log book:
       <label class="radio-inline">
-       <input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogBook(this.value)" />Yes
+       <input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogbook(this.value)" />Yes
       </label>
-
       <label class="radio-inline">
-        <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogBook(this.value)" />No
+        <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogbook(this.value)" />No
       </label>
 
       <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>

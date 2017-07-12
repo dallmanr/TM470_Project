@@ -41,7 +41,7 @@
     $('#firstPdaTaken').val(localStorage.getItem("pdaOneNum"));
     $('#secondPdaTaken').val(localStorage.getItem("pdaTwoNum"));
     $('#keysCollected').val(localStorage.getItem("keysTaken"));
-    $('#logBookCollected').val(localStorage.getItem("keysTaken"));
+    $('#logBookCollected').val(localStorage.getItem("logbook"));
 
     //Variables set from sign out 2 of 3
     if (localStorage.getItem("pegs") == 1) {
@@ -57,13 +57,17 @@
       $('#footwear').prop('checked', true);
     }
 
-    if (localStorage.getItem("logBook") == 1) {
+    if (localStorage.getItem("logbook") == 1) {
       $('#logBookCollected').prop('checked', true);
     }
 
     if (localStorage.getItem("collectionKeys") == 1) {
       $('#collectionKeys').prop('checked', true);
     }
+
+    if(localStorage.getItem("collectionKeys") == 0) {
+        document.getElementById('collKeyDiv').style.display = "none";
+      }
 
     //$('#pegs').val(localStorage.getItem("pegs"));
     //$('#hivis').val(localStorage.getItem("jacket"));
@@ -99,9 +103,12 @@
           Vehicle number: <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
           Registration: <input type="text" name="regNumTaken" id="regNumTaken" readonly />
           Serial number: <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
+          PDA 1: <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
+          PDA 2: <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
+
           <label class="checkbox-inline">
               <input type="checkbox" name="logBookCollected" id="logBookCollected" value="1" />Log book
-            </label> PDA 1: <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly /> PDA 2: <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
+            </label>
 
           <input type="hidden" name="pegs" value="0" />
           <label class="checkbox-inline">
@@ -118,20 +125,22 @@
               <input type="checkbox" name="footwear" id="footwear" value="1" />Footwear
             </label>
 
+          <div id="collKeyDiv">
           <label class="checkbox-inline">
               <input type="hidden" name="collectionKeys" value="0"/>
               <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" />Collection keys
             </label>
+          </div>
           <p>
 
             <label class="checkbox-inline required">
-            <input type="hidden" name="acknowledge" value="0"/>
+            <input type="hidden" name="acknowledge" id="acknowledge" value="0"/>
             <input type="checkbox" name="acknowledge" id="acknowledge" value="1"/>
             <i>I acknowledge the above information is correct</i></label>
           </p>
       </fieldset>
         <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
-        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.toDo()">Submit</button>
+        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signAVanOut()">Submit</button>
       </form>
     </div>
   </div>

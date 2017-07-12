@@ -72,6 +72,31 @@ var app = {
         });
       } // end of function addNewVan
 
+      //Function for checking if a duty is collection duty
+      //This will hide the element for selecting collection keys on driver sign out 1 of 3
+      this.checkIfCollectionDuty = function (val) {
+        console.log("checkIfCollectionDuty in index.js called");
+        var url = "http://86.0.13.186:8080/tm470/queries/checkIfCollectionDuty.php";
+        var collectionWalk;
+        $.post(url, {
+          dutyNumber: val
+        }, function (data){
+          var obj = $.parseJSON(data);
+          collectionWalk = obj[0].collectionsWalk;
+          console.log("Collection walk is " + collectionWalk);
+          ready();
+        })
+
+        function ready() {
+          console.log("Ready called");
+          if (collectionWalk == 0) {
+            console.log("Ready collection walk = " + collectionWalk);
+            document.getElementById('collectionKeysToHide').style.display = "none";
+            localStorage.setItem("collectionKeys", 0);
+          }
+        }
+      }//end of checkIfCollectionDuty function
+
       //Function for returning the vans that have been signed out.
       //Used in the sign a van in process.
       this.getSignedOutVans = function(val) {
@@ -89,6 +114,40 @@ var app = {
           }
         });
       }//end of getSignedOutVans function
+
+      this.signAVanOut = function () {
+        var name = localStorage.getItem('driverName');
+        var duty = localStorage.getItem("dutyNumber");
+        var keys = localStorage.getItem("keysTaken");
+        var vehicleNumber = localStorage.getItem("vanNumber");
+        var logbook = localStorage.getItem("logbook");
+        var pdaOne = localStorage.getItem("pdaOneNum");
+        var pdaTwo = localStorage.getItem("pdaTwoNum");
+        var pegs = localStorage.getItem("pegs");
+        var jacket = localStorage.getItem("jacket");
+        var footwear = localStorage.getItem("footwear");
+        console.log("Sign a van out in index.js called");
+        console.log("driver name in sign a van out = " + name);
+        var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
+
+        $.post(url, {
+            name: name,
+            duty: duty,
+            vehicleNumber: vehicleNumber,
+            logbook: logbook,
+            pdaOne: pdaOne,
+            pdaTwo: pdaTwo,
+            pegs: pegs,
+            footwear: footwear,
+            jacket: jacket
+          }, function (data) {
+            var obj = $.parseJSON(data);
+          }
+            //alert(obj[0].firstName);
+            plugins.toast.showShortCenter("Success: signed out");
+          }
+        });
+      }
 
       this.signAVanIn = function () {
         alert("signAVanIn in index.js called");

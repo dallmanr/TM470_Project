@@ -1,6 +1,5 @@
-//This is used  for adding a van to the system, which can be done by an admins
-//It takes the values entered on the form and posts them to the database
-//id="serialNumber", id="vehicleNumber", id="regNumber", id="reason", id="addedBy"
+//The code for dealing with signing a van in.
+//Takes the values from the fields on signAVanIn.html and posts them to the server
 
 function signAVanIn() {
   alert("signAVanIn.js called in signVanIn.js");
@@ -12,9 +11,6 @@ function signAVanIn() {
   var val5 = $('#pdasReturned').val();
   var val6 = $('#logBookReturned').val();
   var val7 = $('#keysReturned').val();
-
-
-
 
   $.ajax({
     type: "POST",
