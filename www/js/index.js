@@ -72,6 +72,30 @@ var app = {
         });
       } // end of function addNewVan
 
+      //Function for checking if a duty is collection duty
+      //This will hide the element for selecting collection keys on driver sign out 1 of 3
+      this.checkIfCollectionDuty = function (val) {
+        console.log("checkIfCollectionDuty in index.js called");
+        var url = "http://86.0.13.186:8080/tm470/queries/checkIfCollectionDuty.php";
+        var collectionWalk;
+        $.post(url, {
+          dutyNumber: val
+        }, function (data){
+          var obj = $.parseJSON(data);
+          collectionWalk = obj[0].collectionsWalk;
+          console.log("Collection walk is " + collectionWalk);
+          ready();
+        })
+
+        function ready() {
+          console.log("Ready called");
+          if (collectionWalk == 0) {
+            console.log("Ready collection walk = " + collectionWalk);
+            document.getElementById('collectionKeysToHide').style.display = "none";
+          }
+        }
+      }//end of checkIfCollectionDuty function
+
       //Function for returning the vans that have been signed out.
       //Used in the sign a van in process.
       this.getSignedOutVans = function(val) {

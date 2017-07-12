@@ -146,7 +146,7 @@
       <!-- A list of duties for the staff member to select which oen they are -->
       <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
       Duty:
-      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value)"/>
+      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value); app.project.checkIfCollectionDuty(this.value);"/>
       <datalist id="dutyNumber">
       </datalist>
 
@@ -166,15 +166,20 @@
 
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
-      PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select..</option></select>      Collection keys:
+      PDA: <select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select..</option></select>
 
+      <div id="collectionKeysToHide">
+      Collection keys:
       <label class="radio-inline">
         <input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes
       </label>
 
       <label class="radio-inline">
         <input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="0" onchange="setCollKeys(this.value)" />No
-      </label> Log book:
+      </label>
+      </div>
+
+      Log book:
       <label class="radio-inline">
        <input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogBook(this.value)" />Yes
       </label>
