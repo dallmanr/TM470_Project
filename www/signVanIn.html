@@ -104,7 +104,7 @@
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
       Name:
-      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"/>
+      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutDriverDetails(this.value);setName(this.value)"/>
       <datalist id="driverNames">
       </datalist>
 

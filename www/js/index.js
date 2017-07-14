@@ -97,61 +97,44 @@ var app = {
         }
       }//end of checkIfCollectionDuty function
 
+      //DRIVER SIGN IN FUNCTIONS
       //Function for returning the vans that have been signed out.
       //Used in the sign a van in process.
-      this.getSignedOutVans = function(val) {
-        alert("getSignedOutVans in index.js called");
+      this.getSignedOutDriverDetails = function(val) {
+        console.log("getSignedOutDriverDetails in index.js called");
+        var vanNumber;
+        var duty;
+        var pdaOne;
+        var pdaTwo;
         $.ajax({
           type: "POST",
-          url: "http://86.0.13.186:8080/tm470/queries/getVanNumberFromDriverSignVanIn.php",
+          url: "http://86.0.13.186:8080/tm470/queries/getDriverSignInDetails.php",
           data: "staffMember=" + val,
           //dataType: "jsonp",
           success: function(data) {
             var obj = $.parseJSON(data);
+            console.log("Van number is " + obj[0].vanNumber);
+            console.log("Duty number is " + obj[0].duty);
+            console.log("PDA one number is " + obj[0].pdaOne);
+            console.log("PDa two number is " + obj[0].pdaTwo);
             vanNumber = obj[0].vanNumber;
+            duty = obj[0].duty;
+            pdaOne = obj[0].pdaOne;
+            pdaTwo = obj[0].pdaTwo;
             //alert(obj[0].vanNumber);
             $('#vanNumber').val(vanNumber);
+            $('#dutyNumber').val(duty);
+            $('#pdaOne').val(pdaOne);
+            $('#pdaTwo').val(pdaTwo);
           }
         });
       }//end of getSignedOutVans function
 
-      this.signAVanOut = function () {
-        var name = localStorage.getItem('driverName');
-        var duty = localStorage.getItem("dutyNumber");
-        var keys = localStorage.getItem("keysTaken");
-        var vehicleNumber = localStorage.getItem("vanNumber");
-        var logbook = localStorage.getItem("logbook");
-        var pdaOne = localStorage.getItem("pdaOneNum");
-        var pdaTwo = localStorage.getItem("pdaTwoNum");
-        var pegs = localStorage.getItem("pegs");
-        var jacket = localStorage.getItem("jacket");
-        var footwear = localStorage.getItem("footwear");
-        console.log("Sign a van out in index.js called");
-        console.log("driver name in sign a van out = " + name);
-        var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
-
-        $.post(url, {
-            name: name,
-            duty: duty,
-            vehicleNumber: vehicleNumber,
-            logbook: logbook,
-            pdaOne: pdaOne,
-            pdaTwo: pdaTwo,
-            pegs: pegs,
-            footwear: footwear,
-            jacket: jacket
-          }, function (data) {
-            var obj = $.parseJSON(data);
-          });
-            //alert(obj[0].firstName);
-            plugins.toast.showShortCenter("Success: signed out");
-          }
 
       this.signAVanIn = function () {
-        alert("signAVanIn in index.js called");
+        console.log("signAVanIn in index.js called");
         var val1 = localStorage.getItem('driver');
         //var val2 = localStorage.getItem('driver');
-
         var val3 = localStorage.getItem('completed');
         var val4 = localStorage.getItem('pouch');
         var val5 = localStorage.getItem('pdas');
@@ -169,11 +152,51 @@ var app = {
             logbook: val6,
             keysReturned: val7
           },
-           success: function(data) {
-             plugins.toast.showShortCenter("Success: Van added");
+            success: function(data) {
+              plugins.toast.showShortCenter("Success: Signed in");
           }
         });
       }//end of signAVanIn function
+
+      //FUNCTIONS FOR DRIVER SIGN OUT
+      //Function for submitting data for the driver to sign out
+      this.signAVanOut = function () {
+        var name = localStorage.getItem('driverName');
+        var duty = localStorage.getItem("dutyNumber");
+        var keys = localStorage.getItem("keysTaken");
+        var vehicleNumber = localStorage.getItem("vanNumber");
+        var logbook = localStorage.getItem("logbook");
+        var pdaOne = localStorage.getItem("pdaOneNum");
+        var pdaTwo = localStorage.getItem("pdaTwoNum");
+        var pegs = localStorage.getItem("pegs");
+        var jacket = localStorage.getItem("jacket");
+        var footwear = localStorage.getItem("footwear");
+        console.log("Sign a van out in index.js called");
+        console.log("driver name in sign a van out = " + name);
+        var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
+
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            name: name,
+            duty: duty,
+            vehicleNumber: vehicleNumber,
+            logbook: logbook,
+            pdaOne: pdaOne,
+            pdaTwo: pdaTwo,
+            pegs: pegs,
+            footwear: footwear,
+            jacket: jacket
+          },
+          //dataType: "jsonp",
+          success: function(data) {
+            var obj = $.parseJSON(data);
+            //alert(obj[0].firstName);
+            console.log(obj[0].status);
+          }
+        });
+      }
 
       //Function for returning the name of the person based on the duty number
       //Used in the sign a PDA in process

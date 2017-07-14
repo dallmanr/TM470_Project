@@ -75,6 +75,13 @@
     //alert(localStorage.getItem("driverName"));
   </script>
 
+  <script>
+    function required() {
+      console.log('Required called');
+      document.getElementById('acknowledge').required = true;
+    }
+  </script>
+
   <div class="container">
     <div id="user-input">
       <div class="row">
@@ -92,7 +99,7 @@
       </div>
 
       <input type="hidden" name="redirect" value="index.html" />
-      <form>
+      <form onsubmit="required()">
       <fieldset>
         <legend class="text-center">Sign a van out (3 of 3)</legend>
         <!-- Summary of information filled out by the staff member, before confirming their action -->
@@ -140,7 +147,7 @@
           </p>
       </fieldset>
         <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
-        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signAVanOut()">Submit</button>
+        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signAVanOut();">Submit</button>
       </form>
     </div>
   </div>
