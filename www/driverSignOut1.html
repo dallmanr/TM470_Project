@@ -134,6 +134,7 @@
     </div>
 
     <!-- User Information -->
+    <form>
     <fieldset>
       <legend class="text-center">Sign a van out (1 of 3)</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
@@ -170,21 +171,14 @@
 
       <div id="collectionKeysToHide">
       Collection keys:
-      <label class="radio-inline">
-        <input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="0" onchange="setCollKeys(this.value)" />No
-      </label>
+      <label class="radio-inline"><input type="radio" name="collectionKeys" id="collectionKeysTrue" value="1" onchange="setCollKeys(this.value)" />Yes</label>
+      <label class="radio-inline"><input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="0" onchange="setCollKeys(this.value)" />No</label>
       </div>
 
       Log book:
-      <label class="radio-inline">
-       <input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogbook(this.value)" />Yes
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogbook(this.value)" />No
-      </label>
+      <label class="radio-inline"><input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogbook(this.value)" />Yes</label>
+      <label class="radio-inline"><input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogbook(this.value)" />No</label>
+    </form>
 
       <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
 

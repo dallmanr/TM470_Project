@@ -191,11 +191,18 @@ var app = {
           },
           //dataType: "jsonp",
           success: function(data) {
-            var obj = $.parseJSON(data);
+            //var obj = $.parseJSON(data);
             //alert(obj[0].firstName);
-            console.log(obj[0].status);
+            //console.log(obj[0].status);
+            plugins.toast.showShortCenter("Success: Signed out");
           }
         });
+      }
+
+      //FUNCTIONS FOR NON-DRIVERS
+      //Function for signing a PDA out
+      this.signPdaOut = function (val) {
+        
       }
 
       //Function for returning the name of the person based on the duty number

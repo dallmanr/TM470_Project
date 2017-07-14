@@ -191,9 +191,10 @@ var app = {
           },
           //dataType: "jsonp",
           success: function(data) {
-            var obj = $.parseJSON(data);
+            //var obj = $.parseJSON(data);
             //alert(obj[0].firstName);
-            console.log(obj[0].status);
+            //console.log(obj[0].status);
+            plugins.toast.showShortCenter("Success: Signed out");
           }
         });
       }

@@ -101,6 +101,7 @@
     </div>
 
     <!-- User Information -->
+    <form>
     <fieldset>
       <legend class="text-center">Sign a PDA out</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
@@ -147,15 +148,14 @@
         <input type="checkbox" name="acknowledge" id="acknowledge" value="1"/>
         <i>I acknowledge the above information is correct</i></label>
       </p>
-
+      <!-- Need to create the page for signing the PDA out -->
+      <!--<form action="">
+        <input type="submit" class="btn btn-default" value="Sign out" />
+      </form> -->
       <button type="button" class="btn btn-primary" id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
       <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaOut()">Submit</button>
-
-      <!-- Need to create the page for signing the PDA out -->
-      <form action="">
-        <input type="submit" class="btn btn-default" value="Sign out" />
-      </form>
     </fieldset>
+  </form>
   </div>
 </body>
 
