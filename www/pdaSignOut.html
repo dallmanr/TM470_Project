@@ -40,7 +40,8 @@
   <script>
     function setName(val) {
       //var name = document.getElementById("driverNames");
-      localStorage.setItem('driverName', val);
+      localStorage.setItem("driverName", val);
+      console.log(localStorage.getItem("driverName"));
       //alert(val);
     }
   </script>
@@ -48,7 +49,7 @@
   <script>
     function setDuty(val) {
       //var duty = document.getElementById("dutyNumber");
-      localStorage.setItem('dutyNumber', val);
+      localStorage.setItem("dutyNumber", val);
       //alert(val);
     }
   </script>
@@ -56,7 +57,7 @@
   <script>
     function setPdaOne(val) {
       //var pdaOne = document.getElementById("firstPdaTaken");
-      localStorage.setItem('pdaOneNum', val);
+      localStorage.setItem("pdaOneNum", val);
       //alert(val);
     }
   </script>
@@ -64,7 +65,7 @@
   <script>
     function setPegs(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('pegs', val);
+      localStorage.setItem("pegs", val);
       //alert(val);
     }
   </script>
@@ -72,7 +73,7 @@
   <script>
     function setJacket(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('jacket', val);
+      localStorage.setItem("jacket", val);
       //alert(val);
     }
   </script>
@@ -80,7 +81,7 @@
   <script>
     function setFootwear(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem('footwear', val);
+      localStorage.setItem("footwear", val);
       //alert(val);
     }
   </script>
@@ -106,34 +107,40 @@
       <legend class="text-center">Sign a PDA out</legend>
       <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
       <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
-
+      <strong>Name:</strong>
       <input list="driverNames" name="driverNames" onChange="setName(this.value)"/>
       <datalist id="driverNames">
       </datalist>
 
       <!-- A list of duties for the staff member to select which one they are on -->
       <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
-      Duty:
-      <input list="dutyNumber" name="dutyNumber" onChange="setName(this.value)"/>
+      <strong>Duty:</strong>
+      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value)"/>
       <datalist id="dutyNumber">
       </datalist>
 
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-      PDA: <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select> Posting pegs issued:
+      <strong>PDA:</strong> <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
+
+      <strong>Posting pegs issued:</strong>
       <label class="radio-inline">
         <input type="radio" name="postingPegs" id="postingPegsTrue" value="1" onchange="setPegs(this.value)"/>Yes
       </label>
 
       <label class="radio-inline">
        <input type="radio" name="postingPegs" id="postingPegsFalse" value="0" onchange="setPegs(this.value)"/>No
-      </label> His-vis jacket:
+      </label>
+
+      <strong>His-vis jacket:</strong>
       <label class="radio-inline">
         <input type="radio" name="hiVis" id="hiVisTrue" value="1" onchange="setJacket(this.value)"/>Yes
       </label>
 
       <label class="radio-inline">
         <input type="radio" name="hiVis"  id="hiVisFalse" value="0"  onchange="setJacket(this.value)"/>No
-      </label> Correct footwear:
+      </label>
+
+      <strong>Correct footwear:</strong>
       <label class="radio-inline">
        <input type="radio" name="footwear"  id="footwearTrue" value="1" onchange="setFootwear(this.value)"/>Yes
       </label>
@@ -152,8 +159,8 @@
       <!--<form action="">
         <input type="submit" class="btn btn-default" value="Sign out" />
       </form> -->
-      <button type="button" class="btn btn-primary" id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
-      <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaOut()">Submit</button>
+      <button type="button" class="btn btn-warning" id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
+      <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signPdaOut()">Submit</button>
     </fieldset>
   </form>
   </div>

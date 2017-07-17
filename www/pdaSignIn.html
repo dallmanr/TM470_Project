@@ -32,6 +32,36 @@
 </head>
 
 <body>
+  <script>
+    function setName(val) {
+      //var name = document.getElementById("driverNames");
+      localStorage.setItem("driverName", val);
+      console.log(localStorage.getItem("driverName"));
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setDuty(val) {
+      //var duty = document.getElementById("dutyNumber");
+      localStorage.setItem("dutyNumber", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setPdaOne(val) {
+      //var pdaOne = document.getElementById("firstPdaTaken");
+      localStorage.setItem("pdaOneNum", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setPDAs (val) {
+      localStorage.setItem("pdas", val);
+    }
+  </script>
   <!-- Testing the driver value -->
   <script>
     //alert(localStorage.getItem("driverName"));
@@ -56,14 +86,20 @@
       <legend class="text-center">Sign a PDA in</legend>
       <!-- A list of duties for the staff member to select which oen they are -->
       <!-- Duty: <select name="dutyNumber" id="dutyNumber" onChange="app.project.getNameFromDutyPdaSignIn(this.value);"><option>Please select..</option></select> -->
-      Duty:
-      <input list="dutyNumber" name="dutyNumber" onChange="setName(this.value)"/>
+      <strong>Duty:</strong>
+      <input list="dutyNumber" name="dutyNumber" onChange="app.project.getNameFromDutyPdaSignIn(this.value); setDuty(this.value);"/>
       <datalist id="dutyNumber">
       </datalist>
 
-      Name: <input type="text" name="driverNames" id="driverNames" />
+      <strong>Name:</strong><input type="text" name="driverNames" id="driverNames" onChange="setName(this.value);">
       <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
       <!--PDA: <input type="text" name="pdaIn" id="pdaIn" readonly /> -->
+
+      <strong>PDA Number:</strong><input type="text" name="pdaNumber" id="pdaNumber" onChange="setName(this.value);" />
+
+      <strong>Returned PDA?</strong>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value);"/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value);"/> No </label>
 
       <button type="button" id="cancelButton" class="btn btn-default" onclick="app.project.returnHome(1);">Cancel</button>
       <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaIn()">Submit</button>

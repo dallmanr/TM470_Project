@@ -88,20 +88,20 @@
           <!-- The registration number of the van to be removed-->
           <!-- Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select> -->
 
-          Registration number:
+          <strong>Registration number:</strong>
           <input list="regNumber" name="regNumber" onChange="setReg(this.value); app.project.getVanDetails(this.value);"/>
           <datalist id="regNumber">
           </datalist>
 
-          Vehicle number:
+          <strong>Vehicle number:</strong>
           <input type="text" name="vehicleNumber" id="vehicleNumber" readonly/>
 
-          Serial number:
+          <strong>Serial number:</strong>
           <input type="text" name="serialNumber" id="serialNumber" readonly/>
           <!-- A reason the van is to be removed -->
-          Reason for removing: <textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off" onChange="setReason(this.value)"></textarea>
+          <strong>Reason for removing:</strong><textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off" onChange="setReason(this.value)"></textarea>
           <!-- The name of the staff member who removed the van -->
-          Removed by: <input type="text" name="removedBy" id="removedBy" />
+          <strong>Removed by:</strong><input type="text" name="removedBy" id="removedBy" />
         </fieldset>
 
           <button type="button" class="btn btn-warning" value="Cancel" id="cancel" onclick="app.project.returnHome()">Cancel</button>
