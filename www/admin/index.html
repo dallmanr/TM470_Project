@@ -27,6 +27,7 @@
   <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
   <script type="text/javascript" src="../js/auth.js"></script>
+  <script type="text/javascript" src="../js/getVanDetails.js"></script>
   <!-- end of my scripts -->
 
   <title>Admin control panel</title>
@@ -59,7 +60,7 @@
         </form>
 
         <form action="removeAVan.html">
-          <label><input type="submit" class="btn btn-default" value="Remove a van" onclick="app.project.getAllVanSerialNumbers();app.project.getAllVehicleNumbers();app.project.getAllVanRegNumbers();"/></label>
+          <label><input type="submit" class="btn btn-default" value="Remove a van" onclick="javascript:getAllVanSerialNumbers();javascript:getAllVehicleNumbers();javascript:getAllVanRegNumbers();"/></label>
         </form>
 
         <form action="viewLog.html">

@@ -35,50 +35,50 @@
 
   <script>
     //Variables set from sign out 1 of 3
-    $('#theDriversName').val(localStorage.getItem("driverName"));
-    $('#driversDuty').val(localStorage.getItem("dutyNumber"));
-    $('#signOutVanNumber').val(localStorage.getItem("vanNumber"));
-    $('#firstPdaTaken').val(localStorage.getItem("pdaOneNum"));
-    $('#secondPdaTaken').val(localStorage.getItem("pdaTwoNum"));
-    $('#keysCollected').val(localStorage.getItem("keysTaken"));
-    $('#logBookCollected').val(localStorage.getItem("logbook"));
+    $("#theDriversName").val(localStorage.getItem("driverName"));
+    $("#driversDuty").val(localStorage.getItem("dutyNumber"));
+    $("#signOutVanNumber").val(localStorage.getItem("vanNumber"));
+    $("#firstPdaTaken").val(localStorage.getItem("pdaOneNum"));
+    $("#secondPdaTaken").val(localStorage.getItem("pdaTwoNum"));
+    $("#keysCollected").val(localStorage.getItem("keysTaken"));
+    $("#logBookCollected").val(localStorage.getItem("logbook"));
 
     //Variables set from sign out 2 of 3
     if (localStorage.getItem("pegs") == 1) {
       //alert(localStorage.getItem("pegs"));
-      $('#pegs').prop('checked', true);
+      $("#pegs").prop("checked", true);
     }
 
     if (localStorage.getItem("jacket") == 1) {
-      $('#hivis').prop('checked', true);
+      $("#hivis").prop("checked", true);
     }
 
     if (localStorage.getItem("footwear") == 1) {
-      $('#footwear').prop('checked', true);
+      $("#footwear").prop("checked", true);
     }
 
     if (localStorage.getItem("logbook") == 1) {
-      $('#logBookCollected').prop('checked', true);
+      $("#logBookCollected").prop("checked", true);
     }
 
     if (localStorage.getItem("collectionKeys") == 1) {
-      $('#collectionKeys').prop('checked', true);
+      $("#collectionKeys").prop("checked", true);
     }
 
     if(localStorage.getItem("collectionKeys") == 0) {
-        document.getElementById('collKeyDiv').style.display = "none";
+        document.getElementById("collKeyDiv").style.display = "none";
       }
 
-    //$('#pegs').val(localStorage.getItem("pegs"));
-    //$('#hivis').val(localStorage.getItem("jacket"));
-    //$('#footwear').val(localStorage.getItem("footwear"));
+    //$("#pegs").val(localStorage.getItem("pegs"));
+    //$("#hivis").val(localStorage.getItem("jacket"));
+    //$("#footwear").val(localStorage.getItem("footwear"));
     //alert(localStorage.getItem("driverName"));
   </script>
 
   <script>
     function required() {
-      console.log('Required called');
-      document.getElementById('acknowledge').required = true;
+      console.log("Required called");
+      document.getElementById("acknowledge").required = true;
     }
   </script>
 
@@ -104,50 +104,43 @@
         <legend class="text-center">Sign a van out (3 of 3)</legend>
         <!-- Summary of information filled out by the staff member, before confirming their action -->
         <p>
-          Name:<input type="text" name="theDriversName" id="theDriversName" readonly />
-          Duty number: <input type="text" name="driversDuty" id="driversDuty" readonly />
-          Number of keys taken: <input type="text" name="keysCollected" id="keysCollected" readonly />
-          Vehicle number: <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
-          Registration: <input type="text" name="regNumTaken" id="regNumTaken" readonly />
-          Serial number: <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
-          PDA 1: <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
-          PDA 2: <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
+          <strong>Name:</strong><input type="text" name="theDriversName" id="theDriversName" readonly />
+          <strong>Duty number:</strong><input type="text" name="driversDuty" id="driversDuty" readonly />
+          <strong>Number of keys taken:</strong> <input type="text" name="keysCollected" id="keysCollected" readonly />
+          <strong>Vehicle number:</strong> <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
+          <strong>Registration:</strong> <input type="text" name="regNumTaken" id="regNumTaken" readonly />
+          <strong>Serial number:</strong> <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
+          <strong>PDA 1:</strong> <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
+          <strong>PDA 2:</strong> <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
 
           <label class="checkbox-inline">
-              <input type="checkbox" name="logBookCollected" id="logBookCollected" value="1" />Log book
-            </label>
+            <input type="checkbox" name="logBookCollected" id="logBookCollected" value="1" hidden/><strong>Log book</strong></label>
 
-          <input type="hidden" name="pegs" value="0" />
-          <label class="checkbox-inline">
-              <input type="checkbox" name="pegs" id="pegs" value="1"/>Posting pegs
-            </label>
+          <input type="hidden" name="pegs" value="0" /><label class="checkbox-inline">
+            <input type="checkbox" name="pegs" id="pegs" value="1" hidden/><strong>Posting pegs</strong></label>
 
-          <label class="checkbox-inline">
-              <input type="hidden" name="hivis" value="0"/>
-            <input type="checkbox" name="hivis" id="hivis" value="1" />Hi-vis jacket
-            </label>
+          <label class="checkbox-inline"><input type="hidden" name="hivis" value="0"/>
+            <input type="checkbox" name="hivis" id="hivis" value="1" hidden/><strong>Hi-vis jacket</strong></label>
 
-          <label class="checkbox-inline">
-              <input type="hidden" name="footwear" value="0"/>
-              <input type="checkbox" name="footwear" id="footwear" value="1" />Footwear
-            </label>
+          <label class="checkbox-inline"><input type="hidden" name="footwear" value="0"/>
+            <input type="checkbox" name="footwear" id="footwear" value="1" hidden/><strong>Footwear</strong></label>
 
           <div id="collKeyDiv">
           <label class="checkbox-inline">
-              <input type="hidden" name="collectionKeys" value="0"/>
-              <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" />Collection keys
+              <input type="hidden" name="collectionKeys" value="0" hidden/>
+              <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" hidden/><strong>Collection keys</strong>
             </label>
           </div>
           <p>
 
             <label class="checkbox-inline required">
-            <input type="hidden" name="acknowledge" id="acknowledge" value="0"/>
-            <input type="checkbox" name="acknowledge" id="acknowledge" value="1"/>
+            <input type="hidden" name="acknowledge" id="acknowledge" value="0" hidden/>
+            <input type="checkbox" name="acknowledge" id="acknowledge" value="1" hidden/>
             <i>I acknowledge the above information is correct</i></label>
           </p>
       </fieldset>
-        <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
-        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signAVanOut();">Submit</button>
+        <button id="cancelButton" class="btn btn-warning" onclick="app.project.returnHome();">Cancel</button>
+        <button type="button" class="btn btn-primary"  id="submit" value="Submit" onclick="app.project.signAVanOut();">Submit</button>
       </form>
     </div>
   </div>

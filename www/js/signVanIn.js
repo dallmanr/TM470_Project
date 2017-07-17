@@ -3,14 +3,14 @@
 
 function signAVanIn() {
   alert("signAVanIn.js called in signVanIn.js");
-  var val1 = $('#driverNames').val();
-  var val2 = $('#vanNumber').val();
+  var val1 = $("#driverNames").val();
+  var val2 = $("#vanNumber").val();
 
-  var val3 = $('#collDutiesComp').val();
-  var val4 = $('#collPouchReturned').val();
-  var val5 = $('#pdasReturned').val();
-  var val6 = $('#logBookReturned').val();
-  var val7 = $('#keysReturned').val();
+  var val3 = $("#collDutiesComp").val();
+  var val4 = $("#collPouchReturned").val();
+  var val5 = $("#pdasReturned").val();
+  var val6 = $("#logBookReturned").val();
+  var val7 = $("#keysReturned").val();
 
   $.ajax({
     type: "POST",
