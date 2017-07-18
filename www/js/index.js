@@ -96,7 +96,7 @@ var app = {
       //Functions are used in the admin pages
       //Moved these functions to getVanDetails.js
 
-      
+
       //Function for checking if a duty is collection duty
       //This will hide the element for selecting collection keys on driver sign out 1 of 3
       this.checkIfCollectionDuty = function (val) {
@@ -174,7 +174,10 @@ var app = {
             logbook: val6,
             keysReturned: val7
           },function(data) {
-              plugins.toast.showShortCenter("Success: Signed in");
+            if (obj.status === "success") {
+              plugins.toast.showShortCenter("Success: Signed out");
+              document.location.href = "index.html";
+            }
         });
       };//end of signAVanIn function
 
@@ -209,7 +212,7 @@ var app = {
             var obj = $.parseJSON(data);
             if (obj.status === "success") {
               plugins.toast.showShortCenter("Success: Signed out");
-              document.location.href = "/index.html";
+              document.location.href = "index.html";
             }
             //console.log(obj[0].status);
         });
@@ -239,16 +242,12 @@ var app = {
         }, function (data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            console.log(obj.status);
+            //console.log(obj.status);
             plugins.toast.showShortCenter("Success: signed pda out");
-            if(confirm("Return home?")) {
-              document.location.href = "/index.html";
-            } else {
-              //do nothing
-            }
+              document.location.href = "index.html";
           } else {
             plugins.toast.showShortCenter("Error: PDA not signed out");
-            console.log(obj.status);
+            //console.log(obj.status);
           }
         });
       };//end of signPdaOut function
@@ -296,9 +295,15 @@ var app = {
             staffMember: name,
             pdaReturned: pdaReturned,
             duty: duty
-          },function(data) {
-              plugins.toast.showShortCenter("Success: Signed in");
-        });
+          },function (data) {
+            var obj = $.parseJSON(data);
+            if (obj.status === "success") {
+              plugins.toast.showShortCenter("Success: signed pda in");
+              document.location.href = "index.html";
+            } else {
+              plugins.toast.showShortCenter("Error: PDA not signed in");
+            }
+          });
       };//end of signAVanIn function
 
       //TO DO
@@ -316,7 +321,7 @@ var app = {
       this.adminReturnHome = function() {
         document.location.href = "../index.html";
         localStorage.removeItem("adminName");
-        console.log(localStorage.getItem("adminName"));
+        //console.log(localStorage.getItem("adminName"));
       };//end of adminReturnHome function
 
       //Function for returning to the admin/index.html page. Called by the Home and Cancel buttons
