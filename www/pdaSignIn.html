@@ -98,8 +98,8 @@
       <strong>PDA Number:</strong><input type="text" name="pdaNumber" id="pdaNumber" onChange="setName(this.value);" />
 
       <strong>Returned PDA?</strong>
-      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value);"/> Yes </label>
-      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value);"/> No </label>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value);" hidden/> Yes </label>
+      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value);" hidden/> No </label>
 
       <button type="button" id="cancelButton" class="btn btn-default" onclick="app.project.returnHome(1);">Cancel</button>
       <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaIn()">Submit</button>
