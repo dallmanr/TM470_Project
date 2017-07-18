@@ -65,14 +65,14 @@
             Number of keys: <input type="text" name="keysAvail" id="keysAvail" placeholder="1 or 2" />
 
             <!-- A reason the new van has been added to the sytem -->
-            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement" > </textarea>
+            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement"> </textarea>
 
             <!-- The name of the staff member who added the van -->
             Added by: <input type="text" name="addedBy" id="addedBy" />
 
           </fieldset>
           <!--<button id="cancelButton" class="btn btn-danger" onclick="onBackKeyDown();">Cancel</button> -->
-          <button type="button" class="btn btn-warning"  id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
+          <button type="button" class="btn btn-warning" id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
           <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.addNewVan()">Submit</button>
         </form>
       </div>
@@ -90,9 +90,10 @@
 
   <script>
     function submitForm() {
-    alert("Submit form called")
-    addAVan();
-  }
+      alert("Submit form called")
+      addAVan();
+    }
   </script>
 </body>
+
 </html>

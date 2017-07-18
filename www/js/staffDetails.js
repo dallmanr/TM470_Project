@@ -1,3 +1,20 @@
+//FUNCTIONS FOR DEALING WITH ALL THE STAFF INFORMATION
+
+//Function is used in the View Log page where the driver names datalist
+//is populated with all staff
+function getAllStaff() {
+  var staff;
+  $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllStaff.php", function(data) {
+    $.each(data, function(index, item) {
+      staff += "<option value='" + item.payeNumber + "'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
+    });
+    $("#driverName").html(staff);
+  });
+}; //end of getAllStaff
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//FUNCTIONS FOR DRIVER SIGN OUT PROCESS
 //Returns a list of all those drivers which do not have a record in the dutyDetails table
 //for the current date, that is, they have not been signed out already today
 function getStaffNotOnDuty() {
@@ -55,3 +72,5 @@ function getPdasNotOut() {
     $('#secondPadTaken').html(pdas);
   });
 }; //end of getVansNotOut
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

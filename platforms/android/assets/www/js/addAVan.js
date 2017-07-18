@@ -4,11 +4,11 @@
 
 function addNewVan() {
   alert("addNewVan.js called");
-  var val1 = $('#serialNumber').val();
-  var val2 = $('#vehicleNumber').val();
-  var val3 = $('#regNumber').val();
-  var val4 = $('#keysAvail').val();
-  var val5 = $('#reasonAdded').val();
+  var val1 = $("#serialNumber").val();
+  var val2 = $("#vehicleNumber").val();
+  var val3 = $("#regNumber").val();
+  var val4 = $("#keysAvail").val();
+  var val5 = $("#reasonAdded").val();
   var val6 = localStorage.getItem("adminPayeNum");
 
 

@@ -10,4 +10,4 @@ function getDriversOnDuty() {
     });
     $('#driverNames').html(drivers);
   });
-}; //end of getDriversNotOnDuty
+}; //end of getDriversOnDuty

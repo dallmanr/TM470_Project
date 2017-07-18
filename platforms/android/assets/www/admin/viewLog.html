@@ -26,12 +26,37 @@
   <!-- my scripts -->
   <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
+  <script type="text/javascript" src="../js/getVanDetails.js"></script>
   <!-- end of my scripts -->
 
   <title>Admin control panel</title>
 </head>
 
 <body>
+  <script>
+    function setName(val) {
+      localStorage.setItem("driverName", val);
+    }
+  </script>
+
+  <script>
+  function setVanNum(val) {
+    localStorage.setItem("vanNum", val);
+  }
+  </script>
+
+  <script>
+  function setVanReg(val) {
+    localStorage.setItem("vanReg", val);
+  }
+  </script>
+
+  <script>
+  function setVanSerial(val) {
+    localStorage.setItem("vanSerial", val);
+  }
+  </script>
+
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col col-lg-2"></div>
@@ -54,20 +79,29 @@
               The results are displayed in a table showing:
               date/name/van number/time out/time in/hi vis/footwear/posting peg/collection duties completed
             -->
+          <p><strong>Date from:</strong><input type="date" name="dateFrom" id="dateFrom" />
+          <strong>Date to:</strong><input type="date" name="dateTo" id="dateTo" /></p>
+          <p><strong>Select item to search:</strong></p>
 
-          <p>Date from: <input type="date" name="dateFrom" id="dateFrom" /> Date to: <input type="date" name="dateTo" id="dateTo" /></p>
-          <p>Select item to search: </p>
-          <p>Driver name: <input type="text" name="driverName" id="driverName" placeholder="John doe" /></p>
-          <p>Van number: <select name="vanNumber" id="vanNumber"><option>Please select..</option></select></p>
-          <p>Registration number: <select name="regNumber" id="regNumber"><option>Please select..</option></select> </p>
-          <p>Serial number: <select name="serialNumber" id="serialNumber"><option>Please select..</option></select></p>
+          <p><strong>Driver name:</strong><input list="driverName" name="driverName" onChange="setName(this.value)" />
+          <datalist id="driverName"></datalist>
+
+          <p><strong>Van number:</strong><input list="vanNumber" name="vanNumber" onChange="setVanNum(this.value)" />
+          <datalist id="vanNumber"></datalist>
+
+          <p><strong>Registration number:</strong><input list="regNumber" name="regNumber" onChange="setVanReg(this.value)" />
+          <datalist id="regNumber"></datalist>
+
+          <p><strong>Serial number:</strong><input list="serialNumber" name="serialNumber" onChange="setVanSerial(this.value)" />
+          <datalist id="serialNumber"></datalist>
+
         </fieldset>
-        <button type="button" class="btn btn-primary" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
-        <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.searchLog()">Search</button>
-        </form
-      </div>
+        <button type="button" class="btn btn-warning" id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.searchLog()">Search</button>
+      </form>
     </div>
   </div>
+</div>
 
 </body>
 

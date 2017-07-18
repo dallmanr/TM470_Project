@@ -27,6 +27,7 @@
   <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
   <script type="text/javascript" src="../js/auth.js"></script>
+  <script type="text/javascript" src="../js/getVanDetails.js"></script>
   <!--<script type="text/javascript" src="../js/addAVan.js"></script> -->
 
   <!-- end of my scripts -->
@@ -48,7 +49,7 @@
           </div>
         </div>
         <!--<form id="addVanForm" action="javascript:addNewVan()" METHOD="POST"> -->
-        <form>
+        <form id="addVanForm">
           <fieldset>
             <legend class="text-center">Add a van</legend>
             <!-- The serial number for the new van, that will be added to the system -->
@@ -64,15 +65,15 @@
             Number of keys: <input type="text" name="keysAvail" id="keysAvail" placeholder="1 or 2" />
 
             <!-- A reason the new van has been added to the sytem -->
-            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement" > </textarea>
+            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement"> </textarea>
 
             <!-- The name of the staff member who added the van -->
             Added by: <input type="text" name="addedBy" id="addedBy" />
 
           </fieldset>
           <!--<button id="cancelButton" class="btn btn-danger" onclick="onBackKeyDown();">Cancel</button> -->
-          <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.addNewVan()">Submit</button>
-          <button type="button" class="btn btn-primary" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
+          <button type="button" class="btn btn-warning" id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
+          <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.addNewVan()">Submit</button>
         </form>
       </div>
     </div>
@@ -89,9 +90,10 @@
 
   <script>
     function submitForm() {
-    alert("Submit form called")
-    addAVan();
-  }
+      alert("Submit form called")
+      addAVan();
+    }
   </script>
 </body>
+
 </html>

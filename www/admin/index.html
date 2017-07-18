@@ -28,6 +28,7 @@
   <script type="text/javascript" src="../js/index.js"></script>
   <script type="text/javascript" src="../js/auth.js"></script>
   <script type="text/javascript" src="../js/getVanDetails.js"></script>
+  <script type="text/javascript" src="../js/staffDetails.js"></script>
   <!-- end of my scripts -->
 
   <title>Admin control panel</title>
@@ -64,7 +65,7 @@
         </form>
 
         <form action="viewLog.html">
-          <label><input type="submit" class="btn btn-default" value="View log" /></label>
+          <label><input type="submit" class="btn btn-default" value="View log" onclick="javascript:getAllVanSerialNumbers();javascript:getAllVehicleNumbers();javascript:getAllVanRegNumbers();getAllStaff();"/></label>
         </form>
 
       </div>

@@ -9,4 +9,4 @@ function getSignedOutVans() {
     });
     $('#vanList').html(drivers);
   });
-}; //end of getDriversNotOnDuty
+}; //end of getSignedOutVans

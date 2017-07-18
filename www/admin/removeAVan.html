@@ -77,36 +77,36 @@
           </div>
         </div>
         <form id="removeVanForm">
-        <fieldset>
-          <legend class="text-center">Remove a van</legend>
-          <!-- Users can remove a van using either the serial/reg or vehicle number -->
-          <!-- The serial number of the van to be removed-->
-          <!--Serial number: <select name="serialNumber" id="serialNumber" onChange="setSerial(this.value)"><option>Please select..</option></select> -->
+          <fieldset>
+            <legend class="text-center">Remove a van</legend>
+            <!-- Users can remove a van using either the serial/reg or vehicle number -->
+            <!-- The serial number of the van to be removed-->
+            <!--Serial number: <select name="serialNumber" id="serialNumber" onChange="setSerial(this.value)"><option>Please select..</option></select> -->
 
-          <!-- The vehicle number of the van to be removed -->
-          <!--Vehicle number: <select name="vehicleNumber" id="vehicleNumber" onChange="setVeh(this.value)"><option>Please select..</option></select> -->
+            <!-- The vehicle number of the van to be removed -->
+            <!--Vehicle number: <select name="vehicleNumber" id="vehicleNumber" onChange="setVeh(this.value)"><option>Please select..</option></select> -->
 
-          <!-- The registration number of the van to be removed-->
-          <!-- Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select> -->
+            <!-- The registration number of the van to be removed-->
+            <!-- Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select> -->
 
-          <strong>Registration number:</strong>
-          <input list="regNumber" name="regNumber" onChange="setReg(this.value); javascript:getVanDetails(this.value);"/>
-          <datalist id="regNumber">
+            <strong>Registration number:</strong>
+            <input list="regNumber" name="regNumber" onChange="setReg(this.value); javascript:getVanDetails(this.value);" />
+            <datalist id="regNumber">
           </datalist>
 
-          <strong>Vehicle number:</strong>
-          <input type="text" name="vehicleNumber" id="vehicleNumber" readonly/>
+            <strong>Vehicle number:</strong>
+            <input type="text" name="vehicleNumber" id="vehicleNumber" readonly/>
 
-          <strong>Serial number:</strong>
-          <input type="text" name="serialNumber" id="serialNumber" readonly/>
-          <!-- A reason the van is to be removed -->
-          <strong>Reason for removing:</strong><textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off" onChange="setReason(this.value)"></textarea>
-          <!-- The name of the staff member who removed the van -->
-          <strong>Removed by:</strong><input type="text" name="removedBy" id="removedBy" />
-        </fieldset>
+            <strong>Serial number:</strong>
+            <input type="text" name="serialNumber" id="serialNumber" readonly/>
+            <!-- A reason the van is to be removed -->
+            <strong>Reason for removing:</strong><textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off" onChange="setReason(this.value)"></textarea>
+            <!-- The name of the staff member who removed the van -->
+            <strong>Removed by:</strong><input type="text" name="removedBy" id="removedBy" />
+          </fieldset>
 
           <button type="button" class="btn btn-warning" value="Cancel" id="cancel" onclick="app.project.returnHome()">Cancel</button>
-          <button type="button" class="btn btn-primary" value="Submit"  id="submit" onclick="app.project.removeVan()">Submit</button>
+          <button type="button" class="btn btn-primary" value="Submit" id="submit" onclick="app.project.removeVan()">Submit</button>
         </form>
       </div>
     </div>

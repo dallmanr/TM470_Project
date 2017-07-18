@@ -23,55 +23,80 @@ var app = {
   },
 
   bindEvents: function() {
-    document.addEventListener('deviceready', onDeviceReady, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
       document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
     function onBackKeyDown(val) {
-      if (confirm("Are you sure you want to cancel?")) {
-        window.history.go(-val);
-        localStorage.clear();
-      } else {
-        //do nothing
-      }
+      this.returnHome();
     }
 
     function project() {
+
+      //FUNCTIONS FOR THE ADMIN PAGES
+      //Function for adding a new van to the system
       //This function is called when "submit" is pressed in addAVan.html
       this.addNewVan = function() {
         //alert("addNewVan in index.js called");
-        var val1 = $('#serialNumber').val();
-        var val2 = $('#vehicleNumber').val();
-        var val3 = $('#regNumber').val();
-        var val4 = $('#keysAvail').val();
-        var val5 = $('#reasonAdded').val();
+        var val1 = $("#serialNumber").val();
+        var val2 = $("#vehicleNumber").val();
+        var val3 = $("#regNumber").val();
+        var val4 = $("#keysAvail").val();
+        var val5 = $("#reasonAdded").val();
         var val6 = localStorage.getItem("adminPayeNum");
 
-
-        $.ajax({
-          type: "POST",
-          url: "http://86.0.13.186:8080/tm470/queries/addNewVan.php",
-          data: {
-            serialNumber: val1,
-            vehicleNumber: val2,
-            regNumber: val3,
-            keysAvail: val4,
-            reasonAdded: val5,
-            addedBy: val6
-          },
-          //dataType: "jsonp",
-          success: function(data) {
-            var obj = $.parseJSON(data);
-            alert(obj["status"]);
-            console.log(obj["status"]);
-            console.log(obj["data"]);
+        var url = "http://86.0.13.186:8080/tm470/queries/addNewVan.php";
+        $.post(url,{
+          serialNumber: val1,
+          vehicleNumber: val2,
+          regNumber: val3,
+          keysAvail: val4,
+          reasonAdded: val5,
+          addedBy: val6
+        }, function (data) {
+          var obj = $.parseJSON(data);
+          if (obj.status === "success") {
+            console.log("obj.status is success");
             plugins.toast.showShortCenter("Success: Van added");
+            document.getElementById("addVanForm").reset();
+          } else {
+            plugins.toast.showShortCenter(obj.status);
           }
         });
-      } // end of function addNewVan
+      }; // end of function addNewVan
 
+      //Function for removing a van
+      //This function is called by removeAVan.html
+      this.removeVan = function (val) {
+        //var form = document.getElementById("removeVanForm");
+        var regNumber =localStorage.getItem("regNumber");
+        var reason = localStorage.getItem("reason");
+        var url = "http://86.0.13.186:8080/tm470/queries/removeAVan.php";
+        $.post(url, {
+          regNumber: regNumber,
+          reason: reason
+        }, function (data) {
+          var obj = $.parseJSON(data);
+          if (obj.status === "success") {
+            console.log(obj.status);
+            plugins.toast.showShortCenter("Success: van removed");
+            document.getElementById("removeVanForm").reset();
+          }
+           else {
+             plugins.toast.showShortCenter("Error: van not removed");
+             console.log(obj.status);
+           }
+        });
+      };//end of removeVan function
+
+
+      //FUNCTIONS FOR RETRIEVING ALL VAN INFORMATION
+      //Functions are used in the admin pages
+      //Moved these functions to getVanDetails.js
+
+      
       //Function for checking if a duty is collection duty
       //This will hide the element for selecting collection keys on driver sign out 1 of 3
       this.checkIfCollectionDuty = function (val) {
@@ -85,17 +110,17 @@ var app = {
           collectionWalk = obj[0].collectionsWalk;
           console.log("Collection walk is " + collectionWalk);
           ready();
-        })
+        });
 
         function ready() {
           console.log("Ready called");
           if (collectionWalk == 0) {
             console.log("Ready collection walk = " + collectionWalk);
-            document.getElementById('collectionKeysToHide').style.display = "none";
+            document.getElementById("collectionKeysToHide").style.display = "none";
             localStorage.setItem("collectionKeys", 0);
           }
         }
-      }//end of checkIfCollectionDuty function
+      };//end of checkIfCollectionDuty function
 
       //DRIVER SIGN IN FUNCTIONS
       //Function for returning the vans that have been signed out.
@@ -106,12 +131,11 @@ var app = {
         var duty;
         var pdaOne;
         var pdaTwo;
-        $.ajax({
-          type: "POST",
-          url: "http://86.0.13.186:8080/tm470/queries/getDriverSignInDetails.php",
-          data: "staffMember=" + val,
-          //dataType: "jsonp",
-          success: function(data) {
+
+        var url = "http://86.0.13.186:8080/tm470/queries/getDriverSignInDetails.php";
+        $.post(url, {
+          staffMember: val
+        },function(data) {
             var obj = $.parseJSON(data);
             console.log("Van number is " + obj[0].vanNumber);
             console.log("Duty number is " + obj[0].duty);
@@ -122,46 +146,42 @@ var app = {
             pdaOne = obj[0].pdaOne;
             pdaTwo = obj[0].pdaTwo;
             //alert(obj[0].vanNumber);
-            $('#vanNumber').val(vanNumber);
-            $('#dutyNumber').val(duty);
-            $('#pdaOne').val(pdaOne);
-            $('#pdaTwo').val(pdaTwo);
-          }
+            $("#vanNumber").val(vanNumber);
+            $("#dutyNumber").val(duty);
+            $("#pdaOne").val(pdaOne);
+            $("#pdaTwo").val(pdaTwo);
         });
-      }//end of getSignedOutVans function
+      };//end of getSignedOutVans function
 
 
       this.signAVanIn = function () {
         console.log("signAVanIn in index.js called");
-        var val1 = localStorage.getItem('driver');
-        //var val2 = localStorage.getItem('driver');
-        var val3 = localStorage.getItem('completed');
-        var val4 = localStorage.getItem('pouch');
-        var val5 = localStorage.getItem('pdas');
-        var val6 = localStorage.getItem('logbook');
-        var val7 = localStorage.getItem('keys');
+        var val1 = localStorage.getItem("driver");
+        //var val2 = localStorage.getItem("driver");
+        var val3 = localStorage.getItem("completed");
+        var val4 = localStorage.getItem("pouch");
+        var val5 = localStorage.getItem("pdas");
+        var val6 = localStorage.getItem("logbook");
+        var val7 = localStorage.getItem("keys");
 
-        $.ajax({
-          type: "POST",
-          url: "http://86.0.13.186:8080/tm470/queries/signAVanIn.php",
-          data: {
+        var url = "http://86.0.13.186:8080/tm470/queries/signAVanIn.php";
+
+        $.post(url, {
             staffMember: val1,
             collDutiesComp: val3,
             collPouch: val4,
             pdasReturned: val5,
             logbook: val6,
             keysReturned: val7
-          },
-            success: function(data) {
+          },function(data) {
               plugins.toast.showShortCenter("Success: Signed in");
-          }
         });
-      }//end of signAVanIn function
+      };//end of signAVanIn function
 
       //FUNCTIONS FOR DRIVER SIGN OUT
       //Function for submitting data for the driver to sign out
       this.signAVanOut = function () {
-        var name = localStorage.getItem('driverName');
+        var name = localStorage.getItem("driverName");
         var duty = localStorage.getItem("dutyNumber");
         var keys = localStorage.getItem("keysTaken");
         var vehicleNumber = localStorage.getItem("vanNumber");
@@ -175,10 +195,7 @@ var app = {
         console.log("driver name in sign a van out = " + name);
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
 
-        $.ajax({
-          type: "POST",
-          url: url,
-          data: {
+        $.post(url, {
             name: name,
             duty: duty,
             vehicleNumber: vehicleNumber,
@@ -188,51 +205,107 @@ var app = {
             pegs: pegs,
             footwear: footwear,
             jacket: jacket
-          },
-          //dataType: "jsonp",
-          success: function(data) {
-            //var obj = $.parseJSON(data);
-            //alert(obj[0].firstName);
+          }, function(data) {
+            var obj = $.parseJSON(data);
+            if (obj.status === "success") {
+              plugins.toast.showShortCenter("Success: Signed out");
+              document.location.href = "/index.html";
+            }
             //console.log(obj[0].status);
-            plugins.toast.showShortCenter("Success: Signed out");
+        });
+      };//end of signAVanOut function
+
+      //FUNCTIONS FOR NON-DRIVERS
+      //Function for signing a PDA out
+      this.signPdaOut = function (val) {
+        var name = localStorage.getItem("driverName");
+        var duty = localStorage.getItem("dutyNumber");
+        var pdaOne = localStorage.getItem("pdaOneNum");
+        var pegs = localStorage.getItem("pegs");
+        var jacket = localStorage.getItem("jacket");
+        var footwear = localStorage.getItem("footwear");
+
+        console.log("SignPdaOut in index.js called");
+
+        var url = "http://86.0.13.186:8080/tm470/queries/signPdaOut.php";
+
+        $.post(url, {
+          name: name,
+          duty: duty,
+          pdaOne: pdaOne,
+          pegs: pegs,
+          footwear: footwear,
+          jacket: jacket
+        }, function (data) {
+          var obj = $.parseJSON(data);
+          if (obj.status === "success") {
+            console.log(obj.status);
+            plugins.toast.showShortCenter("Success: signed pda out");
+            if(confirm("Return home?")) {
+              document.location.href = "/index.html";
+            } else {
+              //do nothing
+            }
+          } else {
+            plugins.toast.showShortCenter("Error: PDA not signed out");
+            console.log(obj.status);
           }
         });
-      }
+      };//end of signPdaOut function
 
       //Function for returning the name of the person based on the duty number
       //Used in the sign a PDA in process
       this.getNameFromDutyPdaSignIn = function (val) {
         //alert("getName called" + " " + val);
-        $.ajax({
-          type: "POST",
-          url: "http://86.0.13.186:8080/tm470/queries/getNameFromDutyPdaSignIn.php",
-          data: "dutyNumber=" + val,
-          //dataType: "jsonp",
-          success: function(data) {
+        var url = "http://86.0.13.186:8080/tm470/queries/getNameFromDutyPdaSignIn.php";
+        console.log("The value is " + val);
+        var firstName;
+        var lastName;
+        var payeNumber;
+        var pdaNumber;
+        $.post(url, {
+          dutyNumber: val
+        }, function(data) {
             var obj = $.parseJSON(data);
+            console.log(obj.status);
             //alert(obj[0].firstName);
-            firstName = obj[0].firstName;
-            lastName = obj[0].lastName;
-            payeNumber = obj[0].payeNumber;
+            firstName = obj["data"].firstName;
+            lastName = obj["data"].lastName;
+            payeNumber = obj["data"].payeNumber;
+            pdaNumber = obj["data"].pdaOne;
+            localStorage.setItem("payeNumber", payeNumber);
 
             full = firstName + " " + lastName + " (" + payeNumber + ")";
 
             $("#driverNames").val(full);
-          }
+            $("#pdaNumber").val(pdaNumber);
         });
-      }//end of getNameFromDutyPdaSignIn function
+      };//end of getNameFromDutyPdaSignIn function
 
-      //TO DO
-      //Function for removing a van from the system
-      this.removeVan = function() {
-        console.log("Remove van called");
-      } //end of removeVan function
+      this.signPdaIn = function (val) {
+        console.log("signPdaIn in index.js called");
+        console.log(localStorage.getItem("payeNumber"));
+
+        var name = localStorage.getItem("payeNumber");
+        var duty = localStorage.getItem("dutyNumber");
+        var pdaReturned = localStorage.getItem("pdas");
+
+        var url = "http://86.0.13.186:8080/tm470/queries/signPdaIn.php";
+
+        $.post(url, {
+            staffMember: name,
+            pdaReturned: pdaReturned,
+            duty: duty
+          },function(data) {
+              plugins.toast.showShortCenter("Success: Signed in");
+        });
+      };//end of signAVanIn function
 
       //TO DO
       //Function for searching through the log
       this.searchLog = function() {
         console.log("Search log called");
-      } //End of searchLog function
+      };//end of searchLog function
 
       //FUNCTIONS FOR RETURNING TO HOME SCREENS
       //THESE FUNCTIONS ARE USED BY THE CANCEL AND HOME BUTTONS
@@ -244,7 +317,7 @@ var app = {
         document.location.href = "../index.html";
         localStorage.removeItem("adminName");
         console.log(localStorage.getItem("adminName"));
-      } // end of adminReturnHome function
+      };//end of adminReturnHome function
 
       //Function for returning to the admin/index.html page. Called by the Home and Cancel buttons
       this.adminReturn = function() {
@@ -252,7 +325,7 @@ var app = {
         if (confirm("Are you sure you want to cancel?")) {
           document.location.href = "index.html";
         } //end if
-      } //end of adminReturn
+      };//end of adminReturn
 
       //Function for returning to home screen from the default index page
       this.returnHome = function() {
@@ -260,84 +333,52 @@ var app = {
         if (confirm("Are you sure you want to cancel?")) {
           document.location.href = "index.html";
           this.clearDriverStorage();
-        } //end if
-      } // end of returnHome function
+        }//end if
+      };//end of returnHome function
 
       //END OF HOME/CANCEL BUTTON FUNCTIONS
 
-      //FUNCTIONS FOR CLEARING LOCAL STORAGE
+      //FUNCTIONS FOR CLEARING LOCAL STORAGE AND FORMS
       //Clears all the local storage during the driver signout process
       this.clearDriverStorage = function() {
         //driverSignOut1.html
         console.log("clearDriverStorage called");
-        localStorage.removeItem('driverName');
-        localStorage.removeItem('dutyNumber');
-        localStorage.removeItem('vanNumber');
-        localStorage.removeItem('pdaOneNum');
-        localStorage.removeItem('pdaTwoNum');
-        localStorage.removeItem('keysTaken');
-        localStorage.removeItem('collectionKeys');
-        localStorage.removeItem('logBook');
+        localStorage.removeItem("driverName");
+        localStorage.removeItem("dutyNumber");
+        localStorage.removeItem("vanNumber");
+        localStorage.removeItem("pdaOneNum");
+        localStorage.removeItem("pdaTwoNum");
+        localStorage.removeItem("keysTaken");
+        localStorage.removeItem("collectionKeys");
+        localStorage.removeItem("logbook");
 
         //driverSignOut2.html
-        localStorage.removeItem('pegs');
-        localStorage.removeItem('jacket');
-        localStorage.removeItem('footwear');
-      } //end clearStaffStorage
+        localStorage.removeItem("pegs");
+        localStorage.removeItem("jacket");
+        localStorage.removeItem("footwear");
+      };//end clearStaffStorage
 
       //Clears all the local storage set during the pda signing out/in process
       this.clearPdaStorage = function() {
         console.log("clearPdaStorage called");
-        localStorage.removeItem('driverName');
-        localStorage.removeItem('dutyNumber');
-        localStorage.removeItem('pdaOneNum');
-        localStorage.removeItem('pegs');
-        localStorage.removeItem('jacket');
-        localStorage.removeItem('footwear');
-      }
+        localStorage.removeItem("driverName");
+        localStorage.removeItem("dutyNumber");
+        localStorage.removeItem("pdaOneNum");
+        localStorage.removeItem("pegs");
+        localStorage.removeItem("jacket");
+        localStorage.removeItem("footwear");
+      };
 
       this.clearAdminStorage = function() {
 
-      }
-      //END OF FUNCTIONS FOR CLEARING LOCAL STORAGE
+      };//end of clearAdminStorage
 
-      //FUNCTIONS FOR RETRIEVING ALL VAN INFORMATION
-      //Get the serial numbers of all vans
-      this.getAllVanSerialNumbers = function() {
-        console.log("getAllVansSerialNumbers called in index.js");
-        var vans;
-        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
-          $.each(data, function(index, item) {
-            vans += "<option value='" + item.serialNumber + "'>" + item.serialNumber + "</option>";
-          });
-          $('#serialNumber').html(vans);
-        });
-      } //end of getAllVansSerialNumbers
-
-      //Function for getting all van vehicle numbers
-      this.getAllVehicleNumbers = function() {
-        console.log("getAllVehicleNumbers called in index.js");
-        var vans;
-        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
-          $.each(data, function(index, item) {
-            vans += "<option value='" + item.vehicleNumber + "'>" + item.vehicleNumber + "</option>";
-          });
-          $('#vehicleNumber').html(vans);
-        });
-      } // End of getAllVehicleNumbers functions
-
-      //Function for getting all van reg numbers
-      this.getAllVanRegNumbers = function() {
-        console.log("getAllVanRegNumbers called in index.js");
-        var vans;
-        $.getJSON("http://86.0.13.186:8080/tm470/queries/getAllVans.php", function(data) {
-          $.each(data, function(index, item) {
-            vans += "<option value='" + item.regNumber + "'>" + item.regNumber + "</option>";
-          });
-          $('#regNumber').html(vans);
-        });
-      } //End of getAllVanRegNumbers
-      //END OF VAN INFO FUNCTIONS
+      this.clearForm = function(val) {
+        console.log("Clear form called");
+        document.getElementById(val).reset();
+        return false;
+      };//end of clearForm
+      //END OF FUNCTIONS FOR CLEARING LOCAL STORAGE AND FORMS
 
     }; //end of project function
     this.project = new project();

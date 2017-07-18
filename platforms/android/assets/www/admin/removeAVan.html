@@ -27,6 +27,7 @@
   <script type="text/javascript" src="../js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="../js/index.js"></script>
   <script type="text/javascript" src="../js/removeAVan.js"></script>
+  <script type="text/javascript" src="../js/getVanDetails.js"></script>
   <!-- end of my scripts -->
 
   <title>Admin control panel</title>
@@ -36,7 +37,7 @@
   <!-- Function for setting the serial number selected in drop down list -->
   <script>
     function setSerial(val) {
-      localStorage.setItem('serialNum', val);
+      localStorage.setItem("serialNum", val);
       //alert(val);
     }
   </script>
@@ -44,7 +45,7 @@
   <!-- Function for setting the vehicle number selected in drop down list -->
   <script>
     function setVeh(val) {
-      localStorage.setItem('vehicleNumber', val);
+      localStorage.setItem("vehicleNumber", val);
       //alert(val);
     }
   </script>
@@ -52,8 +53,14 @@
   <!-- Function for setting the reg number selected in drop down list -->
   <script>
     function setReg(val) {
-      localStorage.setItem('regNumber', val);
+      localStorage.setItem("regNumber", val);
       //alert(val);
+    }
+  </script>
+
+  <script>
+    function setReason(val) {
+      localStorage.setItem("reason", val);
     }
   </script>
 
@@ -69,28 +76,37 @@
             </form>
           </div>
         </div>
-        <form>
-        <fieldset>
-          <legend class="text-center">Remove a van</legend>
-          <!-- Users can remove a van using either the serial/reg or vehicle number -->
-          <!-- The serial number of the van to be removed-->
-          Serial number: <select name="serialNumber" id="serialNumber" onChange="setSerial(this.value)"><option>Please select..</option></select>
+        <form id="removeVanForm">
+          <fieldset>
+            <legend class="text-center">Remove a van</legend>
+            <!-- Users can remove a van using either the serial/reg or vehicle number -->
+            <!-- The serial number of the van to be removed-->
+            <!--Serial number: <select name="serialNumber" id="serialNumber" onChange="setSerial(this.value)"><option>Please select..</option></select> -->
 
-          <!-- The vehicle number of the van to be removed -->
-          Vehicle number: <select name="vehicleNumber" id="vehicleNumber" onChange="setVeh(this.value)"><option>Please select..</option></select>
+            <!-- The vehicle number of the van to be removed -->
+            <!--Vehicle number: <select name="vehicleNumber" id="vehicleNumber" onChange="setVeh(this.value)"><option>Please select..</option></select> -->
 
-          <!-- The registration number of the van to be removed-->
-          Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select>
+            <!-- The registration number of the van to be removed-->
+            <!-- Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select> -->
 
-          <!-- A reason the van is to be removed -->
-          Reason for adding: <textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off"></textarea>
+            <strong>Registration number:</strong>
+            <input list="regNumber" name="regNumber" onChange="setReg(this.value); javascript:getVanDetails(this.value);" />
+            <datalist id="regNumber">
+          </datalist>
 
-          <!-- The name of the staff member who removed the van -->
-          Removed by: <input type="text" name="removedBy" id="removedBy" />
-        </fieldset>
+            <strong>Vehicle number:</strong>
+            <input type="text" name="vehicleNumber" id="vehicleNumber" readonly/>
 
-          <button type="button" class="btn btn-primary" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
-          <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.removeVan()">Submit</button>
+            <strong>Serial number:</strong>
+            <input type="text" name="serialNumber" id="serialNumber" readonly/>
+            <!-- A reason the van is to be removed -->
+            <strong>Reason for removing:</strong><textarea rows="4" cols="10" name="reason" id="reason" placeholder="Write off" onChange="setReason(this.value)"></textarea>
+            <!-- The name of the staff member who removed the van -->
+            <strong>Removed by:</strong><input type="text" name="removedBy" id="removedBy" />
+          </fieldset>
+
+          <button type="button" class="btn btn-warning" value="Cancel" id="cancel" onclick="app.project.returnHome()">Cancel</button>
+          <button type="button" class="btn btn-primary" value="Submit" id="submit" onclick="app.project.removeVan()">Submit</button>
         </form>
       </div>
     </div>
@@ -99,7 +115,7 @@
   <script>
     function load() {
       //alert("Added by method called");
-      document.getElementById('removedBy').value = localStorage.getItem("adminName");
+      document.getElementById("removedBy").value = localStorage.getItem("adminName");
     }
     load();
   </script>
