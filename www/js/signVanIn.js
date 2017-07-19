@@ -2,7 +2,7 @@
 //Takes the values from the fields on signAVanIn.html and posts them to the server
 
 function signAVanIn() {
-  alert("signAVanIn.js called in signVanIn.js");
+  //alert("signAVanIn.js called in signVanIn.js");
   var val1 = $("#driverNames").val();
   var val2 = $("#vanNumber").val();
 
@@ -27,16 +27,16 @@ function signAVanIn() {
     //dataType: "jsonp",
      success: function(data) {
       var obj = $.parseJSON(data);
-      alert(obj["status"]);
-      console.log(obj["status"]);
-      console.log(obj["data"]);
+      //alert(obj["status"]);
+      //console.log(obj["status"]);
+      //console.log(obj["data"]);
       plugins.toast.showShortCenter("Success: signed in");
     }
   });
 };
 
 function clearForm() {
-  console.log("clear form called");
+  //console.log("clear form called");
   var elements = addVanForm.elements;
   addVanForm.reset();
 }

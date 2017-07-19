@@ -219,16 +219,16 @@ var app = {
 
       //Function for returning a van serial based on vehicle number
       //Called by driver sign out 2 -> driver sign out 3
-      this.getVanSerial = function(val) {
+      this.getVanSerial = function() {
         console.log("getVanSerial called");
-        //var vehNumber = localStorage.getItem("vanNumber");
+        var vehNumber = localStorage.getItem("vanNumber");
         var serialNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {
           $.each(data, function(index,item) {
             console.log(item.serialNumber);
-            if (item.serialNumber === val) {
-              //console.log("van found");
+            if (item.vehicleNumber === vehNumber) {
+              console.log("van serial found");
               serialNumber = item.serialNumber;
               localStorage.setItem("serialNumber", serialNumber);
               document.getElementById("serialNumTaken").value = serialNumber;
@@ -239,15 +239,17 @@ var app = {
 
       //Function for returning a van reg based on vehicle number
       //Called by driver sign out 2 -> driver sign out 3
-      this.getVanReg = function(val) {
-        //var vehNumber = localStorage.getItem("vanNumber");
+      this.getVanReg = function() {
+        console.log("getVanReg called");
+        var vehNumber = localStorage.getItem("vanNumber");
         var regNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {
           $.each(data, function(index,item) {
             //console.log(item.vehicleNumber);
-            if (item.regNumber === val) {
-              //console.log("van found");
+            if (item.vehicleNumber === vehNumber) {
+              console.log(item.serialNumber);
+              console.log("van  reg found");
               regNumber = item.regNumber;
               localStorage.setItem("regNumber", regNumber);
               document.getElementById("regNumTaken").value = regNumber;

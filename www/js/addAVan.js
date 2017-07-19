@@ -26,16 +26,16 @@ function addNewVan() {
     //dataType: "jsonp",
      success: function(data) {
       var obj = $.parseJSON(data);
-      alert(obj["status"]);
-      console.log(obj["status"]);
-      console.log(obj["data"]);
+      //alert(obj["status"]);
+      //console.log(obj["status"]);
+      //console.log(obj["data"]);
       plugins.toast.showShortCenter("Success: Van added");
     }
   });
 };
 
 function clearForm() {
-  console.log("clear form called");
+  //console.log("clear form called");
   var elements = addVanForm.elements;
   addVanForm.reset();
 }
