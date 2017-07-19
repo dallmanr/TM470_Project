@@ -105,21 +105,16 @@ var app = {
         var collectionWalk;
         $.post(url, {
           dutyNumber: val
-        }, function (data){
+        }, function (data) {
           var obj = $.parseJSON(data);
-          collectionWalk = obj[0].collectionsWalk;
-          console.log("Collection walk is " + collectionWalk);
-          ready();
-        });
-
-        function ready() {
-          console.log("Ready called");
-          if (collectionWalk == 0) {
+            collectionWalk = obj[0].collectionsWalk;
+            console.log("Collection walk is " + collectionWalk);
+            if (collectionWalk == 0) {
             console.log("Ready collection walk = " + collectionWalk);
-            document.getElementById("collectionKeysToHide").style.display = "none";
+            document.getElementById("collectionDutiesToHide").style.display = "none";
             localStorage.setItem("collectionKeys", 0);
           }
-        }
+        });
       };//end of checkIfCollectionDuty function
 
       //DRIVER SIGN IN FUNCTIONS
@@ -137,19 +132,23 @@ var app = {
           staffMember: val
         },function(data) {
             var obj = $.parseJSON(data);
-            console.log("Van number is " + obj[0].vanNumber);
-            console.log("Duty number is " + obj[0].duty);
-            console.log("PDA one number is " + obj[0].pdaOne);
-            console.log("PDa two number is " + obj[0].pdaTwo);
+
+            localStorage.setItem("vanNumber", obj[0].vanNumber);
+            localStorage.setItem("duty", obj[0].duty);
+            localStorage.setItem("pdaOne", obj[0].pdaOne);
+            localStorage.setItem("pdaTwo", obj[0].pdaTwo);
+
             vanNumber = obj[0].vanNumber;
             duty = obj[0].duty;
             pdaOne = obj[0].pdaOne;
             pdaTwo = obj[0].pdaTwo;
-            //alert(obj[0].vanNumber);
+            alert(localStorage.getItem("duty"));
             $("#vanNumber").val(vanNumber);
             $("#dutyNumber").val(duty);
             $("#pdaOne").val(pdaOne);
             $("#pdaTwo").val(pdaTwo);
+
+            app.project.checkIfCollectionDuty(localStorage.getItem("duty"));
         });
       };//end of getSignedOutVans function
 

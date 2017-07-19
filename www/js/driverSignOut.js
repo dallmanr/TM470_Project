@@ -1,7 +1,7 @@
 //Returns a list of all those drivers which do not have a record in the dutyDetails table
 //for the current date, that is, they have not been signed out already today
 function getStaffNotOnDuty() {
-  //alert("Get drivers called");
+  alert("getStaffNotOnDuty called");
   var drivers;
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getDriverNamesDriverSignOut.php", function(data) {
     $.each(data, function(index, item) {
