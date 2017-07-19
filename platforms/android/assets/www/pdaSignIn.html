@@ -101,8 +101,8 @@
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value);" hidden/> Yes </label>
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value);" hidden/> No </label>
 
-      <button type="button" id="cancelButton" class="btn btn-default" onclick="app.project.returnHome(1);">Cancel</button>
-      <button type="button" class="btn btn-primary" value="Submit" onclick="app.project.signPdaIn()">Submit</button>
+      <button type="button" id="cancelButton" class="btn btn-warning" onclick="app.project.returnHome();">Cancel</button>
+      <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signPdaIn()">Submit</button>
 
       <!-- Need to create the page for signing the PDA out
       <form action="">

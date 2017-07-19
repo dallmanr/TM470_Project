@@ -104,7 +104,7 @@
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
       <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
       Name:
-      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutDriverDetails(this.value);setName(this.value)"/>
+      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutDriverDetails(this.value);setName(this.value);"/>
       <datalist id="driverNames">
       </datalist>
 
@@ -127,6 +127,7 @@
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value)" hidden/> Yes </label>
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value)" hidden/> No </label>
 
+      <div id="collectionDutiesToHide">
       Collection pouch returned?
       <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedTrue" value="1" onchange="setPouchReturned(this.value)" hidden/> Yes </label>
       <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedFalse" value="0" onchange="setPouchReturned(this.value)" hidden/> No </label>
@@ -134,17 +135,12 @@
       Collection duties completed?
       <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompTrue" value="1" onchange="setDutiesCompleted(this.value)" hidden/> Yes </label>
       <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompFalse" value="0" onchange="setDutiesCompleted(this.value)" hidden/> No </label>
+      </div>
 
       <button type="button" class="btn btn-default" id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
       <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signAVanIn()">Submit</button>
     </form>
   </div>
-  <script>
-    function submitForm() {
-    alert("Submit form called")
-    signAVanIn();
-  }
-  </script>
 </body>
 
 </html>

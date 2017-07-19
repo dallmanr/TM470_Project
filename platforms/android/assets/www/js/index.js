@@ -29,7 +29,7 @@ var app = {
       document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
-    function onBackKeyDown(val) {
+    function onBackKeyDown() {
       this.returnHome();
     }
 
@@ -105,21 +105,16 @@ var app = {
         var collectionWalk;
         $.post(url, {
           dutyNumber: val
-        }, function (data){
+        }, function (data) {
           var obj = $.parseJSON(data);
-          collectionWalk = obj[0].collectionsWalk;
-          console.log("Collection walk is " + collectionWalk);
-          ready();
-        });
-
-        function ready() {
-          console.log("Ready called");
-          if (collectionWalk == 0) {
+            collectionWalk = obj[0].collectionsWalk;
+            console.log("Collection walk is " + collectionWalk);
+            if (collectionWalk == 0) {
             console.log("Ready collection walk = " + collectionWalk);
-            document.getElementById("collectionKeysToHide").style.display = "none";
+            document.getElementById("collectionDutiesToHide").style.display = "none";
             localStorage.setItem("collectionKeys", 0);
           }
-        }
+        });
       };//end of checkIfCollectionDuty function
 
       //DRIVER SIGN IN FUNCTIONS
@@ -137,19 +132,23 @@ var app = {
           staffMember: val
         },function(data) {
             var obj = $.parseJSON(data);
-            console.log("Van number is " + obj[0].vanNumber);
-            console.log("Duty number is " + obj[0].duty);
-            console.log("PDA one number is " + obj[0].pdaOne);
-            console.log("PDa two number is " + obj[0].pdaTwo);
+
+            localStorage.setItem("vanNumber", obj[0].vanNumber);
+            localStorage.setItem("duty", obj[0].duty);
+            localStorage.setItem("pdaOne", obj[0].pdaOne);
+            localStorage.setItem("pdaTwo", obj[0].pdaTwo);
+
             vanNumber = obj[0].vanNumber;
             duty = obj[0].duty;
             pdaOne = obj[0].pdaOne;
             pdaTwo = obj[0].pdaTwo;
-            //alert(obj[0].vanNumber);
+            alert(localStorage.getItem("duty"));
             $("#vanNumber").val(vanNumber);
             $("#dutyNumber").val(duty);
             $("#pdaOne").val(pdaOne);
             $("#pdaTwo").val(pdaTwo);
+
+            app.project.checkIfCollectionDuty(localStorage.getItem("duty"));
         });
       };//end of getSignedOutVans function
 
@@ -217,6 +216,45 @@ var app = {
             //console.log(obj[0].status);
         });
       };//end of signAVanOut function
+
+      //Function for returning a van serial based on vehicle number
+      //Called by driver sign out 2 -> driver sign out 3
+      this.getVanSerial = function(val) {
+        console.log("getVanSerial called");
+        //var vehNumber = localStorage.getItem("vanNumber");
+        var serialNumber;
+        var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+        $.getJSON(url, function(data) {
+          $.each(data, function(index,item) {
+            console.log(item.serialNumber);
+            if (item.serialNumber === val) {
+              //console.log("van found");
+              serialNumber = item.serialNumber;
+              localStorage.setItem("serialNumber", serialNumber);
+              document.getElementById("serialNumTaken").value = serialNumber;
+            }
+          });
+        });
+      };//end of getVanSerial
+
+      //Function for returning a van reg based on vehicle number
+      //Called by driver sign out 2 -> driver sign out 3
+      this.getVanReg = function(val) {
+        //var vehNumber = localStorage.getItem("vanNumber");
+        var regNumber;
+        var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+        $.getJSON(url, function(data) {
+          $.each(data, function(index,item) {
+            //console.log(item.vehicleNumber);
+            if (item.regNumber === val) {
+              //console.log("van found");
+              regNumber = item.regNumber;
+              localStorage.setItem("regNumber", regNumber);
+              document.getElementById("regNumTaken").value = regNumber;
+            }
+          });
+        });
+      };//end of getVanReg
 
       //FUNCTIONS FOR NON-DRIVERS
       //Function for signing a PDA out
@@ -304,7 +342,7 @@ var app = {
               plugins.toast.showShortCenter("Error: PDA not signed in");
             }
           });
-      };//end of signAVanIn function
+      };//end of signPdaIn function
 
       //TO DO
       //Function for searching through the log
@@ -338,6 +376,7 @@ var app = {
         if (confirm("Are you sure you want to cancel?")) {
           document.location.href = "index.html";
           this.clearDriverStorage();
+          this.clearPdaStorage();
         }//end if
       };//end of returnHome function
 

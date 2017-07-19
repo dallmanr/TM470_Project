@@ -42,6 +42,8 @@
     $("#secondPdaTaken").val(localStorage.getItem("pdaTwoNum"));
     $("#keysCollected").val(localStorage.getItem("keysTaken"));
     $("#logBookCollected").val(localStorage.getItem("logbook"));
+    $("#serialNumTaken").val(localStorage.getItem("serialNumber"))
+    $("#regNumTaken").val(localStorage.getItem("regNumber"))
 
     //Variables set from sign out 2 of 3
     if (localStorage.getItem("pegs") == 1) {
@@ -134,8 +136,8 @@
           <p>
 
             <label class="checkbox-inline required">
-            <input type="hidden" name="acknowledge" id="acknowledge" value="0" hidden/>
-            <input type="checkbox" name="acknowledge" id="acknowledge" value="1" hidden/>
+            <input type="hidden" name="acknowledge" id="acknowledgeFalse" value="0" hidden/>
+            <input type="checkbox" name="acknowledge" id="acknowledgeTrue" value="1" hidden/>
             <i>I acknowledge the above information is correct</i></label>
           </p>
       </fieldset>

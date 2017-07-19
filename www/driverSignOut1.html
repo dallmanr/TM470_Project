@@ -24,6 +24,7 @@
   </script>
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/getVanDetails.js"></script>
 
   <title>Driver sign out 1 of 3</title>
 </head>
@@ -144,19 +145,25 @@
       <datalist id="driverNames">
       </datalist>
 
-      <!-- A list of duties for the staff member to select which oen they are -->
+      <!-- A list of duties for the staff member to select which one they are on -->
       <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
       <strong>Duty:</strong>
-      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value); app.project.checkIfCollectionDuty(this.value);"/>
+      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value); app.project.checkIfCollectionDuty(this.value); "/>
       <datalist id="dutyNumber">
       </datalist>
 
       <!-- List of vehicle numbers for a driver to select which one they are signing out -->
       <!-- Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select> -->
       <strong>Van number:</strong>
-      <input list="vanNumber" name="vanNumber" onChange="setVan(this.value)"/>
+      <input list="vanNumber" name="vanNumber" onclick="setVan(this.value); app.project.getVanSerial(); app.project.getVanReg();"/>
       <datalist id="vanNumber">
       </datalist>
+
+      <strong>Van serial:</strong>
+      <input type="text" name="serialNumTaken" id="serialNumTaken" readonly/>
+
+      <strong>Van registration</strong>
+      <input type="text" name="regNumTaken" id="regNumTaken" readonly/>
 
       <!-- Number of keys for the van the staff member has taken -->
       <strong>Keys taken:</strong>
@@ -178,6 +185,7 @@
       <strong>Log book:</strong>
       <label class="radio-inline"><input type="radio" name="logBook" id="logBookTrue" value="1" onchange="setLogbook(this.value)" hidden/>Yes</label>
       <label class="radio-inline"><input type="radio" name="logBook" id="logBookFalse" value="0" onchange="setLogbook(this.value)" hidden/>No</label>
+      </fieldset>
     </form>
 
       <button id="cancelButton" onclick="app.project.returnHome();">Cancel</button>
@@ -185,7 +193,7 @@
       <form action="driverSignOut2.html">
         <input type="submit" class="btn btn-default" value="Next" />
       </form>
-    </fieldset>
+
   </div>
 </body>
 

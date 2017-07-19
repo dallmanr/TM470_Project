@@ -29,7 +29,7 @@ var app = {
       document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
-    function onBackKeyDown(val) {
+    function onBackKeyDown() {
       this.returnHome();
     }
 
@@ -217,6 +217,47 @@ var app = {
         });
       };//end of signAVanOut function
 
+      //Function for returning a van serial based on vehicle number
+      //Called by driver sign out 2 -> driver sign out 3
+      this.getVanSerial = function() {
+        console.log("getVanSerial called");
+        var vehNumber = localStorage.getItem("vanNumber");
+        var serialNumber;
+        var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+        $.getJSON(url, function(data) {
+          $.each(data, function(index,item) {
+            console.log(item.serialNumber);
+            if (item.vehicleNumber === vehNumber) {
+              console.log("van serial found");
+              serialNumber = item.serialNumber;
+              localStorage.setItem("serialNumber", serialNumber);
+              document.getElementById("serialNumTaken").value = serialNumber;
+            }
+          });
+        });
+      };//end of getVanSerial
+
+      //Function for returning a van reg based on vehicle number
+      //Called by driver sign out 2 -> driver sign out 3
+      this.getVanReg = function() {
+        console.log("getVanReg called");
+        var vehNumber = localStorage.getItem("vanNumber");
+        var regNumber;
+        var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+        $.getJSON(url, function(data) {
+          $.each(data, function(index,item) {
+            //console.log(item.vehicleNumber);
+            if (item.vehicleNumber === vehNumber) {
+              console.log(item.serialNumber);
+              console.log("van  reg found");
+              regNumber = item.regNumber;
+              localStorage.setItem("regNumber", regNumber);
+              document.getElementById("regNumTaken").value = regNumber;
+            }
+          });
+        });
+      };//end of getVanReg
+
       //FUNCTIONS FOR NON-DRIVERS
       //Function for signing a PDA out
       this.signPdaOut = function (val) {
@@ -303,7 +344,7 @@ var app = {
               plugins.toast.showShortCenter("Error: PDA not signed in");
             }
           });
-      };//end of signAVanIn function
+      };//end of signPdaIn function
 
       //TO DO
       //Function for searching through the log
@@ -337,6 +378,7 @@ var app = {
         if (confirm("Are you sure you want to cancel?")) {
           document.location.href = "index.html";
           this.clearDriverStorage();
+          this.clearPdaStorage();
         }//end if
       };//end of returnHome function
 
