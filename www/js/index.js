@@ -58,9 +58,14 @@ var app = {
         }, function (data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            //console.log("obj.status is success");
+            console.log("obj.status is success");
+            $("#serialNumber").val("");
+            $("#vehicleNumber").val("");
+            $("#regNumber").val("");
+            $("#keysAvail").val("");
+            $("#reasonAdded").val("");
+
             plugins.toast.showShortCenter("Success: Van added");
-            document.getElementById("addVanForm").reset();
           } else {
             plugins.toast.showShortCenter(obj.status);
           }
@@ -81,8 +86,11 @@ var app = {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
             //console.log(obj.status);
+            $("#regNumber").val("");
+            $("#vehicleNumber").val("");
+            $("#reason").val("");
+
             plugins.toast.showShortCenter("Success: van removed");
-            document.getElementById("removeVanForm").reset();
           }
            else {
              plugins.toast.showShortCenter("Error: van not removed");

@@ -3,9 +3,9 @@
 
 function authUser() {
   //Test the call to function works
-  //console.log("authUser in auth.js called");
+  ////console.log("authUser in auth.js called");
   var pw = prompt("Please enter your passcode");
-  //console.log("Entered value " + pw);
+  ////console.log("Entered value " + pw);
   var firstName;
   var lastName;
   var fullName;
@@ -18,9 +18,9 @@ function authUser() {
     pw: pw
   }, function (data) {
     var obj = $.parseJSON(data);
-    //console.log(obj.status);
+    ////console.log(obj.status);
     if (obj.status == "success") {
-      //console.log("status is succes");
+      ////console.log("status is succes");
       firstName = obj["data"].firstName;
       lastName = obj["data"].lastName;
       payeNumber = obj["data"].payeNumber;
@@ -29,12 +29,12 @@ function authUser() {
       localStorage.setItem("adminName", fullName);
       localStorage.setItem("adminPayeNum", payeNumber);
 
-      //console.log(localStorage.getItem("adminName"));
+      ////console.log(localStorage.getItem("adminName"));
 
       document.location.href = "admin/index.html";
       plugins.toast.showShortCenter("Welcome: " + firstName);
     } else if (obj.status === "fail") {
-      //console.log(obj.status + " wrong passcode?");
+      ////console.log(obj.status + " wrong passcode?");
       plugins.toast.showShortCenter("Error: Check passcode");
     }
   });
@@ -42,5 +42,5 @@ function authUser() {
 
 //function getUser() {
   //var adminPayeNum = localStorage.getItem("adminName");
-  //console.log("Get user called " + localStorage.getItem("adminName"));
+  ////console.log("Get user called " + localStorage.getItem("adminName"));
 //}

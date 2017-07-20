@@ -7,9 +7,9 @@ function getStaffNotOnDuty() {
     $.each(data, function(index, item) {
       //drivers += "<option value='" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")"  + "'>" + "</option>";
       drivers += "<option value='" + item.payeNumber + "'>" + item.firstName + " " + item.lastName + " " + "(" + item.payeNumber + ")" +"</option>";
-      console.log("Get driver names called driverSignOut.js");
+      //console.log("Get driver names called driverSignOut.js");
     });
-    $('#driverNames').html(drivers);
+    $("#driverNames").html(drivers);
   });
 }; //end of getStaffNotOnDuty
 
@@ -21,9 +21,9 @@ function getDutiesNotOut() {
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutDuties.php", function(data) {
     $.each(data, function(index, item) {
       duties += "<option value='" + item.dutyNumber + "'>" + item.dutyNumber + "</option>";
-      console.log("Get duty numbers called in driverSignOut.js");
+      //console.log("Get duty numbers called in driverSignOut.js");
     });
-    $('#dutyNumber').html(duties);
+    $("#dutyNumber").html(duties);
   });
 }; //end of getDutiesNotOut
 
@@ -35,9 +35,9 @@ function getVansNotOut() {
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutVehicles.php", function(data) {
     $.each(data, function(index, item) {
       vans += "<option value='" + item.vehicleNumber + "'>" + item.vehicleNumber + "</option>";
-      console.log("Get van numbers called driverSignOut.js");
+      //console.log("Get van numbers called driverSignOut.js");
     });
-    $('#vanNumber').html(vans);
+    $("#vanNumber").html(vans);
   });
 }; //end of getVansNotOut
 
@@ -49,9 +49,9 @@ function getPdasNotOut() {
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutPDAs.php", function(data) {
     $.each(data, function(index, item) {
       pdas += "<option value='" + item.pdaNumber + "'>" + item.pdaNumber + "</option>";
-      console.log("Get pda numbers called driverSignOut.js");
+      //console.log("Get pda numbers called driverSignOut.js");
     });
-    $('#firstPdaTaken').html(pdas);
-    $('#secondPadTaken').html(pdas);
+    $("#firstPdaTaken").html(pdas);
+    $("#secondPadTaken").html(pdas);
   });
 }; //end of getVansNotOut
