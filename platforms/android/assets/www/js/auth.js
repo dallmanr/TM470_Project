@@ -31,7 +31,7 @@ function authUser() {
 
       ////console.log(localStorage.getItem("adminName"));
 
-      document.location.href = "admin/index.html";
+      document.location.href = "admin/adminIndex.html";
       plugins.toast.showShortCenter("Welcome: " + firstName);
     } else if (obj.status === "fail") {
       ////console.log(obj.status + " wrong passcode?");

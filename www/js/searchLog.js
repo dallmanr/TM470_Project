@@ -21,5 +21,5 @@ function searchRegNumber(val) {
 //Function for searching by serial number
 function searchSerialNumber(val) {
   var serialNumber = localStorage.getItem("vanSerial");
-  
+
 }

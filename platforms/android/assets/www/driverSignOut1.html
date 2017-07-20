@@ -25,6 +25,9 @@
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/getVanDetails.js"></script>
+  <script type="text/javascript" src="js/driverSignOut.js"></script>
+  <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
+  <script type="text/javascript" src="js/pdaSignIn.js"></script>
 
   <title>Driver sign out 1 of 3</title>
 </head>
@@ -100,6 +103,22 @@
     }
   </script>
 
+  <script>
+    function setSerial(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("vanSerial", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setReg(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("vanReg", val);
+      //alert(val);
+    }
+  </script>
+
   <!-- Scripts for ticking the collection keys and log book check boxes.
   If the user is returning to this screen from screen 2 or 3 to make changes, these values
   will have been set previously -->
@@ -160,10 +179,10 @@
       </datalist>
 
       <strong>Van serial:</strong>
-      <input type="text" name="serialNumTaken" id="serialNumTaken" readonly/>
+      <input type="text" name="serialNumTaken" id="serialNumTaken" onChange="setSerial(this.value);" readonly/>
 
       <strong>Van registration</strong>
-      <input type="text" name="regNumTaken" id="regNumTaken" readonly/>
+      <input type="text" name="regNumTaken" id="regNumTaken" onChange="setReg(this.value);" readonly/>
 
       <!-- Number of keys for the van the staff member has taken -->
       <strong>Keys taken:</strong>
@@ -195,6 +214,16 @@
       </form>
 
   </div>
+  <script>
+    function onLoad() {
+      //console.log("On load called");
+      getStaffNotOnDuty();
+      getDutiesNotOut();
+      getVansNotOut();
+      getPdasNotOut();
+    }
+    onLoad();
+  </script>
 </body>
 
 </html>

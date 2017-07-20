@@ -58,9 +58,14 @@ var app = {
         }, function (data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            //console.log("obj.status is success");
+            console.log("obj.status is success");
+            $("#serialNumber").val("");
+            $("#vehicleNumber").val("");
+            $("#regNumber").val("");
+            $("#keysAvail").val("");
+            $("#reasonAdded").val("");
+
             plugins.toast.showShortCenter("Success: Van added");
-            document.getElementById("addVanForm").reset();
           } else {
             plugins.toast.showShortCenter(obj.status);
           }
@@ -81,8 +86,11 @@ var app = {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
             //console.log(obj.status);
+            $("#regNumber").val("");
+            $("#vehicleNumber").val("");
+            $("#reason").val("");
+
             plugins.toast.showShortCenter("Success: van removed");
-            document.getElementById("removeVanForm").reset();
           }
            else {
              plugins.toast.showShortCenter("Error: van not removed");
@@ -349,8 +357,32 @@ var app = {
       //TO DO
       //Function for searching through the log
       this.searchLog = function() {
-        //console.log("Search log called");
-      };//end of searchLog function
+              //console.log("Search log called");
+              var url = "http://86.0.13.186:8080/tm470/queries/searchLog.php";
+              var payeNum = localStorage.getItem("payeNum");
+              console.log(payeNum);
+              var vanNumber = localStorage.getItem("vanNum");
+              var vanReg = localStorage.getItem("vanReg");
+              var vanSerial = localStorage.getItem("vanSerial");
+              var trHTML;
+              $.post(url, {
+                staffMember: payeNum,
+                vanNumber: vanNumber,
+                vanReg: vanReg,
+                vanSerial: vanSerial
+              }, function (data) {
+                var obj = $.parseJSON(data);
+                $.each (obj, function (index, item){
+                    console.log("Staff member found");
+                    trHTML += '<tr><td>' + item.date + '</td><td>' + item.name + '</td><td>' +
+                    item.vanNumber + '</td><td>' + item.timeOut + '</td><td>' +
+                    item.timeIn + '</td><td>' + item.hiVis + '</td><td>' + item.footwear +
+                    '</td><td>' + item.postingPeg + '</td><td>' + item.collectionDutiesCompleted +
+                    '</td></tr>';
+                });
+                $("#results").append(trHTML);
+              });
+            }//end of searchLog function
 
       //FUNCTIONS FOR RETURNING TO HOME SCREENS
       //THESE FUNCTIONS ARE USED BY THE CANCEL AND HOME BUTTONS
@@ -368,7 +400,7 @@ var app = {
       this.adminReturn = function() {
         //console.log("Return home called");
         if (confirm("Are you sure you want to cancel?")) {
-          document.location.href = "index.html";
+          document.location.href = "adminIndex.html";
         } //end if
       };//end of adminReturn
 

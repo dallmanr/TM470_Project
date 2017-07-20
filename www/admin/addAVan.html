@@ -81,18 +81,14 @@
 
   <!-- Script for setting the added by element based on who logged in -->
   <script>
-    function load() {
+    function onLoad() {
       //alert("Added by method called");
       document.getElementById('addedBy').value = localStorage.getItem("adminName");
+      getAllVanSerialNumbers();
+      getAllVehicleNumbers();
+      getAllVanRegNumbers();
     }
-    load();
-  </script>
-
-  <script>
-    function submitForm() {
-      //alert("Submit form called")
-      addAVan();
-    }
+    onLoad();
   </script>
 </body>
 

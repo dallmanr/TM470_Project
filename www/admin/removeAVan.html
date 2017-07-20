@@ -113,11 +113,14 @@
   </div>
   <!-- Script for setting the added by element based on who logged in -->
   <script>
-    function load() {
+    function onLoad() {
       //alert("Added by method called");
       document.getElementById("removedBy").value = localStorage.getItem("adminName");
+      getAllVanSerialNumbers();
+      getAllVehicleNumbers();
+      getAllVanRegNumbers();
     }
-    load();
+    onLoad();
   </script>
 
 </body>
