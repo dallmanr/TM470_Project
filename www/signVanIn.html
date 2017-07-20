@@ -26,6 +26,7 @@
   <script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
   <script type="text/javascript" src="js/getSignedOutVans.js"></script>
+  <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
 
   <title>Driver sign in</title>
 </head>
@@ -141,6 +142,12 @@
       <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signAVanIn()">Submit</button>
     </form>
   </div>
+  <script>
+    function onLoad() {
+      getDriversOnDuty();
+    }
+    onLoad();
+  </script>
 </body>
 
 </html>

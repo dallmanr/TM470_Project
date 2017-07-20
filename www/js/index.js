@@ -376,7 +376,7 @@ var app = {
       this.adminReturn = function() {
         //console.log("Return home called");
         if (confirm("Are you sure you want to cancel?")) {
-          document.location.href = "index.html";
+          document.location.href = "/admin/adminIndex.html";
         } //end if
       };//end of adminReturn
 
