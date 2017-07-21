@@ -38,44 +38,38 @@
   <script>
     function setDateFrom(val) {
       localStorage.setItem("dateFrom", val);
-      //console.log("Date from " + localStorage.getItem("dateFrom"));
-      //alert(localStorage.getItem("dateFrom"))
+      console.log("Date from " + localStorage.getItem("dateFrom"));
     }
   </script>
 
   <script>
     function setDateTo(val) {
       localStorage.setItem("dateTo", val);
-      //console.log("Date to " + localStorage.getItem("dateTo"));
-      //alert(localStorage.getItem("dateTo"))
+      console.log("Date to " + localStorage.getItem("dateTo"));
     }
   </script>
 
   <script>
     function setName(val) {
-      localStorage.setItem("payeNumLog", val);
-      alert(localStorage.getItem("payeNumLog"))
+      localStorage.setItem("payeNum", val);
     }
   </script>
 
   <script>
   function setVanNum(val) {
-    localStorage.setItem("vanNumLog", val);
-    alert(localStorage.getItem("vanNumLog"))
+    localStorage.setItem("vanNum", val);
   }
   </script>
 
   <script>
   function setVanReg(val) {
-    localStorage.setItem("vanRegLog", val);
-    alert(localStorage.getItem("vanRegLog"))
+    localStorage.setItem("vanReg", val);
   }
   </script>
 
   <script>
   function setVanSerial(val) {
-    localStorage.setItem("vanSerialLog", val);
-    alert(localStorage.getItem("vanSerialLog"))
+    localStorage.setItem("vanSerial", val);
   }
   </script>
 
@@ -162,9 +156,6 @@
 
     setDateTo(today);
     setDateFrom(dateFrom);
-
-    //alert(today);
-    //alert(dateFrom);
 
     //console.log("Today is " + today);
     //console.log("365 days ago was " + dateFrom);
