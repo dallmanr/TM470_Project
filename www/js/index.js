@@ -360,10 +360,10 @@ var app = {
               //console.log("Search log called");
               var i = 1;
               var url = "http://86.0.13.186:8080/tm470/queries/searchLog.php";
-              var payeNum = localStorage.getItem("payeNum");
-              var vanNumber = localStorage.getItem("vanNum");
-              var vanReg = localStorage.getItem("vanReg");
-              var vanSerial = localStorage.getItem("vanSerial");
+              var payeNum = localStorage.getItem("payeNumLog");
+              var vanNumber = localStorage.getItem("vanNumLog");
+              var vanReg = localStorage.getItem("vanRegLog");
+              var vanSerial = localStorage.getItem("vanSerialLog");
               var dateFrom = localStorage.getItem("dateFrom");
               var dateTo = localStorage.getItem("dateTo");
               var trHTML;
@@ -376,18 +376,23 @@ var app = {
                 dateTo: dateTo
               }, function (data) {
                 var obj = $.parseJSON(data);
-                console.log(obj[0]);
-                if (obj[0] === "success") {
-                for (var i = 1; i < obj.length; i++){
+                $.each (obj, function (index, item) {
                     console.log("Staff member found");
-                    trHTML += '<tr><td>' + obj[i].date + '</td><td>' + obj[i].name + '</td><td>' +
-                    obj[i].vanNumber + '</td><td>' + obj[i].timeOut + '</td><td>' +
-                    obj[i].timeIn + '</td><td>' + obj[i].hiVis + '</td><td>' + obj[i].footwear +
-                    '</td><td>' + obj[i].postingPeg + '</td><td>' + obj[i].collectionDutiesCompleted +
+                    trHTML += '<tr><td>' + item.date + '</td><td>' + item.name + '</td><td>' +
+                    item.vanNumber + '</td><td>' + item.timeOut + '</td><td>' +
+                    item.timeIn + '</td><td>' + item.hiVis + '</td><td>' + item.footwear +
+                    '</td><td>' + item.postingPeg + '</td><td>' + item.collectionDutiesCompleted +
                     '</td></tr>';
-                };
-              }
+                });
                 $("#results").append(trHTML);
+                localStorage.setItem("payeNumLog", "");
+                localStorage.setItem("vanNumLog", "");
+                localStorage.setItem("vanRegLog", "");
+                localStorage.setItem("vanSerialLog", "");
+                $("#driverName").val("");
+                $("#vanNumber").val("");
+                $("#regNumber").val("");
+                $("#serialNumber").val("");
               });
             }//end of searchLog function
 

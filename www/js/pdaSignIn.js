@@ -3,10 +3,13 @@ function getSignedOutDuties() {
   //alert("Get drivers called");
   var duties;
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getDutyNumberFromPdaSignIn.php", function (data) {
-    $.each(data,function(index,item) {
-      duties+="<option value='"+item.duty+"'>" + item.duty+"</option>";
+    var obj = $.parseJSON(data);
+    if (obj[0] === "success") {
+    for (var i = 1; i < obj.length; i++) {
+      duties+="<option value='" + obj[i].duty + "'>" + obj[i].duty + "</option>";
       //console.log("getSignedOutDuties for each called");
-  });
+      }
+    }
     $("#dutyNumber").html(duties);
-});
-}; //end of getSignedOutPdas
+  })
+}//end of getSignedOutPdas
