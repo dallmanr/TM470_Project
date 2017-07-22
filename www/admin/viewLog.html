@@ -51,25 +51,25 @@
 
   <script>
     function setName(val) {
-      localStorage.setItem("payeNum", val);
+      localStorage.setItem("payeNumLog", val);
     }
   </script>
 
   <script>
   function setVanNum(val) {
-    localStorage.setItem("vanNum", val);
+    localStorage.setItem("vanNumLog", val);
   }
   </script>
 
   <script>
   function setVanReg(val) {
-    localStorage.setItem("vanReg", val);
+    localStorage.setItem("vanRegLog", val);
   }
   </script>
 
   <script>
   function setVanSerial(val) {
-    localStorage.setItem("vanSerial", val);
+    localStorage.setItem("vanSerialLog", val);
   }
   </script>
 
@@ -159,6 +159,11 @@
 
     //console.log("Today is " + today);
     //console.log("365 days ago was " + dateFrom);
+
+    setName("");
+    setVanReg("");
+    setVanNum("");
+    setVanSerial("");
   }
   onLoad();
 </script>
