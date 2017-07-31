@@ -85,10 +85,11 @@ var app = {
         }, function (data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            //console.log(obj.status);
+            console.log("successful");
             $("#regNumber").val("");
             $("#vehicleNumber").val("");
             $("#reason").val("");
+            $("#serialNumber").val("");
 
             plugins.toast.showShortCenter("Success: van removed");
           }
