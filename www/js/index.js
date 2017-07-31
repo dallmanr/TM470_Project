@@ -64,7 +64,6 @@ var app = {
             $("#regNumber").val("");
             $("#keysAvail").val("");
             $("#reasonAdded").val("");
-
             plugins.toast.showShortCenter("Success: Van added");
           } else {
             plugins.toast.showShortCenter(obj.status);
@@ -85,12 +84,11 @@ var app = {
         }, function (data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            console.log("successful");
+            console.log("success");
             $("#regNumber").val("");
             $("#vehicleNumber").val("");
             $("#reason").val("");
             $("#serialNumber").val("");
-
             plugins.toast.showShortCenter("Success: van removed");
           }
            else {
@@ -157,20 +155,20 @@ var app = {
             $("#pdaOne").val(pdaOne);
             $("#pdaTwo").val(pdaTwo);
 
-            app.project.checkIfCollectionDuty(localStorage.getItem("duty"));
+            app.project.checkIfCollectionDuty(localStorage.getItem("dutyNumberDriverSignOut"));
         });
       };//end of getSignedOutVans function
 
 
       this.signAVanIn = function () {
         //console.log("signAVanIn in index.js called");
-        var val1 = localStorage.getItem("driver");
+        var val1 = localStorage.getItem("nameDriverSignIn");
         //var val2 = localStorage.getItem("driver");
-        var val3 = localStorage.getItem("completed");
-        var val4 = localStorage.getItem("pouch");
-        var val5 = localStorage.getItem("pdas");
-        var val6 = localStorage.getItem("logbook");
-        var val7 = localStorage.getItem("keys");
+        var val3 = localStorage.getItem("collCompletedDriverSignIn");
+        var val4 = localStorage.getItem("pouchDriverSignIn");
+        var val5 = localStorage.getItem("pdasDriverSignIn");
+        var val6 = localStorage.getItem("logbookDriverSignIn");
+        var val7 = localStorage.getItem("keysDriverSignIn");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanIn.php";
 
@@ -182,8 +180,9 @@ var app = {
             logbook: val6,
             keysReturned: val7
           },function(data) {
+            var obj =$.parseJSON(data);
             if (obj.status === "success") {
-              plugins.toast.showShortCenter("Success: Signed out");
+              plugins.toast.showShortCenter("Success: Signed in");
               document.location.href = "index.html";
             }
         });
@@ -230,7 +229,7 @@ var app = {
       //Called by driver sign out 2 -> driver sign out 3
       this.getVanSerial = function() {
         //console.log("getVanSerial called");
-        var vehNumber = localStorage.getItem("vanNumber");
+        var vehNumber = localStorage.getItem("vanNumberDriverSignOut");
         var serialNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {
@@ -250,7 +249,7 @@ var app = {
       //Called by driver sign out 2 -> driver sign out 3
       this.getVanReg = function() {
         //console.log("getVanReg called");
-        var vehNumber = localStorage.getItem("vanNumber");
+        var vehNumber = localStorage.getItem("vanNumberDriverSignOut");
         var regNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {

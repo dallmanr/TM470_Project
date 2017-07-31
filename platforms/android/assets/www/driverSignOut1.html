@@ -41,7 +41,7 @@
   van numbers, PDA numbers, number of keys signed out, collection keys and log book -->
   <script>
     function setName(val) {
-      localStorage.setItem("driverName", val);
+      localStorage.setItem("driverNameDriverSignOut", val);
       //console.log(localStorage.getItem("driverName"));
       //alert(val);
     }
@@ -50,7 +50,7 @@
   <script>
     function setDuty(val) {
       //var duty = document.getElementById("dutyNumber");
-      localStorage.setItem("dutyNumber", val);
+      localStorage.setItem("dutyNumberDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -58,7 +58,7 @@
   <script>
     function setVan(val) {
       //var van = document.getElementById("vanNumber");
-      localStorage.setItem("vanNumber", val);
+      localStorage.setItem("vanNumberDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -66,7 +66,7 @@
   <script>
     function setPdaOne(val) {
       //var pdaOne = document.getElementById("firstPdaTaken");
-      localStorage.setItem("pdaOneNum", val);
+      localStorage.setItem("pdaOneNumDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -74,7 +74,7 @@
   <script>
     function setPdaTwo(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("pdaTwoNum", val);
+      localStorage.setItem("pdaTwoNumDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -82,7 +82,7 @@
   <script>
     function setVanKeys(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("keysTaken", val);
+      localStorage.setItem("keysTakenDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -90,7 +90,7 @@
   <script>
     function setCollKeys(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("collectionKeys", val);
+      localStorage.setItem("collectionKeysDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -98,7 +98,7 @@
   <script>
     function setLogbook(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("logbook", val);
+      localStorage.setItem("logbookDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -106,7 +106,7 @@
   <script>
     function setSerial(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("vanSerial", val);
+      localStorage.setItem("vanSerialDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -114,7 +114,7 @@
   <script>
     function setReg(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("vanReg", val);
+      localStorage.setItem("vanRegDriverSignOut", val);
       //alert(val);
     }
   </script>
@@ -123,17 +123,17 @@
   If the user is returning to this screen from screen 2 or 3 to make changes, these values
   will have been set previously -->
   <script>
-    if (localStorage.getItem("collectionKeys") == 1) {
+    if (localStorage.getItem("collectionKeysDriverSignOut") == 1) {
       //alert(localStorage.getItem("pegs"));
       $("#collectionKeysTrue").prop("checked", true);
-    } else if (localStorage.getItem("collectionKeys") == 0) {
+    } else if (localStorage.getItem("collectionKeysDriverSignOut") == 0) {
       $("#collectionKeysFalse").prop("checked", true);
     }
 
-    if (localStorage.getItem("logbook") == 1) {
+    if (localStorage.getItem("logbookDriverSignOut") == 1) {
       //alert(localStorage.getItem("pegs"));
       $("#logBookTrue").prop("checked", true);
-    } else if (localStorage.getItem("collectionKeys") == 0) {
+    } else if (localStorage.getItem("logbookDriverSignOut") == 0) {
       $("#logBookFalse").prop("checked", true);
     }
   </script>

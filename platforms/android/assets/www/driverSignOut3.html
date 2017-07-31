@@ -37,35 +37,35 @@
 
   <script>
     //Variables set from sign out 1 of 3
-    $("#theDriversName").val(localStorage.getItem("driverName"));
-    $("#driversDuty").val(localStorage.getItem("dutyNumber"));
-    $("#signOutVanNumber").val(localStorage.getItem("vanNumber"));
-    $("#firstPdaTaken").val(localStorage.getItem("pdaOneNum"));
-    $("#secondPdaTaken").val(localStorage.getItem("pdaTwoNum"));
-    $("#keysCollected").val(localStorage.getItem("keysTaken"));
-    $("#logBookCollected").val(localStorage.getItem("logbook"));
-    $("#serialNumTaken").val(localStorage.getItem("serialNumber"))
-    $("#regNumTaken").val(localStorage.getItem("regNumber"))
+    $("#theDriversName").val(localStorage.getItem("driverNameDriverSignOut"));
+    $("#driversDuty").val(localStorage.getItem("dutyNumberDriverSignOut"));
+    $("#signOutVanNumber").val(localStorage.getItem("vanNumberDriverSignOut"));
+    $("#firstPdaTaken").val(localStorage.getItem("pdaOneNumDriverSignOut"));
+    $("#secondPdaTaken").val(localStorage.getItem("pdaTwoNumDriverSignOut"));
+    $("#keysCollected").val(localStorage.getItem("keysTakenDriverSignOut"));
+    $("#logBookCollected").val(localStorage.getItem("logbookDriverSignOut"));
+    $("#serialNumTaken").val(localStorage.getItem("vanSerialDriverSignOut"))
+    $("#regNumTaken").val(localStorage.getItem("vanRegDriverSignOut"))
 
     //Variables set from sign out 2 of 3
-    if (localStorage.getItem("pegs") == 1) {
+    if (localStorage.getItem("pegsDriverSignOut") == 1) {
       //alert(localStorage.getItem("pegs"));
       $("#pegs").prop("checked", true);
     }
 
-    if (localStorage.getItem("jacket") == 1) {
+    if (localStorage.getItem("jacketDriverSignOut") == 1) {
       $("#hivis").prop("checked", true);
     }
 
-    if (localStorage.getItem("footwear") == 1) {
+    if (localStorage.getItem("footwearDriverSignOut") == 1) {
       $("#footwear").prop("checked", true);
     }
 
-    if (localStorage.getItem("logbook") == 1) {
+    if (localStorage.getItem("logbookDriverSignOut") == 1) {
       $("#logBookCollected").prop("checked", true);
     }
 
-    if (localStorage.getItem("collectionKeys") == 1) {
+    if (localStorage.getItem("collectionKeysDriverSignOut") == 1) {
       $("#collectionKeys").prop("checked", true);
     }
 
