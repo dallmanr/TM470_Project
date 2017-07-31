@@ -270,12 +270,12 @@ var app = {
       //FUNCTIONS FOR NON-DRIVERS
       //Function for signing a PDA out
       this.signPdaOut = function (val) {
-        var name = localStorage.getItem("driverName");
-        var duty = localStorage.getItem("dutyNumber");
-        var pdaOne = localStorage.getItem("pdaOneNum");
-        var pegs = localStorage.getItem("pegs");
-        var jacket = localStorage.getItem("jacket");
-        var footwear = localStorage.getItem("footwear");
+        var name = localStorage.getItem("driverNamePdaSignOut");
+        var duty = localStorage.getItem("dutyNumberPdaSignOut");
+        var pdaOne = localStorage.getItem("pdaOneNumPdaSignOut");
+        var pegs = localStorage.getItem("pegsPdaSignOut");
+        var jacket = localStorage.getItem("jacketPdaSignOut");
+        var footwear = localStorage.getItem("footwearPdaSignOut");
 
         //console.log("SignPdaOut in index.js called");
 
@@ -434,6 +434,8 @@ var app = {
         localStorage.removeItem("keysTakenDriverSignOut");
         localStorage.removeItem("collectionKeysDriverSignOut");
         localStorage.removeItem("logbookDriverSignOut");
+        localStorage.removeItem("vanSerialDriverSignOut");
+        localStorage.removeItem("vanRegDriverSignOut");
 
         //driverSignOut2.html
         localStorage.removeItem("pegsDriverSignOut");
@@ -444,12 +446,12 @@ var app = {
       //Clears all the local storage set during the pda signing out/in process
       this.clearPdaStorage = function() {
         //console.log("clearPdaStorage called");
-        localStorage.removeItem("driverName");
-        localStorage.removeItem("dutyNumber");
-        localStorage.removeItem("pdaOneNum");
-        localStorage.removeItem("pegs");
-        localStorage.removeItem("jacket");
-        localStorage.removeItem("footwear");
+        localStorage.removeItem("driverNamePdaSignOut");
+        localStorage.removeItem("dutyNumberPdaSignOut");
+        localStorage.removeItem("pdaOneNumPdaSignOut");
+        localStorage.removeItem("pegsPdaSignOut");
+        localStorage.removeItem("jacketPdaSignOut");
+        localStorage.removeItem("footwearPdaSignOut");
       };
 
       this.clearAdminStorage = function() {
