@@ -38,38 +38,38 @@
   <script>
     function setDateFrom(val) {
       localStorage.setItem("dateFrom", val);
-      //console.log(localStorage.getItem("dateFrom"));
+      console.log("Date from " + localStorage.getItem("dateFrom"));
     }
   </script>
 
   <script>
     function setDateTo(val) {
       localStorage.setItem("dateTo", val);
-      //console.log(localStorage.getItem("dateTo"));
+      console.log("Date to " + localStorage.getItem("dateTo"));
     }
   </script>
 
   <script>
     function setName(val) {
-      localStorage.setItem("payeNum", val);
+      localStorage.setItem("payeNumLog", val);
     }
   </script>
 
   <script>
   function setVanNum(val) {
-    localStorage.setItem("vanNum", val);
+    localStorage.setItem("vanNumLog", val);
   }
   </script>
 
   <script>
   function setVanReg(val) {
-    localStorage.setItem("vanReg", val);
+    localStorage.setItem("vanRegLog", val);
   }
   </script>
 
   <script>
   function setVanSerial(val) {
-    localStorage.setItem("vanSerial", val);
+    localStorage.setItem("vanSerialLog", val);
   }
   </script>
 
@@ -138,6 +138,32 @@
     getAllVanRegNumbers();
     getAllVanSerialNumbers();
     getAllStaff();
+
+    var today = new Date();
+    var dd = today.getUTCDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    today = yyyy + "-" + mm + "-" + dd;
+
+    var dateFrom = new Date();
+    dfd = dateFrom.getUTCDate();
+    dfm = dateFrom.getMonth()+1;
+    dfy = dateFrom.getFullYear()-1;
+    //dateFrom.setDate();
+
+    dateFrom = dfy + "-" + dfm + "-" + dfd;
+
+    setDateTo(today);
+    setDateFrom(dateFrom);
+
+    //console.log("Today is " + today);
+    //console.log("365 days ago was " + dateFrom);
+
+    setName("");
+    setVanReg("");
+    setVanNum("");
+    setVanSerial("");
   }
   onLoad();
 </script>

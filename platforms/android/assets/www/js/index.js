@@ -359,22 +359,26 @@ var app = {
       this.searchLog = function() {
               //console.log("Search log called");
               var url = "http://86.0.13.186:8080/tm470/queries/searchLog.php";
-              var payeNum = localStorage.getItem("payeNum");
-              console.log(payeNum);
-              var vanNumber = localStorage.getItem("vanNum");
-              var vanReg = localStorage.getItem("vanReg");
-              var vanSerial = localStorage.getItem("vanSerial");
+              var payeNum = localStorage.getItem("payeNumLog");
+              var vanNumber = localStorage.getItem("vanNumLog");
+              var vanReg = localStorage.getItem("vanRegLog");
+              var vanSerial = localStorage.getItem("vanSerialLog");
+              var dateFrom = localStorage.getItem("dateFrom");
+              var dateTo = localStorage.getItem("dateTo");
               var trHTML;
               $.post(url, {
                 staffMember: payeNum,
                 vanNumber: vanNumber,
                 vanReg: vanReg,
-                vanSerial: vanSerial
+                vanSerial: vanSerial,
+                dateFrom: dateFrom,
+                dateTo: dateTo
               }, function (data) {
                 var obj = $.parseJSON(data);
-                $.each (obj, function (index, item){
+                //console.log(obj[0]);
+                $.each(obj, function(index, item) {
                     console.log("Staff member found");
-                    trHTML += '<tr><td>' + item.date + '</td><td>' + item.name + '</td><td>' +
+                    trHTML += '<tr><td>' + item.theDate + '</td><td>' + item.name + '</td><td>' +
                     item.vanNumber + '</td><td>' + item.timeOut + '</td><td>' +
                     item.timeIn + '</td><td>' + item.hiVis + '</td><td>' + item.footwear +
                     '</td><td>' + item.postingPeg + '</td><td>' + item.collectionDutiesCompleted +

@@ -191,16 +191,16 @@ var app = {
       //FUNCTIONS FOR DRIVER SIGN OUT
       //Function for submitting data for the driver to sign out
       this.signAVanOut = function () {
-        var name = localStorage.getItem("driverName");
-        var duty = localStorage.getItem("dutyNumber");
-        var keys = localStorage.getItem("keysTaken");
-        var vehicleNumber = localStorage.getItem("vanNumber");
-        var logbook = localStorage.getItem("logbook");
-        var pdaOne = localStorage.getItem("pdaOneNum");
-        var pdaTwo = localStorage.getItem("pdaTwoNum");
-        var pegs = localStorage.getItem("pegs");
-        var jacket = localStorage.getItem("jacket");
-        var footwear = localStorage.getItem("footwear");
+        var name = localStorage.getItem("driverNameDriverSignOut");
+        var duty = localStorage.getItem("dutyNumberDriverSignOut");
+        var keys = localStorage.getItem("keysTakenDriverSignOut");
+        var vehicleNumber = localStorage.getItem("vanNumberDriverSignOut");
+        var logbook = localStorage.getItem("logbookDriverSignOut");
+        var pdaOne = localStorage.getItem("pdaOneNumDriverSignOut");
+        var pdaTwo = localStorage.getItem("pdaTwoNumDriverSignOut");
+        var pegs = localStorage.getItem("pegsDriverSignOut");
+        var jacket = localStorage.getItem("jacketDriverSignOut");
+        var footwear = localStorage.getItem("footwearDriverSignOut");
         //console.log("Sign a van out in index.js called");
         //console.log("driver name in sign a van out = " + name);
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
@@ -425,19 +425,19 @@ var app = {
       this.clearDriverStorage = function() {
         //driverSignOut1.html
         //console.log("clearDriverStorage called");
-        localStorage.removeItem("driverName");
-        localStorage.removeItem("dutyNumber");
-        localStorage.removeItem("vanNumber");
-        localStorage.removeItem("pdaOneNum");
-        localStorage.removeItem("pdaTwoNum");
-        localStorage.removeItem("keysTaken");
-        localStorage.removeItem("collectionKeys");
-        localStorage.removeItem("logbook");
+        localStorage.removeItem("driverNameDriverSignOut");
+        localStorage.removeItem("dutyNumberDriverSignOut");
+        localStorage.removeItem("vanNumberDriverSignOut");
+        localStorage.removeItem("pdaOneNumDriverSignOut");
+        localStorage.removeItem("pdaTwoNumDriverSignOut");
+        localStorage.removeItem("keysTakenDriverSignOut");
+        localStorage.removeItem("collectionKeysDriverSignOut");
+        localStorage.removeItem("logbookDriverSignOut");
 
         //driverSignOut2.html
-        localStorage.removeItem("pegs");
-        localStorage.removeItem("jacket");
-        localStorage.removeItem("footwear");
+        localStorage.removeItem("pegsDriverSignOut");
+        localStorage.removeItem("jacketDriverSignOut");
+        localStorage.removeItem("footwearDriverSignOut");
       };//end clearStaffStorage
 
       //Clears all the local storage set during the pda signing out/in process
