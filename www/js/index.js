@@ -57,13 +57,14 @@ var app = {
           addedBy: val6
         }, function (data) {
           var obj = $.parseJSON(data);
-          if (obj.status === "success") {
-            console.log("obj.status is success");
+          if (obj.status == "success") {
+            console.log(obj.status);
             $("#serialNumber").val("");
             $("#vehicleNumber").val("");
             $("#regNumber").val("");
             $("#keysAvail").val("");
             $("#reasonAdded").val("");
+
             plugins.toast.showShortCenter("Success: Van added");
           } else {
             plugins.toast.showShortCenter(obj.status);
@@ -83,7 +84,7 @@ var app = {
           reason: reason
         }, function (data) {
           var obj = $.parseJSON(data);
-          if (obj.status === "success") {
+          if (obj.status == "success") {
             console.log("success");
             $("#regNumber").val("");
             $("#vehicleNumber").val("");
@@ -181,7 +182,7 @@ var app = {
             keysReturned: val7
           }, function(data) {
             var obj = $.parseJSON(data);
-            if (obj.status === "success") {
+            if (obj.status == "success") {
               plugins.toast.showShortCenter("Success: Signed in");
               document.location.href = "index.html";
             }
