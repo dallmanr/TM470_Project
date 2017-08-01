@@ -10,7 +10,7 @@
 
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="cordova.js"></script>
@@ -36,6 +36,9 @@
 </head>
 
 <body>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col col-lg-2"></div>
@@ -44,27 +47,27 @@
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
             <form>
-              <label><input type="submit" id="adminButton" class="btn btn-default" value="Admin" onclick="authUser();"/></label>
+              <label><input type="submit" id="adminButton" class="btn btn-default btn-lg" value="Admin" onclick="authUser();"/></label>
             </form>
           </div>
         </div>
 
         <form action="driverSignOut1.html">
           <!-- Calls JavaScript functions in driverSignOut.js -->
-          <label><input type="submit" class="btn btn-default" value="Sign a van out" /></label>
+          <label><input type="submit" class="btn btn-default btn-block" value="Sign a van out" onclick="app.project.clearDriverStorage();"/></label>
         </form>
 
 
         <form action="signVanIn.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a van in" /></label>
+          <label><input type="submit" class="btn btn-default btn-block" value="Sign a van in" /></label>
         </form>
 
         <form action="pdaSignOut.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a PDA out" /></label>
+          <label><input type="submit" class="btn btn-default btn-block" value="Sign a PDA out" /></label>
         </form>
 
         <form action="pdaSignIn.html">
-          <label><input type="submit" class="btn btn-default" value="Sign a PDA in" /></label>
+          <label><input type="submit" class="btn btn-default btn-block" value="Sign a PDA in" /></label>
         </form>
 
       </div>

@@ -10,11 +10,10 @@
   <script type="text/javascript" src="cordova.js"></script>
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
-
   <script type="text/javascript" id="jqm-trans-disable">
     /* For having a faster transition */
     $(document).on("mobileinit", function() {
@@ -30,6 +29,8 @@
 </head>
 
 <body>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Testing the driver value -->
   <script>
     //alert(localStorage.getItem("driverName"));
@@ -159,8 +160,8 @@
       <!--<form action="">
         <input type="submit" class="btn btn-default" value="Sign out" />
       </form> -->
-      <button type="button" class="btn btn-warning" id="cancelButton" onclick="app.project.returnHome(1);">Cancel</button>
-      <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signPdaOut()">Submit</button>
+      <input type="button" class="btn btn-warning btn-block" id="cancelButton" onclick="app.project.returnHome(1);" value="Cancel" />
+      <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signPdaOut()" value="Submit" />
     </fieldset>
   </form>
   </div>

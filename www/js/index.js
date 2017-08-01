@@ -179,8 +179,8 @@ var app = {
             pdasReturned: val5,
             logbook: val6,
             keysReturned: val7
-          },function(data) {
-            var obj =$.parseJSON(data);
+          }, function(data) {
+            var obj = $.parseJSON(data);
             if (obj.status === "success") {
               plugins.toast.showShortCenter("Success: Signed in");
               document.location.href = "index.html";
@@ -219,6 +219,7 @@ var app = {
             var obj = $.parseJSON(data);
             if (obj.status === "success") {
               plugins.toast.showShortCenter("Success: Signed out");
+              this.clearDriverStorage();
               document.location.href = "index.html";
             }
             ////console.log(obj[0].status);
@@ -238,7 +239,7 @@ var app = {
             if (item.vehicleNumber === vehNumber) {
               //console.log("van serial found");
               serialNumber = item.serialNumber;
-              localStorage.setItem("serialNumber", serialNumber);
+              localStorage.setItem("vanSerialDriverSignOut", serialNumber);
               document.getElementById("serialNumTaken").value = serialNumber;
             }
           });
@@ -259,7 +260,7 @@ var app = {
               //console.log(item.serialNumber);
               //console.log("van  reg found");
               regNumber = item.regNumber;
-              localStorage.setItem("regNumber", regNumber);
+              localStorage.setItem("vanRegDriverSignOut", regNumber);
               document.getElementById("regNumTaken").value = regNumber;
             }
           });
@@ -440,6 +441,8 @@ var app = {
         localStorage.removeItem("pegsDriverSignOut");
         localStorage.removeItem("jacketDriverSignOut");
         localStorage.removeItem("footwearDriverSignOut");
+
+        console.log("Cleared");
       };//end clearStaffStorage
 
       //Clears all the local storage set during the pda signing out/in process

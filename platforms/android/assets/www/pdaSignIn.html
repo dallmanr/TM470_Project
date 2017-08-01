@@ -10,11 +10,10 @@
   <script type="text/javascript" src="cordova.js"></script>
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
-
   <script type="text/javascript" id="jqm-trans-disable">
     /* For having a faster transition */
     $(document).on("mobileinit", function() {
@@ -32,6 +31,8 @@
 </head>
 
 <body>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
     function setName(val) {
       //var name = document.getElementById("driverNames");
@@ -101,8 +102,8 @@
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="1" onchange="setPDAs(this.value);" hidden/> Yes </label>
       <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="0" onchange="setPDAs(this.value);" hidden/> No </label>
 
-      <button type="button" id="cancelButton" class="btn btn-warning" onclick="app.project.returnHome();">Cancel</button>
-      <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.signPdaIn()">Submit</button>
+      <input type="button" id="cancelButton" class="btn btn-warning btn-block" onclick="app.project.returnHome();" value="Cancel" />
+      <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signPdaIn()" value="Submit" />
 
       <!-- Need to create the page for signing the PDA out
       <form action="">

@@ -10,7 +10,7 @@
 
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="../js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../styles.css" />
 
   <script type="text/javascript" src="cordova.js"></script>
@@ -36,6 +36,9 @@
 </head>
 
 <body>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="col col-lg-2"></div>
@@ -72,8 +75,8 @@
 
           </fieldset>
           <!--<button id="cancelButton" class="btn btn-danger" onclick="onBackKeyDown();">Cancel</button> -->
-          <button type="button" class="btn btn-warning" id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
-          <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.addNewVan()">Submit</button>
+          <input type="button" class="btn btn-warning btn-block" id="cancel" value="Cancel" onclick="app.project.returnHome()" />
+          <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.addNewVan()" />
         </form>
       </div>
     </div>

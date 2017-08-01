@@ -10,7 +10,7 @@
 
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="../js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../styles.css" />
 
   <script type="text/javascript" src="cordova.js"></script>
@@ -34,6 +34,8 @@
 </head>
 
 <body>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Function for setting the serial number selected in drop down list -->
   <script>
     function setSerial(val) {
@@ -105,8 +107,8 @@
             <strong>Removed by:</strong><input type="text" name="removedBy" id="removedBy" />
           </fieldset>
 
-          <button type="button" class="btn btn-warning" value="Cancel" id="cancel" onclick="app.project.returnHome()">Cancel</button>
-          <button type="button" class="btn btn-primary" value="Submit" id="submit" onclick="app.project.removeVan()">Submit</button>
+          <input type="button" class="btn btn-warning btn-block" value="Cancel" id="cancel" onclick="app.project.returnHome()" />
+          <input type="button" class="btn btn-success btn-block" value="Submit" id="submit" onclick="app.project.removeVan()" />
         </form>
       </div>
     </div>

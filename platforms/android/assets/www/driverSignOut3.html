@@ -10,11 +10,10 @@
   <script type="text/javascript" src="cordova.js"></script>
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
 
   <script type="text/javascript" src="js/jquery-1.11.1.min.js" id="cordova-jquery"></script>
-
   <script type="text/javascript" id="jqm-trans-disable">
     /* For having a faster transition */
     $(document).on("mobileinit", function() {
@@ -33,7 +32,8 @@
 </head>
 
 <body>
-
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
     //Variables set from sign out 1 of 3
@@ -103,9 +103,11 @@
       </div>
 
       <input type="hidden" name="redirect" value="index.html" />
-      <form onsubmit="required()">
+      <form>
       <fieldset>
-        <legend class="text-center">Sign a van out (3 of 3)</legend>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width:99%"></div>
+        </div>
         <!-- Summary of information filled out by the staff member, before confirming their action -->
         <p>
           <strong>Name:</strong><input type="text" name="theDriversName" id="theDriversName" readonly />
@@ -137,14 +139,14 @@
           </div>
           <p>
 
-            <label class="checkbox-inline required">
+            <label class="checkbox-inline">
             <input type="hidden" name="acknowledge" id="acknowledgeFalse" value="0" hidden/>
             <input type="checkbox" name="acknowledge" id="acknowledgeTrue" value="1" hidden/>
             <i>I acknowledge the above information is correct</i></label>
           </p>
       </fieldset>
-        <button id="cancelButton" class="btn btn-warning" onclick="app.project.returnHome();">Cancel</button>
-        <button type="button" class="btn btn-primary"  id="submit" value="Submit" onclick="app.project.signAVanOut();">Submit</button>
+        <input type="button" class="btn btn-warning btn-block" id="cancelButton"  value="Cancel" onclick="app.project.returnHome();" />
+        <input type="button" class="btn btn-success btn-block"  id="submit" value="Submit" onclick="app.project.signAVanOut();"/>
       </form>
     </div>
   </div>

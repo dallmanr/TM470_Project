@@ -10,7 +10,7 @@
 
   <!-- jQuery -->
   <link rel="stylesheet" type="text/css" href="../js/jquery-1.5.0.mobile.min.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../styles.css" />
 
   <script type="text/javascript" src="cordova.js"></script>
@@ -35,6 +35,8 @@
 </head>
 
 <body>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
     function setDateFrom(val) {
       localStorage.setItem("dateFrom", val);
@@ -113,7 +115,8 @@
 
         </fieldset>
         <strong>Results:</strong>
-        <table id="results" style="width:100%">
+        <table id="results" class="table table-striped" style="width:100%">
+          <thead>
           <tr>
             <th>Date</th>
             <th>Name</th>
@@ -125,9 +128,16 @@
             <th>Pegs</th>
             <th>Collection completed</th>
           </tr>
+        </thead>
+        <tbody>
+        </tbody>
         </table>
-        <button type="button" class="btn btn-warning" id="cancel" value="Cancel" onclick="app.project.returnHome()">Cancel</button>
-        <button type="button" class="btn btn-primary" id="submit" value="Submit" onclick="app.project.searchLog()">Search</button>
+        <br>
+        <input type="button" class="btn btn-warning btn-block" id="cancel" value="Cancel" onclick="app.project.returnHome()" />
+
+        <button type="button" class="btn btn-info btn-block" id="search" value="Search" onclick="app.project.searchLog()" >
+          <span class="glyphicon glyphicon-search"> Search</span>
+        </button>
       </form>
     </div>
   </div>
