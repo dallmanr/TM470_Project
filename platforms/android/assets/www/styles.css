@@ -10,3 +10,11 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
+tr:nth-child(even) {
+  background-color: #e3e4e8;
+}
+
+tr:nth-child(odd) {
+  background-color: white;
+}

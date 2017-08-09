@@ -16,7 +16,7 @@ function authUser() {
 
   $.post(url, {
     pw: pw
-  }, function (data) {
+  }, function(data) {
     var obj = $.parseJSON(data);
     ////console.log(obj.status);
     if (obj.status == "success") {
@@ -41,6 +41,6 @@ function authUser() {
 };
 
 //function getUser() {
-  //var adminPayeNum = localStorage.getItem("adminName");
-  ////console.log("Get user called " + localStorage.getItem("adminName"));
+//var adminPayeNum = localStorage.getItem("adminName");
+////console.log("Get user called " + localStorage.getItem("adminName"));
 //}

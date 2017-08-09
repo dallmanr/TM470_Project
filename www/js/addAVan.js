@@ -24,7 +24,7 @@ function addNewVan() {
       addedBy: val6
     },
     //dataType: "jsonp",
-     success: function(data) {
+    success: function(data) {
       var obj = $.parseJSON(data);
       //alert(obj["status"]);
       //console.log(obj["status"]);

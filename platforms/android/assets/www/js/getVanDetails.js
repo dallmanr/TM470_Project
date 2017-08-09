@@ -7,16 +7,16 @@ function getVanDetails(val) {
   $.post(url, {
     regNumber: val
   }, function(data) {
-      var obj = $.parseJSON(data);
-      ////console.log("Vehicle number is " + obj[0].vehicleNumber);
-      ////console.log("Serial number number is " + obj[0].serialNumber);
-      vehicleNumber = obj[0].vehicleNumber;
-      serialNumber = obj[0].serialNumber;
-      //alert(obj[0].vanNumber);
-      $("#vehicleNumber").val(vehicleNumber);
-      $("#serialNumber").val(serialNumber);
+    var obj = $.parseJSON(data);
+    ////console.log("Vehicle number is " + obj[0].vehicleNumber);
+    ////console.log("Serial number number is " + obj[0].serialNumber);
+    vehicleNumber = obj[0].vehicleNumber;
+    serialNumber = obj[0].serialNumber;
+    //alert(obj[0].vanNumber);
+    $("#vehicleNumber").val(vehicleNumber);
+    $("#serialNumber").val(serialNumber);
   });
-};// end of getVanDetails function
+}; // end of getVanDetails function
 
 //Function for getting all van vehicle numbers
 //Called by index.html -> view log
@@ -65,7 +65,7 @@ function getVanSerial(val) {
   var serialNumber;
   var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
   $.getJSON(url, function(data) {
-    $.each(data, function(index,item) {
+    $.each(data, function(index, item) {
       //console.log(item.vehicleNumber);
       if (item.vehicleNumber === val) {
         ////console.log("van found");
@@ -75,7 +75,7 @@ function getVanSerial(val) {
       }
     });
   });
-};//end of getVanSerial
+}; //end of getVanSerial
 
 //Function for returning a van reg based on vehicle number
 //Called by driver sign out 2 -> driver sign out 3
@@ -84,7 +84,7 @@ function getVanReg(val) {
   var regNumber;
   var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
   $.getJSON(url, function(data) {
-    $.each(data, function(index,item) {
+    $.each(data, function(index, item) {
       ////console.log(item.vehicleNumber);
       if (item.vehicleNumber === val) {
         ////console.log("van found");
@@ -94,5 +94,5 @@ function getVanReg(val) {
       }
     });
   });
-};//end of getVanReg
+}; //end of getVanReg
 //END OF VAN INFO FUNCTIONS
