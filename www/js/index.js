@@ -30,12 +30,12 @@ var app = {
     }
 
     function onBackKeyDown() {
-      var page = $(":mobile-pagecontainer").pagecontainer("getActivePage");
-      var id = active_page.page().attr('id');
-      alert(id);
+      var id = window.location.pathname;
+      //alert(id);
       //var active_page = $(":mobile-pagecontainer").pagecontainer("getActivePage");
-      if (id === 'driverSignout1' || id === 'pdaSignIn' || id === 'pdaSignOut' || id === 'signVanIn') {
-        if (confirm('Do you want to cancel?') == true) {
+      if (id === '/android_asset/www/driverSignOut1.html' || id === '/android_asset/www/pdaSignIn.html' || id === '/android_asset/www/pdaSignOut.html' ||
+      id === '/android_asset/www/signVanIn.html') {
+        if (confirm('Do you want to cancel?')) {
           document.location.href = "index.html";
         }
       } else {
