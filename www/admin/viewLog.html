@@ -58,21 +58,21 @@
   </script>
 
   <script>
-  function setVanNum(val) {
-    localStorage.setItem("vanNumLog", val);
-  }
+    function setVanNum(val) {
+      localStorage.setItem("vanNumLog", val);
+    }
   </script>
 
   <script>
-  function setVanReg(val) {
-    localStorage.setItem("vanRegLog", val);
-  }
+    function setVanReg(val) {
+      localStorage.setItem("vanRegLog", val);
+    }
   </script>
 
   <script>
-  function setVanSerial(val) {
-    localStorage.setItem("vanSerialLog", val);
-  }
+    function setVanSerial(val) {
+      localStorage.setItem("vanSerialLog", val);
+    }
   </script>
 
   <div class="container">
@@ -82,99 +82,99 @@
         <div class="row">
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
-            <form action="../index.html">
+            <!--<form action="../index.html">
               <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" onclick="app.project.adminReturn()" /></label>
-            </form>
+            </form> -->
           </div>
         </div>
         <form>
-        <fieldset>
-          <legend class="text-center">View log</legend>
-          <!--
+          <fieldset>
+            <legend class="text-center">View log</legend>
+            <!--
               User can search the names of staff who have signed vehicles out.
               Can search either by driver name/van number/reg number or serial number .
               Can search between a date range.
               The results are displayed in a table showing:
               date/name/van number/time out/time in/hi vis/footwear/posting peg/collection duties completed
             -->
-          <p><strong>Date from:</strong><input type="date" name="dateFrom" id="dateFrom" onchange="setDateFrom(this.value);"/>
-          <strong>Date to:</strong><input type="date" name="dateTo" id="dateTo" onChange="setDateTo(this.value);"/></p>
-          <p><strong>Select item to search:</strong></p>
+            <p><strong>Date from:</strong><input type="date" name="dateFrom" id="dateFrom" onchange="setDateFrom(this.value);" />
+              <strong>Date to:</strong><input type="date" name="dateTo" id="dateTo" onChange="setDateTo(this.value);" /></p>
+            <p><strong>Select item to search:</strong></p>
 
-          <p><strong>Driver name:</strong><input list="driverName" name="driverName" onChange="setName(this.value)" />
-          <datalist id="driverName"></datalist>
+            <p><strong>Driver name:</strong><input list="driverName" name="driverName" onChange="setName(this.value)" />
+              <datalist id="driverName"></datalist>
 
-          <p><strong>Van number:</strong><input list="vanNumber" name="vanNumber" onChange="setVanNum(this.value)" />
-          <datalist id="vanNumber"></datalist>
+              <p><strong>Van number:</strong><input list="vanNumber" name="vanNumber" onChange="setVanNum(this.value)" />
+                <datalist id="vanNumber"></datalist>
 
-          <p><strong>Registration number:</strong><input list="regNumber" name="regNumber" onChange="setVanReg(this.value)" />
-          <datalist id="regNumber"></datalist>
+                <p><strong>Registration number:</strong><input list="regNumber" name="regNumber" onChange="setVanReg(this.value)" />
+                  <datalist id="regNumber"></datalist>
 
-          <p><strong>Serial number:</strong><input list="serialNumber" name="serialNumber" onChange="setVanSerial(this.value)" />
-          <datalist id="serialNumber"></datalist>
+                  <p><strong>Serial number:</strong><input list="serialNumber" name="serialNumber" onChange="setVanSerial(this.value)" />
+                    <datalist id="serialNumber"></datalist>
 
-        </fieldset>
-        <strong>Results:</strong>
-        <table id="results" class="table table-bordered" style="width:100%">
-          <thead>
-          <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Van</th>
-            <th>Out</th>
-            <th>In</th>
-            <th>Hi-vis</th>
-            <th>Footwear</th>
-            <th>Pegs</th>
-            <th>Collection completed</th>
-          </tr>
-        </thead>
-        </table>
-        <br>
-        <input type="button" class="btn btn-warning btn-block" id="cancel" value="Cancel" onclick="app.project.returnHome()" />
+          </fieldset>
+          <strong>Results:</strong>
+          <table id="results" class="table table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Van</th>
+                <th>Out</th>
+                <th>In</th>
+                <th>Hi-vis</th>
+                <th>Footwear</th>
+                <th>Pegs</th>
+                <th>Collection completed</th>
+              </tr>
+            </thead>
+          </table>
+          <br>
+          <input type="button" class="btn btn-warning btn-block" id="cancel" value="Cancel" onclick="app.project.adminReturn()" />
 
-        <button type="button" class="btn btn-info btn-block" id="search" value="Search" onclick="app.project.searchLog()" >
+          <button type="button" class="btn btn-info btn-block" id="search" value="Search" onclick="app.project.searchLog()">
           <span class="glyphicon glyphicon-search"> Search</span>
         </button>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-<script>
-  function onLoad() {
-    getAllVehicleNumbers();
-    getAllVanRegNumbers();
-    getAllVanSerialNumbers();
-    getAllStaff();
+  <script>
+    function onLoad() {
+      getAllVehicleNumbers();
+      getAllVanRegNumbers();
+      getAllVanSerialNumbers();
+      getAllStaff();
 
-    var today = new Date();
-    var dd = today.getUTCDate();
-    var mm = today.getMonth()+1;
-    var yyyy = today.getFullYear();
+      var today = new Date();
+      var dd = today.getUTCDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
 
-    today = yyyy + "-" + mm + "-" + dd;
+      today = yyyy + "-" + mm + "-" + dd;
 
-    var dateFrom = new Date();
-    dfd = dateFrom.getUTCDate();
-    dfm = dateFrom.getMonth()+1;
-    dfy = dateFrom.getFullYear()-1;
-    //dateFrom.setDate();
+      var dateFrom = new Date();
+      dfd = dateFrom.getUTCDate();
+      dfm = dateFrom.getMonth() + 1;
+      dfy = dateFrom.getFullYear() - 1;
+      //dateFrom.setDate();
 
-    dateFrom = dfy + "-" + dfm + "-" + dfd;
+      dateFrom = dfy + "-" + dfm + "-" + dfd;
 
-    setDateTo(today);
-    setDateFrom(dateFrom);
+      setDateTo(today);
+      setDateFrom(dateFrom);
 
-    //console.log("Today is " + today);
-    //console.log("365 days ago was " + dateFrom);
+      //console.log("Today is " + today);
+      //console.log("365 days ago was " + dateFrom);
 
-    setName("");
-    setVanReg("");
-    setVanNum("");
-    setVanSerial("");
-  }
-  onLoad();
-</script>
+      setName("");
+      setVanReg("");
+      setVanNum("");
+      setVanSerial("");
+    }
+    onLoad();
+  </script>
 </body>
 
 </html>

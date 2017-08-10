@@ -95,4 +95,20 @@ function getVanReg(val) {
     });
   });
 }; //end of getVanReg
+
+function getVanID(val) {
+  var vanID;
+  var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+  $.getJSON(url, function(data) {
+    $.each(data, function(index, item) {
+      ////console.log(item.vehicleNumber);
+      if (item.vehicleNumber === val) {
+        ////console.log("van found");
+        vanID = item.vanID;
+        localStorage.setItem("vanID", vanID);
+        //document.getElementById("regNumTaken").value = regNumber;
+      }
+    });
+  });
+}
 //END OF VAN INFO FUNCTIONS

@@ -29,12 +29,14 @@ var app = {
       document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
+    //Function for dealing with the Android back button.
+    //id is set to the current page displayed in the app. If this page is one of the few in the IF statement
+    //it checks if the user wants to cancel their action before returning to index.html
+    //Otherwise the back button just returns to previous screen.
     function onBackKeyDown() {
       var id = window.location.pathname;
-      //alert(id);
-      //var active_page = $(":mobile-pagecontainer").pagecontainer("getActivePage");
       if (id === '/android_asset/www/driverSignOut1.html' || id === '/android_asset/www/pdaSignIn.html' || id === '/android_asset/www/pdaSignOut.html' ||
-      id === '/android_asset/www/signVanIn.html') {
+        id === '/android_asset/www/signVanIn.html') {
         if (confirm('Do you want to cancel?')) {
           document.location.href = "index.html";
         }
@@ -50,21 +52,21 @@ var app = {
       //This function is called when "submit" is pressed in addAVan.html
       this.addNewVan = function() {
         //alert("addNewVan in index.js called");
-        var val1 = $("#serialNumber").val();
-        var val2 = $("#vehicleNumber").val();
-        var val3 = $("#regNumber").val();
-        var val4 = $("#keysAvail").val();
-        var val5 = $("#reasonAdded").val();
-        var val6 = localStorage.getItem("adminPayeNum");
+        var serialNumber = $("#serialNumber").val();
+        var vehicleNumber = $("#vehicleNumber").val();
+        var regNumber = $("#regNumber").val();
+        var keysAvail = $("#keysAvail").val();
+        var reasonAdded = $("#reasonAdded").val();
+        var addedBy = localStorage.getItem("adminPayeNum");
 
         var url = "http://86.0.13.186:8080/tm470/queries/addNewVan.php";
         $.post(url, {
-          serialNumber: val1,
-          vehicleNumber: val2,
-          regNumber: val3,
-          keysAvail: val4,
-          reasonAdded: val5,
-          addedBy: val6
+          serialNumber: serialNumber,
+          vehicleNumber: vehicleNumber,
+          regNumber: regNumber,
+          keysAvail: keysAvail,
+          reasonAdded: reasonAdded,
+          addedBy: addedBy
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
@@ -80,12 +82,11 @@ var app = {
             plugins.toast.showShortCenter(obj.status);
           }
         });
-      }; // end of function addNewVan
+      } // end of function addNewVan
 
       //Function for removing a van
       //This function is called by removeAVan.html
       this.removeVan = function(val) {
-        //var form = document.getElementById("removeVanForm");
         var regNumber = localStorage.getItem("regNumber");
         var reason = localStorage.getItem("reason");
         var url = "http://86.0.13.186:8080/tm470/queries/removeAVan.php";
@@ -103,42 +104,37 @@ var app = {
             plugins.toast.showShortCenter("Success: van removed");
           } else {
             plugins.toast.showShortCenter("Error: van not removed");
-            //console.log(obj.status);
           }
         });
-      }; //end of removeVan function
-
-
-      //FUNCTIONS FOR RETRIEVING ALL VAN INFORMATION
-      //Functions are used in the admin pages
-      //Moved these functions to getVanDetails.js
-
+      } //end of removeVan function
 
       //Function for checking if a duty is collection duty
       //This will hide the element for selecting collection keys on driver sign out 1 of 3
+      //and driver sign out 3 of 3.
       this.checkIfCollectionDuty = function(val) {
-        //console.log("checkIfCollectionDuty in index.js called");
         var url = "http://86.0.13.186:8080/tm470/queries/checkIfCollectionDuty.php";
+        var div = document.getElementById("collectionDutiesToHide");
         var collectionWalk;
         $.post(url, {
           dutyNumber: val
         }, function(data) {
           var obj = $.parseJSON(data);
           collectionWalk = obj[0].collectionsWalk;
-          //console.log("Collection walk is " + collectionWalk);
           if (collectionWalk == 0) {
-            //console.log("Ready collection walk = " + collectionWalk);
-            document.getElementById("collectionDutiesToHide").style.display = "none";
-            localStorage.setItem("collectionKeys", 0);
-          }
-        });
-      }; //end of checkIfCollectionDuty function
+            div.style.display = "none";
+            localStorage.setItem("collCompletedDriverSignIn", "NA");
+            localStorage.setItem("pouchDriverSignIn", "NA");
+          } else if(collectionWalk == 1  && div.style.display === 'none') {
+            div.style.display = 'block';
+            }
+          });
+        } //end of checkIfCollectionDuty function
 
       //DRIVER SIGN IN FUNCTIONS
       //Function for returning the vans that have been signed out.
       //Used in the sign a van in process.
+      //Query looks for all vans that have been signed out that day and timeIn is null
       this.getSignedOutDriverDetails = function(val) {
-        //console.log("getSignedOutDriverDetails in index.js called");
         var vanNumber;
         var duty;
         var pdaOne;
@@ -159,19 +155,19 @@ var app = {
           duty = obj[0].duty;
           pdaOne = obj[0].pdaOne;
           pdaTwo = obj[0].pdaTwo;
-          alert(localStorage.getItem("duty"));
           $("#vanNumber").val(vanNumber);
           $("#dutyNumber").val(duty);
           $("#pdaOne").val(pdaOne);
           $("#pdaTwo").val(pdaTwo);
 
-          app.project.checkIfCollectionDuty(localStorage.getItem("dutyNumberDriverSignOut"));
+          app.project.checkIfCollectionDuty(localStorage.getItem("duty"));
         });
-      }; //end of getSignedOutVans function
+      } //end of getSignedOutVans function
 
 
+      //Function for signing van back in.
+      //Called by signVanIn.html when user presses submit
       this.signAVanIn = function() {
-        //console.log("signAVanIn in index.js called");
         var val1 = localStorage.getItem("nameDriverSignIn");
         //var val2 = localStorage.getItem("driver");
         var val3 = localStorage.getItem("collCompletedDriverSignIn");
@@ -196,7 +192,7 @@ var app = {
             document.location.href = "index.html";
           }
         });
-      }; //end of signAVanIn function
+      } //end of signAVanIn function
 
       //FUNCTIONS FOR DRIVER SIGN OUT
       //Function for submitting data for the driver to sign out
@@ -211,14 +207,13 @@ var app = {
         var pegs = localStorage.getItem("pegsDriverSignOut");
         var jacket = localStorage.getItem("jacketDriverSignOut");
         var footwear = localStorage.getItem("footwearDriverSignOut");
-        //console.log("Sign a van out in index.js called");
-        //console.log("driver name in sign a van out = " + name);
+        var vanID = localStorage.getItem("vanIDDriverSignout");
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
 
         $.post(url, {
           name: name,
           duty: duty,
-          vehicleNumber: vehicleNumber,
+          vanID: vanID,
           logbook: logbook,
           pdaOne: pdaOne,
           pdaTwo: pdaTwo,
@@ -229,53 +224,65 @@ var app = {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
             plugins.toast.showShortCenter("Success: Signed out");
-            this.clearDriverStorage();
             document.location.href = "index.html";
+            this.clearDriverStorage();
           }
-          ////console.log(obj[0].status);
         });
-      }; //end of signAVanOut function
+      } //end of signAVanOut function
 
       //Function for returning a van serial based on vehicle number
-      //Called by driver sign out 2 -> driver sign out 3
+      //Called by driver sign out page 1 onChange event for vehicle number
+      //Sets the serial number element on this page and variable used in driver sign out 3 of 3
       this.getVanSerial = function() {
-        //console.log("getVanSerial called");
         var vehNumber = localStorage.getItem("vanNumberDriverSignOut");
         var serialNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {
           $.each(data, function(index, item) {
-            //console.log(item.serialNumber);
             if (item.vehicleNumber === vehNumber) {
-              //console.log("van serial found");
               serialNumber = item.serialNumber;
               localStorage.setItem("vanSerialDriverSignOut", serialNumber);
               document.getElementById("serialNumTaken").value = serialNumber;
             }
           });
         });
-      }; //end of getVanSerial
+      } //end of getVanSerial
 
       //Function for returning a van reg based on vehicle number
-      //Called by driver sign out 2 -> driver sign out 3
+      //Called by driver sign out page 1 onChange event for vehicle number
+      //Sets the van reg number element on this page and variable used in driver sign out 3 of 3
       this.getVanReg = function() {
-        //console.log("getVanReg called");
+
         var vehNumber = localStorage.getItem("vanNumberDriverSignOut");
         var regNumber;
         var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
         $.getJSON(url, function(data) {
           $.each(data, function(index, item) {
-            ////console.log(item.vehicleNumber);
             if (item.vehicleNumber === vehNumber) {
-              //console.log(item.serialNumber);
-              //console.log("van  reg found");
               regNumber = item.regNumber;
               localStorage.setItem("vanRegDriverSignOut", regNumber);
               document.getElementById("regNumTaken").value = regNumber;
             }
           });
         });
-      }; //end of getVanReg
+      } //end of getVanReg
+
+      //When selecting a van number in driverSignout1.html, need to obtain the vanID
+      //which is sent to the server so a driver can sign the vehicle out.
+      //Called by driver sign out page 1 onChange event for vehicle number
+      this.getVanID = function() {
+        var vehNumber = localStorage.getItem("vanNumberDriverSignOut");
+        var vanID;
+        var url = "http://86.0.13.186:8080/tm470/queries/getAllVans.php";
+        $.getJSON(url, function(data) {
+          $.each(data, function(index, item) {
+            if (item.vehicleNumber === vehNumber) {
+              vanID = item.vanID;
+              localStorage.setItem("vanIDDriverSignout", vanID);
+            }
+          });
+        });
+      } //end of getVanID
 
       //FUNCTIONS FOR NON-DRIVERS
       //Function for signing a PDA out
@@ -286,8 +293,6 @@ var app = {
         var pegs = localStorage.getItem("pegsPdaSignOut");
         var jacket = localStorage.getItem("jacketPdaSignOut");
         var footwear = localStorage.getItem("footwearPdaSignOut");
-
-        //console.log("SignPdaOut in index.js called");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signPdaOut.php";
 
@@ -301,22 +306,18 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            ////console.log(obj.status);
             plugins.toast.showShortCenter("Success: signed pda out");
             document.location.href = "index.html";
           } else {
             plugins.toast.showShortCenter("Error: PDA not signed out");
-            ////console.log(obj.status);
           }
         });
-      }; //end of signPdaOut function
+      } //end of signPdaOut function
 
       //Function for returning the name of the person based on the duty number
       //Used in the sign a PDA in process
       this.getNameFromDutyPdaSignIn = function(val) {
-        //alert("getName called" + " " + val);
         var url = "http://86.0.13.186:8080/tm470/queries/getNameFromDutyPdaSignIn.php";
-        //console.log("The value is " + val);
         var firstName;
         var lastName;
         var payeNumber;
@@ -325,8 +326,7 @@ var app = {
           dutyNumber: val
         }, function(data) {
           var obj = $.parseJSON(data);
-          //console.log(obj.status);
-          //alert(obj[0].firstName);
+
           firstName = obj["data"].firstName;
           lastName = obj["data"].lastName;
           payeNumber = obj["data"].payeNumber;
@@ -338,11 +338,11 @@ var app = {
           $("#driverNames").val(full);
           $("#pdaNumber").val(pdaNumber);
         });
-      }; //end of getNameFromDutyPdaSignIn function
+      } //end of getNameFromDutyPdaSignIn function
 
+      //Function for signing a PDA back in
+      //Used in pdaSignIn.html when user presses submit
       this.signPdaIn = function(val) {
-        //console.log("signPdaIn in index.js called");
-        //console.log(localStorage.getItem("payeNumber"));
 
         var name = localStorage.getItem("payeNumber");
         var duty = localStorage.getItem("dutyNumber");
@@ -363,10 +363,11 @@ var app = {
             plugins.toast.showShortCenter("Error: PDA not signed in");
           }
         });
-      }; //end of signPdaIn function
+      } //end of signPdaIn function
 
-      //TO DO
       //Function for searching through the log
+      //Searches can be made by driver, vehicle number, reg number or serial number
+      //By default the search will return results from a year ago to current day, unless specified.
       this.searchLog = function() {
         var url = "http://86.0.13.186:8080/tm470/queries/searchLog.php";
         var payeNum = localStorage.getItem("payeNumLog");
@@ -401,36 +402,37 @@ var app = {
 
       //Function for returning to home screen from the admin screen
       //where you need to go back a directory.
-      //Called by the back button on admin/index.html
-      this.adminReturnHome = function() {
-        document.location.href = "../index.html";
-        localStorage.removeItem("adminName");
-      }; //end of adminReturnHome function
+      //Called by the Log out button on adminIndex.html
+      this.adminLogout = function() {
+        if (confirm("Are you sure you want to log out?")) {
+          document.location.href = "../index.html";
+          localStorage.removeItem("adminName");
+        }
+      } //end of adminReturnHome function
 
-      //Function for returning to the admin/index.html page. Called by the Home and Cancel buttons
+      //Function for returning to the adminIndex.html page. Called by the Cancel button and backKeyDown
       this.adminReturn = function() {
         if (confirm("Are you sure you want to cancel?")) {
-          navigator.app.backHistory();
+          document.location.href = "adminIndex.html";
         } else {} //end if
+      } //end of adminReturn
 
-      }; //end of adminReturn
-
-      //Function for returning to home screen from the default index page
+      //Function for returning to home screen from any of the driver/non-driver processes
       this.returnHome = function() {
         if (confirm("Are you sure you want to cancel?")) {
           document.location.href = "index.html";
           this.clearDriverStorage();
           this.clearPdaStorage();
         } else {} //end if
-      }; //end of returnHome function
+      } //end of returnHome function
 
       //END OF HOME/CANCEL BUTTON FUNCTIONS
 
       //FUNCTIONS FOR CLEARING LOCAL STORAGE AND FORMS
       //Clears all the local storage during the driver signout process
+      //Called when a user quits the process or when it is completed.
       this.clearDriverStorage = function() {
-        //driverSignOut1.html
-        //console.log("clearDriverStorage called");
+        //Variables set during driverSignOut1.html
         localStorage.removeItem("driverNameDriverSignOut");
         localStorage.removeItem("dutyNumberDriverSignOut");
         localStorage.removeItem("vanNumberDriverSignOut");
@@ -441,14 +443,15 @@ var app = {
         localStorage.removeItem("logbookDriverSignOut");
         localStorage.removeItem("vanSerialDriverSignOut");
         localStorage.removeItem("vanRegDriverSignOut");
+        localStorage.removeItem("vanIDDriverSignout");
 
-        //driverSignOut2.html
+        //Variables set during driverSignOut2.html
         localStorage.removeItem("pegsDriverSignOut");
         localStorage.removeItem("jacketDriverSignOut");
         localStorage.removeItem("footwearDriverSignOut");
 
         console.log("Cleared");
-      }; //end clearStaffStorage
+      } //end clearStaffStorage
 
       //Clears all the local storage set during the pda signing out/in process
       this.clearPdaStorage = function() {
@@ -459,17 +462,7 @@ var app = {
         localStorage.removeItem("pegsPdaSignOut");
         localStorage.removeItem("jacketPdaSignOut");
         localStorage.removeItem("footwearPdaSignOut");
-      };
-
-      this.clearAdminStorage = function() {
-
-      }; //end of clearAdminStorage
-
-      this.clearForm = function(val) {
-        //console.log("Clear form called");
-        document.getElementById(val).reset();
-        return false;
-      }; //end of clearForm
+      }
       //END OF FUNCTIONS FOR CLEARING LOCAL STORAGE AND FORMS
 
     }; //end of project function
