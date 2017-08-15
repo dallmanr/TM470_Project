@@ -189,13 +189,15 @@
         <!-- Number of keys for the van the staff member has taken -->
         <strong>Keys taken:</strong>
         <select name="keysTaken" id="keysTaken" onChange="setVanKeys(this.value)">
+         <optgroup label="Please select">
 			   <option value="1">One</option>
 			   <option value="2">Two</option>
+       </optgroup>
 			</select>
 
         <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-        <strong>PDA:</strong><select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
-        <strong>PDA:</strong><select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select..</option></select>
+        <strong>PDA:</strong><select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select...</option></select>
+        <strong>PDA:</strong><select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select...</option></select>
 
         <div id="collectionDutiesToHide">
           <strong>Collection keys:</strong>

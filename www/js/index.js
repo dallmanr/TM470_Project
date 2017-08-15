@@ -87,12 +87,15 @@ var app = {
       //Function for removing a van
       //This function is called by removeAVan.html
       this.removeVan = function(val) {
-        var regNumber = localStorage.getItem("regNumber");
+        //var regNumber = localStorage.getItem("regNumber");
         var reason = localStorage.getItem("reason");
+        var vanID = localStorage.getItem("vanID");
+        var removedBy = localStorage.getItem("adminPayeNum");
         var url = "http://86.0.13.186:8080/tm470/queries/removeAVan.php";
         $.post(url, {
-          regNumber: regNumber,
-          reason: reason
+          vanID: vanID,
+          reason: reason,
+          removedBy: removedBy
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {

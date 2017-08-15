@@ -124,11 +124,11 @@ var app = {
             div.style.display = "none";
             localStorage.setItem("collCompletedDriverSignIn", "NA");
             localStorage.setItem("pouchDriverSignIn", "NA");
-          } else if(collectionWalk == 1  && div.style.display === 'none') {
+          } else if (collectionWalk == 1 && div.style.display === 'none') {
             div.style.display = 'block';
-            }
-          });
-        } //end of checkIfCollectionDuty function
+          }
+        });
+      } //end of checkIfCollectionDuty function
 
       //DRIVER SIGN IN FUNCTIONS
       //Function for returning the vans that have been signed out.

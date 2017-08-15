@@ -3,6 +3,7 @@ function getVanDetails(val) {
   var regNumber = localStorage.getItem("regNumber");
   var vehicleNumber;
   var serialNumber;
+  var vanID;
   var url = "http://86.0.13.186:8080/tm470/queries/getVanDetails.php";
   $.post(url, {
     regNumber: val
@@ -10,6 +11,8 @@ function getVanDetails(val) {
     var obj = $.parseJSON(data);
     ////console.log("Vehicle number is " + obj[0].vehicleNumber);
     ////console.log("Serial number number is " + obj[0].serialNumber);
+    vanID = obj[0].vanID;
+    localStorage.setItem("vanID", vanID);
     vehicleNumber = obj[0].vehicleNumber;
     serialNumber = obj[0].serialNumber;
     //alert(obj[0].vanNumber);
