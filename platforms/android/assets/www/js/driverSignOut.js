@@ -47,6 +47,7 @@ function getPdasNotOut() {
   //alert("Get PDAs called");
   var pdas;
   $.getJSON("http://86.0.13.186:8080/tm470/queries/getUnsignedOutPDAs.php", function(data) {
+    pdas += "<option value='"  + "------"  + "'>" + "</option>";
     $.each(data, function(index, item) {
       pdas += "<option value='" + item.pdaNumber + "'>" + item.pdaNumber + "</option>";
       //console.log("Get pda numbers called driverSignOut.js");

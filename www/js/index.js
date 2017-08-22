@@ -211,6 +211,7 @@ var app = {
         var jacket = localStorage.getItem("jacketDriverSignOut");
         var footwear = localStorage.getItem("footwearDriverSignOut");
         var vanID = localStorage.getItem("vanIDDriverSignout");
+
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanOut.php";
 
         $.post(url, {
@@ -333,8 +334,9 @@ var app = {
           firstName = obj["data"].firstName;
           lastName = obj["data"].lastName;
           payeNumber = obj["data"].payeNumber;
-          pdaNumber = obj["data"].pdaOne;
+          pdaNumber = obj["data"].pda_id_fk;
           localStorage.setItem("payeNumber", payeNumber);
+          localStorage.setItem("pdaNumber", pdaNumber);
 
           full = firstName + " " + lastName + " (" + payeNumber + ")";
 
@@ -347,16 +349,18 @@ var app = {
       //Used in pdaSignIn.html when user presses submit
       this.signPdaIn = function(val) {
 
-        var name = localStorage.getItem("payeNumber");
+        var staffMember = localStorage.getItem("payeNumber");
         var duty = localStorage.getItem("dutyNumber");
-        var pdaReturned = localStorage.getItem("pdas");
+        var pdaReturned = localStorage.getItem("pdasReturned");
+        var pdaNumber = localStorage.getItem("pdaNumber");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signPdaIn.php";
 
         $.post(url, {
-          staffMember: name,
-          pdaReturned: pdaReturned,
-          duty: duty
+          staffMember: staffMember,
+          duty: duty,
+          pdaReturned: pdaReturned,      
+          pdaNumber: pdaNumber
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
