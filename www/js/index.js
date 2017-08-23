@@ -70,7 +70,6 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
-            console.log(obj.status);
             $("#serialNumber").val("");
             $("#vehicleNumber").val("");
             $("#regNumber").val("");
@@ -78,6 +77,7 @@ var app = {
             $("#reasonAdded").val("");
 
             plugins.toast.showShortCenter("Success: Van added");
+
           } else {
             plugins.toast.showShortCenter(obj.status);
           }
@@ -99,11 +99,11 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
-            console.log("success");
             $("#regNumber").val("");
             $("#vehicleNumber").val("");
             $("#reason").val("");
             $("#serialNumber").val("");
+
             plugins.toast.showShortCenter("Success: van removed");
           } else {
             plugins.toast.showShortCenter("Error: van not removed");
@@ -142,6 +142,7 @@ var app = {
         var duty;
         var pdaOne;
         var pdaTwo;
+        var dutydetails_id;
 
         var url = "http://86.0.13.186:8080/tm470/queries/getDriverSignInDetails.php";
         $.post(url, {
@@ -151,13 +152,15 @@ var app = {
 
           localStorage.setItem("vanNumber", obj[0].vehicleNumber);
           localStorage.setItem("duty", obj[0].duty);
-          localStorage.setItem("pdaOne", obj[0].pdaOne);
-          localStorage.setItem("pdaTwo", obj[0].pdaTwo);
+          localStorage.setItem("pdaOne", obj[0].pda_id_fk);
+          localStorage.setItem("pdaTwo", obj[1].pda_id_fk);
+          localStorage.setItem("dutyid", obj[0].dutydetails_id);
 
           vanNumber = obj[0].vehicleNumber;
           duty = obj[0].duty;
-          pdaOne = obj[0].pdaOne;
-          pdaTwo = obj[0].pdaTwo;
+          pdaOne = obj[0].pda_id_fk;
+          pdaTwo = obj[1].pda_id_fk;
+          dutydetails_id = obj[0].dutydetails_id;
           $("#vanNumber").val(vanNumber);
           $("#dutyNumber").val(duty);
           $("#pdaOne").val(pdaOne);
@@ -172,12 +175,16 @@ var app = {
       //Called by signVanIn.html when user presses submit
       this.signAVanIn = function() {
         var val1 = localStorage.getItem("nameDriverSignIn");
-        //var val2 = localStorage.getItem("driver");
         var val3 = localStorage.getItem("collCompletedDriverSignIn");
         var val4 = localStorage.getItem("pouchDriverSignIn");
         var val5 = localStorage.getItem("pdasDriverSignIn");
         var val6 = localStorage.getItem("logbookDriverSignIn");
         var val7 = localStorage.getItem("keysDriverSignIn");
+
+        var val8 = localStorage.getItem("dutyid");
+
+        var val9 = localStorage.getItem("pdaOne");
+        var val10 = localStorage.getItem("pdaTwo");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signAVanIn.php";
 
@@ -187,7 +194,10 @@ var app = {
           collPouch: val4,
           pdasReturned: val5,
           logbook: val6,
-          keysReturned: val7
+          keysReturned: val7,
+          dutyid: val8,
+          pdaOne: val9,
+          pdaTwo: val10
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
@@ -359,7 +369,7 @@ var app = {
         $.post(url, {
           staffMember: staffMember,
           duty: duty,
-          pdaReturned: pdaReturned,      
+          pdaReturned: pdaReturned,
           pdaNumber: pdaNumber
         }, function(data) {
           var obj = $.parseJSON(data);
