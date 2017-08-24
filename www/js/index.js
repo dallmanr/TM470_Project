@@ -336,6 +336,7 @@ var app = {
         var lastName;
         var payeNumber;
         var pdaNumber;
+        var dutyid;
         $.post(url, {
           dutyNumber: val
         }, function(data) {
@@ -345,8 +346,10 @@ var app = {
           lastName = obj["data"].lastName;
           payeNumber = obj["data"].payeNumber;
           pdaNumber = obj["data"].pda_id_fk;
+          dutyid = obj["data"].dutydetails_id;
           localStorage.setItem("payeNumber", payeNumber);
           localStorage.setItem("pdaNumber", pdaNumber);
+          localStorage.setItem("dutyid", dutyid);
 
           full = firstName + " " + lastName + " (" + payeNumber + ")";
 
@@ -363,14 +366,16 @@ var app = {
         var duty = localStorage.getItem("dutyNumber");
         var pdaReturned = localStorage.getItem("pdasReturned");
         var pdaNumber = localStorage.getItem("pdaNumber");
+        var dutyid = localStorage.getItem("dutyid");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signPdaIn.php";
 
         $.post(url, {
-          staffMember: staffMember,
-          duty: duty,
+          //staffMember: staffMember,
+          //duty: duty,
           pdaReturned: pdaReturned,
-          pdaNumber: pdaNumber
+          pdaNumber: pdaNumber,
+          dutyid: dutyid
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
