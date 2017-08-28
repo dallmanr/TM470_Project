@@ -1,9 +1,12 @@
 .checkbox-inline {
   text-indent: 20px !important;
+  height: 55px;
+  text-align: center;
 }
 
 .radio-inline {
   text-indent: 20px !important;
+  height: 55px;
 }
 
 table, th, td {

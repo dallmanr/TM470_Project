@@ -123,19 +123,32 @@
   If the user is returning to this screen from screen 2 or 3 to make changes, these values
   will have been set previously -->
   <script>
-    if (localStorage.getItem("collectionKeysDriverSignOut") == 1) {
+    if (localStorage.getItem("collectionKeysDriverSignOut") == "Y") {
       //alert(localStorage.getItem("pegs"));
       $("#collectionKeysTrue").prop("checked", true);
-    } else if (localStorage.getItem("collectionKeysDriverSignOut") == 0) {
-      $("#collectionKeysFalse").prop("checked", true);
+    } else {
+      $("#collectionKeysFalse").prop("checked", false);
     }
 
-    if (localStorage.getItem("logbookDriverSignOut") == 1) {
+    if (localStorage.getItem("logbookDriverSignOut") == "Y") {
       //alert(localStorage.getItem("pegs"));
       $("#logBookTrue").prop("checked", true);
-    } else if (localStorage.getItem("logbookDriverSignOut") == 0) {
-      $("#logBookFalse").prop("checked", true);
+    } else {
+      $("#logBookFalse").prop("checked", false);
     }
+  </script>
+
+  <!-- Scripts for setting the values of the elements when returning to the page -->
+  <script>
+    $("#driverNames").val(localStorage.getItem("driverNameDriverSignOut"));
+    $("#dutyNumber").val(localStorage.getItem("dutyNumberDriverSignOut"));
+    $("#vanNumber").val(localStorage.getItem("vanNumberDriverSignOut"));
+    $("#firstPdaTaken").val(localStorage.getItem("pdaOneNumDriverSignOut"));
+    $("#secondPdaTaken").val(localStorage.getItem("pdaTwoNumDriverSignOut"));
+    $("#keysCollected").val(localStorage.getItem("keysTakenDriverSignOut"));
+    $("#logBook").val(localStorage.getItem("logbookDriverSignOut"));
+    $("#serialNumTaken").val(localStorage.getItem("vanSerialDriverSignOut"))
+    $("#regNumTaken").val(localStorage.getItem("vanRegDriverSignOut"))
   </script>
 
   <div class="container">
@@ -147,77 +160,79 @@
           </button>
         </form>
       </div>
+
       <div class="col-sm-4">
         <h1 class="text-center">Sign van out</h1>
       </div>
+
       <div class="col-sm-4"></div>
     </div>
 
-    <!-- User Information -->
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:33%"></div>
+    </div>
+
     <form action="driverSignOut2.html">
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:33%"></div>
-      </div>
-      <fieldset>
-        <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
-        <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
-        <strong>Name:</strong>
-        <input list="driverNames" name="driverNames" onChange="setName(this.value)" required/>
-        <datalist id="driverNames">
-      </datalist>
+      <div class="form-group">
+        <!-- User Information -->
+        <fieldset>
+          <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
+          <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
+          <strong>Name:</strong>
+          <input list="driverNames" name="driverNames" onChange="setName(this.value)" required/>
+          <datalist id="driverNames">
+          </datalist>
 
-        <!-- A list of duties for the staff member to select which one they are on -->
-        <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
-        <strong>Duty:</strong>
-        <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value); app.project.checkIfCollectionDuty(this.value);" required />
-        <datalist id="dutyNumber">
-      </datalist>
+          <!-- A list of duties for the staff member to select which one they are on -->
+          <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
+          <strong>Duty:</strong>
+          <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value); app.project.checkIfCollectionDuty(this.value);" required />
+          <datalist id="dutyNumber">
+          </datalist>
 
-        <!-- List of vehicle numbers for a driver to select which one they are signing out -->
-        <!-- Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select> -->
-        <strong>Van number:</strong>
-        <input list="vanNumber" name="vanNumber" onChange="setVan(this.value); app.project.getVanSerial(); app.project.getVanReg(); app.project.getVanID();" required />
-        <datalist id="vanNumber">
-      </datalist>
+          <!-- List of vehicle numbers for a driver to select which one they are signing out -->
+          <!-- Van number: <select name="vanNumber" id="vanNumber" onChange="setVan(this.value)"><option>Please select..</option></select> -->
+          <strong>Van number:</strong>
+          <input list="vanNumber" name="vanNumber" onChange="setVan(this.value); app.project.getVanSerial(); app.project.getVanReg(); app.project.getVanID();" required />
+          <datalist id="vanNumber">
+          </datalist>
 
-        <strong>Van serial:</strong>
-        <input type="text" name="serialNumTaken" id="serialNumTaken" onChange="setSerial(this.value);" readonly/>
+          <strong>Van serial:</strong>
+          <input type="text" name="serialNumTaken" id="serialNumTaken" onChange="setSerial(this.value);" readonly/>
 
-        <strong>Van registration</strong>
-        <input type="text" name="regNumTaken" id="regNumTaken" onChange="setReg(this.value);" readonly/>
+          <strong>Van registration</strong>
+          <input type="text" name="regNumTaken" id="regNumTaken" onChange="setReg(this.value);" readonly/>
 
-        <!-- Number of keys for the van the staff member has taken -->
-        <strong>Keys taken:</strong>
-        <select name="keysTaken" id="keysTaken" onChange="setVanKeys(this.value)" required>
-         <optgroup label="Please select">
-			   <option value="1">One</option>
-			   <option value="2">Two</option>
-       </optgroup>
-			</select>
+          <!-- Number of keys for the van the staff member has taken -->
+          <strong>Keys taken:</strong>
+          <select name="keysTaken" id="keysTaken" onChange="setVanKeys(this.value)" required>
+             <optgroup label="Please select">
+    			   <option value="1">One</option>
+    			   <option value="2">Two</option>
+             </optgroup>
+    			    </select>
 
-        <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-        <strong>PDA:</strong><select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select...</option></select>
-        <strong>PDA:</strong><select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select...</option></select>
+          <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
+          <strong>PDA:</strong><select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select...</option></select>
+          <strong>PDA:</strong><select name="secondPadTaken" id="secondPadTaken" onChange="setPdaTwo(this.value)"><option>Please select...</option></select>
 
-        <div id="collectionDutiesToHide">
-          <strong>Collection keys:</strong>
-          <label class="radio-inline"><input type="radio" name="collectionKeys" id="collectionKeysTrue" value="Y" onchange="setCollKeys(this.value)" hidden/>Yes</label>
-          <label class="radio-inline"><input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="N" onchange="setCollKeys(this.value)" hidden />No</label>
-        </div>
+          <div id="collectionDutiesToHide">
+            <strong>Collection keys:</strong>
+            <label class="checkbox-inline"><input type="checkbox" name="collectionKeys" id="collectionKeysTrue" value="Y" onchange="setCollKeys(this.value)" />Yes</label>
+            <!--<label class="radio-inline"><input type="radio" name="collectionKeys"  id="collectionKeysFalse" value="N" onchange="setCollKeys(this.value)" hidden />No</label>-->
+          </div>
 
-        <strong>Log book:</strong>
-        <label class="radio-inline"><input type="radio" name="logBook" id="logBookTrue" value="Y" onchange="setLogbook(this.value)"  hidden/>Yes</label>
-        <label class="radio-inline"><input type="radio" name="logBook" id="logBookFalse" value="N" onchange="setLogbook(this.value)" hidden/>No</label>
-      </fieldset>
-    <!--</form> -->
-
-    <p><input type="button" class="btn btn-warning btn-block" id="cancelButton" value="Cancel" onclick="app.project.returnHome();" /></p>
-
-      <!--<form action="driverSignOut2.html"> -->
+          <strong>Log book:</strong>
+          <label class="checkbox-inline"><input type="checkbox" name="logBook" id="logBookTrue" value="Y" onchange="setLogbook(this.value)" required/>Yes</label>
+          <!--<label class="radio-inline"><input type="radio" name="logBook" id="logBookFalse" value="N" onchange="setLogbook(this.value)" hidden/>No</label> -->
+        </fieldset>
         <input type="submit" class="btn btn-primary btn-block" value="Next" />
-      </form>
-
+    </form>
+    <!--<p><input type="button" class="btn btn-warning btn-block" id="cancelButton" value="Cancel" onclick="app.project.returnHome();" /></p> -->
+    <!--<form action="driverSignOut2.html"> -->
+    </div>
   </div>
+
   <script>
     function onLoad() {
       //console.log("On load called");
@@ -228,6 +243,7 @@
     }
     onLoad();
   </script>
+
   <script src="js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>

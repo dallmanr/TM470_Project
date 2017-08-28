@@ -76,10 +76,10 @@ var app = {
             $("#keysAvail").val("");
             $("#reasonAdded").val("");
 
-            plugins.toast.showShortCenter("Success: Van added");
+            plugins.toast.showLongBottom("Success: Van added");
 
           } else {
-            plugins.toast.showShortCenter(obj.status);
+            plugins.toast.showLongBottom(obj.status);
           }
         });
       } // end of function addNewVan
@@ -104,9 +104,9 @@ var app = {
             $("#reason").val("");
             $("#serialNumber").val("");
 
-            plugins.toast.showShortCenter("Success: van removed");
+            plugins.toast.showLongBottom("Success: van removed");
           } else {
-            plugins.toast.showShortCenter("Error: van not removed");
+            plugins.toast.showLongBottom("Error: van not removed");
           }
         });
       } //end of removeVan function
@@ -201,7 +201,7 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
-            plugins.toast.showShortCenter("Success: Signed in");
+            plugins.toast.showLongBottom("Success: Signed in");
             document.location.href = "index.html";
           }
         });
@@ -237,7 +237,7 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: Signed out");
+            plugins.toast.showLongBottom("Success: Signed out");
             document.location.href = "index.html";
             this.clearDriverStorage();
           }
@@ -320,10 +320,10 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: signed pda out");
+            plugins.toast.showLongBottom("Success: signed pda out");
             document.location.href = "index.html";
           } else {
-            plugins.toast.showShortCenter("Error: PDA not signed out");
+            plugins.toast.showLongBottom("Error: PDA not signed out");
           }
         });
       } //end of signPdaOut function
@@ -379,10 +379,10 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: signed pda in");
+            plugins.toast.showLongBottom("Success: signed pda in");
             document.location.href = "index.html";
           } else {
-            plugins.toast.showShortCenter("Error: PDA not signed in");
+            plugins.toast.showLongBottom("Error: PDA not signed in");
           }
         });
       } //end of signPdaIn function

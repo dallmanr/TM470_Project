@@ -46,13 +46,11 @@
         <div class="row">
           <div class="col-sm-9"></div>
           <div class="col-sm-3">
-            <!--<form action="../index.html">
-              <label><input type="submit" id="adminButton" class="btn btn-default" value="Back" onclick="app.project.adminReturn()" /></label>
-            </form> -->
+
           </div>
         </div>
-        <!--<form id="addVanForm" action="javascript:addNewVan()" METHOD="POST"> -->
-        <form id="addVanForm">
+        
+        <form class="form-group" id="addVanForm" onsubmit="app.project.addNewVan()">
           <fieldset>
             <legend class="text-center">Add a van</legend>
             <!-- The serial number for the new van, that will be added to the system -->
@@ -62,21 +60,22 @@
             Vehicle number: <input type="text" name="vehicleNumber" id="vehicleNumber" placeholder="SW1 #" />
 
             <!-- The registration number for the new van, that will be added to the system -->
-            Registration number: <input type="text" name="regNumber" id="regNumber" placeholder="AB12 C34 #" />
+            Registration number: <input type="text" name="regNumber" id="regNumber" placeholder="AB12 C34 #" required/>
 
             <!-- The number of keys available -->
-            Number of keys: <input type="number" name="keysAvail" id="keysAvail" placeholder="1 or 2" />
+            Number of keys: <input type="number" name="keysAvail" id="keysAvail" placeholder="1 or 2" required/>
 
             <!-- A reason the new van has been added to the sytem -->
-            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement"> </textarea>
+            Reason for adding: <textarea rows="4" cols="10" name="reason" id="reasonAdded" placeholder="Replacement" required></textarea>
 
             <!-- The name of the staff member who added the van -->
             Added by: <input type="text" name="addedBy" id="addedBy" />
 
           </fieldset>
-          <!--<button id="cancelButton" class="btn btn-danger" onclick="onBackKeyDown();">Cancel</button> -->
+
           <input type="button" class="btn btn-warning btn-block" id="cancel" value="Cancel" onclick="app.project.adminReturn()" />
-          <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.addNewVan()" />
+          <!-- <input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.addNewVan()" /> -->
+          <input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" />
         </form>
       </div>
     </div>

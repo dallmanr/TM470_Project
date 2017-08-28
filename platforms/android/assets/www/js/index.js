@@ -76,10 +76,10 @@ var app = {
             $("#keysAvail").val("");
             $("#reasonAdded").val("");
 
-            plugins.toast.showShortCenter("Success: Van added");
+            plugins.toast.showLongBottom("Success: Van added");
 
           } else {
-            plugins.toast.showShortCenter(obj.status);
+            plugins.toast.showLongBottom(obj.status);
           }
         });
       } // end of function addNewVan
@@ -104,9 +104,9 @@ var app = {
             $("#reason").val("");
             $("#serialNumber").val("");
 
-            plugins.toast.showShortCenter("Success: van removed");
+            plugins.toast.showLongBottom("Success: van removed");
           } else {
-            plugins.toast.showShortCenter("Error: van not removed");
+            plugins.toast.showLongBottom("Error: van not removed");
           }
         });
       } //end of removeVan function
@@ -201,7 +201,7 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status == "success") {
-            plugins.toast.showShortCenter("Success: Signed in");
+            plugins.toast.showLongBottom("Success: Signed in");
             document.location.href = "index.html";
           }
         });
@@ -237,7 +237,7 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: Signed out");
+            plugins.toast.showLongBottom("Success: Signed out");
             document.location.href = "index.html";
             this.clearDriverStorage();
           }
@@ -320,10 +320,10 @@ var app = {
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: signed pda out");
+            plugins.toast.showLongBottom("Success: signed pda out");
             document.location.href = "index.html";
           } else {
-            plugins.toast.showShortCenter("Error: PDA not signed out");
+            plugins.toast.showLongBottom("Error: PDA not signed out");
           }
         });
       } //end of signPdaOut function
@@ -336,6 +336,7 @@ var app = {
         var lastName;
         var payeNumber;
         var pdaNumber;
+        var dutyid;
         $.post(url, {
           dutyNumber: val
         }, function(data) {
@@ -345,8 +346,10 @@ var app = {
           lastName = obj["data"].lastName;
           payeNumber = obj["data"].payeNumber;
           pdaNumber = obj["data"].pda_id_fk;
+          dutyid = obj["data"].dutydetails_id;
           localStorage.setItem("payeNumber", payeNumber);
           localStorage.setItem("pdaNumber", pdaNumber);
+          localStorage.setItem("dutyid", dutyid);
 
           full = firstName + " " + lastName + " (" + payeNumber + ")";
 
@@ -363,21 +366,23 @@ var app = {
         var duty = localStorage.getItem("dutyNumber");
         var pdaReturned = localStorage.getItem("pdasReturned");
         var pdaNumber = localStorage.getItem("pdaNumber");
+        var dutyid = localStorage.getItem("dutyid");
 
         var url = "http://86.0.13.186:8080/tm470/queries/signPdaIn.php";
 
         $.post(url, {
-          staffMember: staffMember,
-          duty: duty,
+          //staffMember: staffMember,
+          //duty: duty,
           pdaReturned: pdaReturned,
-          pdaNumber: pdaNumber
+          pdaNumber: pdaNumber,
+          dutyid: dutyid
         }, function(data) {
           var obj = $.parseJSON(data);
           if (obj.status === "success") {
-            plugins.toast.showShortCenter("Success: signed pda in");
+            plugins.toast.showLongBottom("Success: signed pda in");
             document.location.href = "index.html";
           } else {
-            plugins.toast.showShortCenter("Error: PDA not signed in");
+            plugins.toast.showLongBottom("Error: PDA not signed in");
           }
         });
       } //end of signPdaIn function

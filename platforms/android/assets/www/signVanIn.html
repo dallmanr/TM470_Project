@@ -33,6 +33,20 @@
 <body>
   <script src="js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Check that the required elements are ticked before submitting the form -->
+  <script type="text/javascript">
+    $(function() {
+      $("#vanInForm").on('submit', function() {
+        if ((document.getElementById("keysReturnedTrue").checked) && document.getElementById("logbookReturnedTrue").checked && document.getElementById("pdasReturnedTrue").checked) {
+          $("#vanInForm").submit();
+        } else {
+          e.preventDefault();
+          //alert('Please check the box before submitting the form');
+        }
+      });
+    });
+  </script>
+
   <script>
     function setName(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
@@ -45,7 +59,7 @@
   <script>
     function setKeys(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("keysDriverSignIn", val);
+      localStorage.setItem("keysDriverSignIn", "Y");
       //console.log(localStorage.getItem("keys"));
       //alert(val);
     }
@@ -54,7 +68,7 @@
   <script>
     function setLogbook(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("logbookDriverSignIn", val);
+      localStorage.setItem("logbookDriverSignIn", "Y");
       //console.log(localStorage.getItem("logbook"));
       //alert(val);
     }
@@ -63,7 +77,7 @@
   <script>
     function setPDAs(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("pdasDriverSignIn", val);
+      localStorage.setItem("pdasDriverSignIn", "Y");
       //console.log(localStorage.getItem("pdas"));
       //alert(val);
     }
@@ -72,7 +86,7 @@
   <script>
     function setPouchReturned(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("pouchDriverSignIn", val);
+      localStorage.setItem("pouchDriverSignIn", "Y");
       //console.log(localStorage.getItem("pouch"));
       //alert(val);
     }
@@ -81,7 +95,7 @@
   <script>
     function setDutiesCompleted(val) {
       //var pdaTwo = document.getElementById("secondPadTaken");
-      localStorage.setItem("collCompletedDriverSignIn", val);
+      localStorage.setItem("collCompletedDriverSignIn", "Y");
       //console.log(localStorage.getItem("completed"));
       //alert(val);
     }
@@ -100,34 +114,57 @@
       </div>
       <div class="col-sm-4"></div>
     </div>
-    <form action="index.html" id="vanInForm">
 
-      <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
-      <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
-      Name:
-      <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutDriverDetails(this.value);setName(this.value);" />
-      <datalist id="driverNames">
-      </datalist> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Duty number: <input type="text" name="dutyNumber" id="dutyNumber" /> PDA number: <input type="text" name="pdaOne" id="pdaOne" /> PDA number: <input type="text" name="pdaTwo"
-        id="pdaTwo" /> Keys returned?
-      <!-- The health and safety standards a driver has to adhere to -->
-      <label class="radio-inline"><input type="radio" name="keysReturned" id="keysReturnedTrue" value="Y" onchange="setKeys(this.value)" hidden/> Yes </label>
-      <label class="radio-inline"><input type="radio" name="keysReturned" id="keysReturnedFalse" value="N" onchange="setKeys(this.value)" hidden/> No </label> Log book returned?
-      <!-- The health and safety standards a driver has to adhere to -->
-      <label class="radio-inline"><input type="radio" name="logbookReturned" id="logbookReturnedTrue" value="Y" onchange="setLogbook(this.value)" hidden/> Yes </label>
-      <label class="radio-inline"><input type="radio" name="logbookReturned" id="logbookReturnedFalse" value="N" onchange="setLogbook(this.value)" hidden/> No </label> Returned all PDAs?
-      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedTrue" value="Y" onchange="setPDAs(this.value)" hidden/> Yes </label>
-      <label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="N" onchange="setPDAs(this.value)" hidden/> No </label>
+    <form id="vanInForm" onsubmit="app.project.signAVanIn()">
+      <div class="form-group">
+        <fieldset>
+          <!--Driver name: <select name="driverNames" id="driverNames" onChange="getVans(this.value);"><option>Please select..</option></select> Van number: <input type="text" name="vanNumber" id="vanNumber" /> Log book returned? -->
+          <!--Driver name: <select name="driverNames" id="driverNames" onChange="app.project.getSignedOutVans(this.value); setDriver(this.value)"><option>Please select..</option></select> -->
+          <strong>Name:</strong>
+          <input list="driverNames" name="driverNames" onChange="app.project.getSignedOutDriverDetails(this.value);setName(this.value);" required/>
+          <datalist id="driverNames">
+            </datalist>
 
-      <div id="collectionDutiesToHide">
-        Collection pouch returned?
-        <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedTrue" value="Y" onchange="setPouchReturned(this.value)" hidden/> Yes </label>
-        <label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedFalse" value="N" onchange="setPouchReturned(this.value)" hidden/> No </label> Collection duties completed?
-        <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompTrue" value="Y" onchange="setDutiesCompleted(this.value)" hidden/> Yes </label>
-        <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompFalse" value="N" onchange="setDutiesCompleted(this.value)" hidden/> No </label>
+          <strong>Van number:</strong>
+          <input type="text" name="vanNumber" id="vanNumber" />
+
+          <strong>Duty number:</strong>
+          <input type="text" name="dutyNumber" id="dutyNumber" />
+
+          <strong>PDA number:</strong>
+          <input type="text" name="pdaOne" id="pdaOne" />
+
+          <strong>PDA number:</strong>
+          <input type="text" name="pdaTwo" id="pdaTwo" />
+
+          <strong>Keys returned?</strong>
+          <label class="checkbox-inline"><input type="checkbox" name="keysReturned" id="keysReturnedTrue" value="" onchange="setKeys()" required/> Yes </label>
+          <!--<label class="radio-inline"><input type="radio" name="keysReturned" id="keysReturnedFalse" value="N" onchange="setKeys(this.value)" /> No </label>-->
+
+          <strong>Log book returned?</strong>
+          <label class="checkbox-inline"><input type="checkbox" name="logbookReturned" id="logbookReturnedTrue" value="" onchange="setLogbook()" required/> Yes </label>
+          <!--<label class="radio-inline"><input type="radio" name="logbookReturned" id="logbookReturnedFalse" value="N" onchange="setLogbook(this.value)" /> No </label> -->
+
+          <strong>Returned all PDAs?</strong>
+          <label class="checkbox-inline"><input type="checkbox" name="pdasReturned" id="pdasReturnedTrue" value="" onchange="setPDAs()" required/> Yes </label>
+          <!--<label class="radio-inline"><input type="radio" name="pdasReturned" id="pdasReturnedFalse" value="N" onchange="setPDAs(this.value)" /> No </label> -->
+
+          <div id="collectionDutiesToHide">
+            <strong>Collection pouch returned?</strong>
+            <label class="checkbox-inline"><input type="checkbox" name="collPouchReturned" id="collPouchReturnedTrue" value="" onchange="setPouchReturned()"/> Yes </label>
+            <!--<label class="radio-inline"><input type="radio" name="collPouchReturned" id="collPouchReturnedFalse" value="N" onchange="setPouchReturned(this.value)" /> No </label> -->
+
+            <strong>Collection duties completed?</strong>
+            <label class="checkbox-inline"><input type="checkbox" name="collDutiesComp" id="collDutiesCompTrue" value="" onchange="setDutiesCompleted()" /> Yes </label>
+            <!-- <label class="radio-inline"><input type="radio" name="collDutiesComp" id="collDutiesCompFalse" value="N" onchange="setDutiesCompleted(this.value)" /> No </label> -->
+          </div>
+        </fieldset>
       </div>
-
       <input type="button" class="btn btn-warning btn-block" id="cancelButton" onclick="app.project.returnHome();" value="Cancel" />
-      <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signAVanIn()" value="Submit" />
+      <!-- <input type="submit" class="btn btn-success btn-block" id="submit" onclick="app.project.signAVanIn()" value="Submit" /> -->
+      <input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" />
+
+
     </form>
   </div>
   <script>
