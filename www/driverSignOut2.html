@@ -40,19 +40,19 @@
       //alert(localStorage.getItem("pegs"));
       $("#postingPegsTrue").prop("checked", true);
     } else {
-      $("#postingPegsFalse").prop("checked", true);
+      $("#postingPegsFalse").prop("checked", false);
     }
 
     if (localStorage.getItem("jacket") == "Y") {
       $("#hiVisTrue").prop("checked", true);
     } else {
-      $("#hiVisFalse").prop("checked", true);
+      $("#hiVisFalse").prop("checked", false);
     }
 
     if (localStorage.getItem("footwear") == "Y") {
       $("#footwearTrue").prop("checked", true);
     } else {
-      $("#footwearFalse").prop("checked", true);
+      $("#footwearFalse").prop("checked", false);
     }
   </script>
 
@@ -88,38 +88,55 @@
               </button>
         </form>
       </div>
+
       <div class="col-sm-4">
         <h1 class="text-center">Sign van out</h1>
       </div>
       <div class="col-sm-4"></div>
     </div>
-    <form action="driverSignout3.html">
-    <fieldset>
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width:66%"></div>
-      </div>
-      <!-- The health and safety standards a driver has to adhere to -->
-      <strong>Posting pegs issued:</strong>
-      <label class="radio-inline"><input type="radio" name="postingPegs" id="postingPegsTrue" value="Y" onchange="setPegs(this.value) " hidden/>Yes</label>
-      <label class="radio-inline"><input type="radio" name="postingPegs" id="postingPegsFalse" value="N" onchange="setPegs(this.value)" hidden/>No</label>
 
-      <strong>His-vis jacket:</strong>
-      <label class="radio-inline"><input type="radio" name="hiVis" id="hiVisTrue" value="Y" onchange="setJacket(this.value)" hidden/>Yes</label>
-      <label class="radio-inline"><input type="radio" name="hiVis"  id="hiVisFalse" value="N"  onchange="setJacket(this.value)" hidden/>No</label>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+    </div>
 
-      <strong>Correct footwear:</strong>
-      <label class="radio-inline"><input type="radio" name="footwear"  id="footwearTrue" value="Y" onchange="setFootwear(this.value)" hidden/>Yes</label>
-      <label class="radio-inline"><input type="radio" name="footwear" id="footwearFalse" value="N" onchange="setFootwear(this.value)" hidden/>No</label>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:33%"></div>
+    </div>
+    <form action="driverSignOut3.html">
+      <fieldset>
+        <div class="form-group">
 
-    </fieldset>
+          <!-- The health and safety standards a driver has to adhere to -->
+          <strong>Posting pegs issued:</strong>
+          <label class="checkbox-inline">
+            <input required type="checkbox" name="postingPegs" id="postingPegsTrue" value="Y" onchange="setPegs(this.value) " />Yes
+          </label>
+          <!--<label class="radio-inline">
+        <input type="radio" name="postingPegs" id="postingPegsFalse" value="N" onchange="setPegs(this.value)" />No</label>-->
 
-    <p><input type="button" class="btn btn-warning btn-block" id="cancelButton" value="Cancel" onclick="app.project.returnHome();" /></p>
+          <strong>His-vis jacket:</strong>
+          <label class="checkbox-inline">
+            <input required type="checkbox" name="hiVis" id="hiVisTrue" value="Y" onchange="setJacket(this.value)" />Yes
+          </label>
+          <!--<label class="radio-inline">
+        <input type="radio" name="hiVis"  id="hiVisFalse" value="N"  onchange="setJacket(this.value)" />No</label>-->
 
+          <strong>Correct footwear:</strong>
+          <label class="checkbox-inline">
+            <input required type="checkbox" name="footwear"  id="footwearTrue" value="Y" onchange="setFootwear(this.value)" />Yes
+          </label>
+          <!--<label class="radio-inline">
+        <input type="radio" name="footwear" id="footwearFalse" value="N" onchange="setFootwear(this.value)" />No</label>-->
+        </div>
+      </fieldset>
+      <!--</form> -->
+      <!--<p><input type="button" class="btn btn-warning btn-block" id="cancelButton" value="Cancel" onclick="app.project.returnHome();" /></p> -->
       <!--<form action="driverSignOut3.html"> -->
-        <!--<label><input type="submit" class="btn btn-default" value="Next"onclick="javascript:getVanSerial();getVanReg();"/></label> -->
-        <label><input type="submit" class="btn btn-primary btn-block" value="Next"/></label>
-      </form>
-  </div>
+      <!--<label><input type="submit" class="btn btn-primary btn-block" value="Next" onclick="javascript:getVanSerial();getVanReg();"/></label>-->
+      <label><input type="submit" class="btn btn-primary btn-block" value="Next" /></label>
+    </form>
+</div>
 </body>
-
 </html>

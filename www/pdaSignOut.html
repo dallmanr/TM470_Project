@@ -98,73 +98,71 @@
         </form>
       </div>
       <div class="col-sm-4">
-        <h1 class="text-center">Sign PDA out</h1>
       </div>
       <div class="col-sm-4"></div>
     </div>
 
     <!-- User Information -->
-    <form>
-    <fieldset>
-      <legend class="text-center">Sign a PDA out</legend>
-      <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
-      <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
-      <strong>Name:</strong>
-      <input list="driverNames" name="driverNames" onChange="setName(this.value)"/>
-      <datalist id="driverNames">
+    <form class="form-group" id="pdaOutForm" onsubmit="app.project.signPdaOut()">
+      <fieldset>
+        <legend class="text-center">Sign a PDA out</legend>
+        <!-- A list of drivers, list contains names of those not currently out on a route for that day -->
+        <!--Name: <select name="driverNames" id="driverNames" onChange="setName(this.value)"><option>Please select..</option></select>-->
+        <strong>Name:</strong>
+        <input list="driverNames" name="driverNames" onChange="setName(this.value)" required/>
+        <datalist id="driverNames">
       </datalist>
 
-      <!-- A list of duties for the staff member to select which one they are on -->
-      <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
-      <strong>Duty:</strong>
-      <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value)"/>
-      <datalist id="dutyNumber">
+        <!-- A list of duties for the staff member to select which one they are on -->
+        <!--Duty: <select name="dutyNumber" id="dutyNumber" onChange="setDuty(this.value)"><option>Please select..</option></select> -->
+        <strong>Duty:</strong>
+        <input list="dutyNumber" name="dutyNumber" onChange="setDuty(this.value)" required/>
+        <datalist id="dutyNumber">
       </datalist>
 
-      <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
-      <strong>PDA:</strong> <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)"><option>Please select..</option></select>
+        <!-- List of PDAs for the staff member to select for signing out (1st PDA) -->
+        <strong>PDA:</strong> <select name="firstPdaTaken" id="firstPdaTaken" onChange="setPdaOne(this.value)" required><option>Please select..</option></select>
 
-      <strong>Posting pegs issued:</strong>
-      <label class="radio-inline">
-        <input type="radio" name="postingPegs" id="postingPegsTrue" value="Y" onchange="setPegs(this.value)" hidden/>Yes
-      </label>
-
-      <label class="radio-inline">
-       <input type="radio" name="postingPegs" id="postingPegsFalse" value="N" onchange="setPegs(this.value)" hidden/>No
-      </label>
-
-      <strong>His-vis jacket:</strong>
-      <label class="radio-inline">
-        <input type="radio" name="hiVis" id="hiVisTrue" value="Y" onchange="setJacket(this.value)" hidden/>Yes
-      </label>
-
-      <label class="radio-inline">
-        <input type="radio" name="hiVis"  id="hiVisFalse" value="N"  onchange="setJacket(this.value)" hidden/>No
-      </label>
-
-      <strong>Correct footwear:</strong>
-      <label class="radio-inline">
-       <input type="radio" name="footwear"  id="footwearTrue" value="Y" onchange="setFootwear(this.value)" hidden/>Yes
-      </label>
-
-      <label class="radio-inline">
-        <input type="radio" name="footwear" id="footwearFalse" value="N" onchange="setFootwear(this.value)" hidden/>No
-      </label>
-
-      <p>
+        <strong>Posting pegs issued:</strong>
         <label class="checkbox-inline">
-        <input type="hidden" name="acknowledge" value="N"/>
-        <input type="checkbox" name="acknowledge" id="acknowledge" value="Y" hidden/>
-        <i>I acknowledge the above information is correct</i></label>
-      </p>
-      <!-- Need to create the page for signing the PDA out -->
-      <!--<form action="">
+        <input type="checkbox" name="postingPegs" id="postingPegsTrue" value="Y" onchange="setPegs(this.value)" required/>Yes
+      </label>
+
+        <!--<label class="radio-inline">
+       <input type="radio" name="postingPegs" id="postingPegsFalse" value="N" onchange="setPegs(this.value)" hidden/>No
+     </label>-->
+
+        <strong>His-vis jacket:</strong>
+        <label class="checkbox-inline">
+        <input type="checkbox" name="hiVis" id="hiVisTrue" value="Y" onchange="setJacket(this.value)" required/>Yes
+      </label>
+
+        <!--<label class="radio-inline">
+        <input type="radio" name="hiVis"  id="hiVisFalse" value="N"  onchange="setJacket(this.value)" hidden/>No
+      </label>-->
+
+        <strong>Correct footwear:</strong>
+        <label class="checkbox-inline">
+       <input type="checkbox" name="footwear"  id="footwearTrue" value="Y" onchange="setFootwear(this.value)" required/>Yes
+      </label>
+
+        <!--<label class="radio-inline">
+        <input type="radio" name="footwear" id="footwearFalse" value="N" onchange="setFootwear(this.value)" hidden/>No
+      </label>-->
+
+        <label class="checkbox-inline">
+          <input type="checkbox" value="" required/>I acknowledge the above information is correct
+      </label>
+
+
+        <!--<form action="">
         <input type="submit" class="btn btn-default" value="Sign out" />
       </form> -->
-      <input type="button" class="btn btn-warning btn-block" id="cancelButton" onclick="app.project.returnHome(1);" value="Cancel" />
-      <input type="button" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signPdaOut()" value="Submit" />
-    </fieldset>
-  </form>
+        <input type="button" class="btn btn-warning btn-block" id="cancelButton" onclick="app.project.returnHome(1);" value="Cancel" />
+        <!--<input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signPdaOut()" value="Submit" />-->
+        <input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" value="Submit" />
+      </fieldset>
+    </form>
   </div>
 
   <script>

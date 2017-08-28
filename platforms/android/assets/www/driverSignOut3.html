@@ -26,9 +26,10 @@
   <script type="text/javascript" src="js/driverSignOut.js"></script>
   <script type="text/javascript" src="js/getDriversOnDuty.js"></script>
   <script type="text/javascript" src="js/pdaSignIn.js"></script>
+  <script type="text/javascript" src="js/getVanDetails.js"></script>
 
 
-  <title>Driver sign out</title>
+  <title class="text-center">Driver sign out</title>
 </head>
 
 <body>
@@ -69,9 +70,9 @@
       $("#collectionKeys").prop("checked", true);
     }
 
-    if(localStorage.getItem("collectionKeys") == "NA") {
-        document.getElementById("collKeyDiv").style.display = "none";
-      }
+    if (localStorage.getItem("collectionKeys") == "NA") {
+      document.getElementById("collKeyDiv").style.display = "none";
+    }
 
     //$("#pegs").val(localStorage.getItem("pegs"));
     //$("#hivis").val(localStorage.getItem("jacket"));
@@ -79,70 +80,142 @@
     //alert(localStorage.getItem("driverName"));
   </script>
 
+  <script>
+    function setCollKeys(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("collectionKeysDriverSignOut", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setLogbook(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("logbookDriverSignOut", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setPegs(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("pegsDriverSignOut", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setJacket(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("jacketDriverSignOut", val);
+      //alert(val);
+    }
+  </script>
+
+  <script>
+    function setFootwear(val) {
+      //var pdaTwo = document.getElementById("secondPadTaken");
+      localStorage.setItem("footwearDriverSignOut", val);
+      //alert(val);
+    }
+  </script>
+
   <div class="container">
-    <div id="user-input">
-      <div class="row">
-        <div class="col-sm-4">
-          <form action="index.html">
-            <button type="button" class="btn btn-default" aria-label="Home" onclick="app.project.returnHome();">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                </button>
-          </form>
-        </div>
-        <div class="col-sm-4">
-          <h1 class="text-center">Sign van out</h1>
-        </div>
-        <div class="col-sm-4"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <form action="index.html">
+          <button type="button" class="btn btn-default" aria-label="Home" onclick="app.project.returnHome();">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </button>
+        </form>
       </div>
 
-      <input type="hidden" name="redirect" value="index.html" />
-      <form>
-      <fieldset>
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width:99%"></div>
-        </div>
-        <!-- Summary of information filled out by the staff member, before confirming their action -->
-        <p>
-          <strong>Name:</strong><input type="text" name="theDriversName" id="theDriversName" readonly />
-          <strong>Duty number:</strong><input type="text" name="driversDuty" id="driversDuty" readonly />
-          <strong>Number of keys taken:</strong> <input type="text" name="keysCollected" id="keysCollected" readonly />
-          <strong>Vehicle number:</strong> <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
-          <strong>Registration:</strong> <input type="text" name="regNumTaken" id="regNumTaken" readonly />
-          <strong>Serial number:</strong> <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
-          <strong>PDA 1:</strong> <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
-          <strong>PDA 2:</strong> <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
+      <div class="col-sm-4">
+        <h1 class="text-center">Sign van out</h1>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width:99%"></div>
+      </div>
+    </div>
+    <div class="row">
+      <form class="form-group" id="vanOutForm" onsubmit="app.project.signAVanOut();">
+        <fieldset>
+          <!-- Summary of information filled out by the staff member, before confirming their action -->
+          <p><label for="theDriversName"><strong>Name:</strong></label></p>
+          <input type="text" name="theDriversName" id="theDriversName" readonly />
+
+          <p><label for="driversDuty"><strong>Duty number:</strong></label></p>
+          <input type="text" name="driversDuty" id="driversDuty" readonly />
+
+          <p><label for="keysCollected"><strong>Number of keys taken:</strong></label></p>
+          <input type="text" name="keysCollected" id="keysCollected" readonly />
+
+          <p><label for="signOutVanNumber"><strong>Vehicle number:</strong></label></p>
+          <input type="text" name="signOutVanNumber" id="signOutVanNumber" readonly />
+
+          <p><label for="regNumTaken"><strong>Registration:</strong></label></p>
+          <input type="text" name="regNumTaken" id="regNumTaken" readonly />
+
+          <p><label for="serialNumTaken"><strong>Serial number:</strong></label></p>
+          <input type="text" name="serialNumTaken" id="serialNumTaken" readonly />
+
+          <p><label for="firstPdaTaken"><strong>PDA 1:</strong></label></p>
+          <input type="text" name="firstPdaTaken" id="firstPdaTaken" readonly />
+
+          <p><label for="secondPdaTaken"><strong>PDA 2:</strong></label></p>
+          <input type="text" name="secondPdaTaken" id="secondPdaTaken" readonly />
 
           <label class="checkbox-inline">
-            <input type="checkbox" name="logBookCollected" id="logBookCollected" value="Y" hidden/><strong>Log book</strong></label>
+            <input type="checkbox" name="logBookCollected" id="logBookCollected" value="Y" required/><strong>Log book</strong>
+          </label>
 
-          <input type="hidden" name="pegs" value="N" /><label class="checkbox-inline">
-            <input type="checkbox" name="pegs" id="pegs" value="Y" hidden/><strong>Posting pegs</strong></label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="pegs" id="pegs" value="Y" required/><strong>Posting pegs</strong>
+          </label>
 
-          <label class="checkbox-inline"><input type="hidden" name="hivis" value="N"/>
-            <input type="checkbox" name="hivis" id="hivis" value="Y" hidden/><strong>Hi-vis jacket</strong></label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="hivis" id="hivis" value="Y" required/><strong>Hi-vis jacket</strong>
+          </label>
 
-          <label class="checkbox-inline"><input type="hidden" name="footwear" value="N"/>
-            <input type="checkbox" name="footwear" id="footwear" value="Y" hidden/><strong>Footwear</strong></label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="footwear" id="footwear" value="Y" required/><strong>Footwear</strong>
+          </label>
 
           <div id="collKeyDiv">
-          <label class="checkbox-inline">
-              <input type="hidden" name="collectionKeys" value="0" hidden/>
-              <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" hidden/><strong>Collection keys</strong>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="collectionKeys" id="collectionKeys" value="1" /><strong>Collection keys</strong>
             </label>
           </div>
-          <p>
+        </fieldset>
 
-            <label class="checkbox-inline">
-            <input type="hidden" name="acknowledge" id="acknowledgeFalse" value="Y" hidden/>
-            <input type="checkbox" name="acknowledge" id="acknowledgeTrue" value="N" hidden/>
-            <i>I acknowledge the above information is correct</i></label>
-          </p>
-      </fieldset>
-        <input type="button" class="btn btn-warning btn-block" id="cancelButton"  value="Cancel" onclick="app.project.returnHome();" />
-        <input type="button" class="btn btn-success btn-block"  id="submit" value="Submit" onclick="app.project.signAVanOut();"/>
+        <label class="checkbox-inline">
+              <input required type="checkbox" value="">I confirm the above information is correct
+        </label>
+
+        <input type="button" class="btn btn-warning btn-block" id="cancelButton" value="Cancel" onclick="app.project.returnHome();" />
+        <!--<input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" onclick="app.project.signAVanOut();" />-->
+        <input type="submit" class="btn btn-success btn-block" id="submit" value="Submit" />
       </form>
-    </div>
-  </div>
-</body>
 
+    </div>
+    <!--<div class="col-sm-4">
+      <input type="hidden" name="redirect" value="index.html" />
+    </div>-->
+
+    <!--<input type="hidden" name="acknowledge" id="acknowledgeFalse" value="Y" hidden/>
+            <input type="checkbox" name="acknowledge" id="acknowledgeTrue" value="N" hidden/>
+            <i>I acknowledge the above information is correct</i></label> -->
+  </div>
+  <script>
+    function onLoad() {
+      //getVanSerial();
+      //getVanReg();
+    }
+    onLoad();
+  </script>
+</body>
 </html>

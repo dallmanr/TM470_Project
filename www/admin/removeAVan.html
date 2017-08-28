@@ -78,23 +78,14 @@
             </form> -->
           </div>
         </div>
-        <form id="removeVanForm">
+        <form class="form-group" id="removeVanForm" onsubmit="app.project.removeVan()">
           <fieldset>
             <legend class="text-center">Remove a van</legend>
-            <!-- Users can remove a van using either the serial/reg or vehicle number -->
-            <!-- The serial number of the van to be removed-->
-            <!--Serial number: <select name="serialNumber" id="serialNumber" onChange="setSerial(this.value)"><option>Please select..</option></select> -->
-
-            <!-- The vehicle number of the van to be removed -->
-            <!--Vehicle number: <select name="vehicleNumber" id="vehicleNumber" onChange="setVeh(this.value)"><option>Please select..</option></select> -->
-
-            <!-- The registration number of the van to be removed-->
-            <!-- Registration number: <select name="regNumber" id="regNumber" onChange="setReg(this.value)"><option>Please select..</option></select> -->
 
             <strong>Registration number:</strong>
-            <input list="regNumber" name="regNumber" onChange="setReg(this.value); javascript:getVanDetails(this.value);" />
+            <input list="regNumber" name="regNumber" onChange="setReg(this.value); javascript:getVanDetails(this.value);" required/>
             <datalist id="regNumber">
-          </datalist>
+            </datalist>
 
             <strong>Vehicle number:</strong>
             <input type="text" name="vehicleNumber" id="vehicleNumber" readonly/>
@@ -108,7 +99,8 @@
           </fieldset>
 
           <input type="button" class="btn btn-warning btn-block" value="Cancel" id="cancel" onclick="app.project.adminReturn()" />
-          <input type="button" class="btn btn-success btn-block" value="Submit" id="submit" onclick="app.project.removeVan()" />
+          <!-- <input type="button" class="btn btn-success btn-block" value="Submit" id="submit" onclick="app.project.removeVan()" /> -->
+          <input type="button" class="btn btn-success btn-block" value="Submit" id="submit" />
         </form>
       </div>
     </div>
