@@ -125,6 +125,7 @@ var app = {
           collectionWalk = obj[0].collectionsWalk;
           if (collectionWalk == 0) {
             div.style.display = "none";
+            localStorage.setItem("collectionKeysDriverSignOut", "NA");
             localStorage.setItem("collCompletedDriverSignIn", "NA");
             localStorage.setItem("pouchDriverSignIn", "NA");
           } else if (collectionWalk == 1 && div.style.display === 'none') {
@@ -153,18 +154,19 @@ var app = {
           localStorage.setItem("vanNumber", obj[0].vehicleNumber);
           localStorage.setItem("duty", obj[0].duty);
           localStorage.setItem("pdaOne", obj[0].pda_id_fk);
-          localStorage.setItem("pdaTwo", obj[1].pda_id_fk);
+          if (obj[1] != null) {
+            localStorage.setItem("pdaTwo", obj[1].pda_id_fk);
+            pdaTwo = obj[1].pda_id_fk;
+            $("#pdaTwo").val(pdaTwo);
+          }
           localStorage.setItem("dutyid", obj[0].dutydetails_id);
-
           vanNumber = obj[0].vehicleNumber;
           duty = obj[0].duty;
           pdaOne = obj[0].pda_id_fk;
-          pdaTwo = obj[1].pda_id_fk;
           dutydetails_id = obj[0].dutydetails_id;
           $("#vanNumber").val(vanNumber);
           $("#dutyNumber").val(duty);
           $("#pdaOne").val(pdaOne);
-          $("#pdaTwo").val(pdaTwo);
 
           app.project.checkIfCollectionDuty(localStorage.getItem("duty"));
         });
